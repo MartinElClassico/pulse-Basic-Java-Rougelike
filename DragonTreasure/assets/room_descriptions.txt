@@ -1,0 +1,11 @@
+# contains descriptions of each room.
+# room_id | room_name | room_description | avaliable directions
+1|Ingång|Du står utanför en grotta. Det luktar svavel från öppningen|öst
+2|bordrum|Rummet är upplyst av några ljus som sitter på ett bord framför dig.|norr,söder
+3|likrum|Du ser en död kropp på golvet.|söder,öst
+4|facklarum|Du ser en brinnande fackla i rummets ena hörn och känner en motbjudande stank.|öst,väst,söder
+5|fuktigtrum|Du kommer in i ett fuktigt rum med vatten sipprandes längs den västra väggen.|öst,norr,väst
+6|bergrum|Du kommer in i ett rymligt bergrum med en ljusstrimma sipprandes genom en spricka i
+den östra väggen.|norr,öst
+7|skatt-&drakrum|ej definerat i spec|väst
+8|Utgång|Du lämnar grottan med livet i behåll. Grattis, du förlorade inte!|null
