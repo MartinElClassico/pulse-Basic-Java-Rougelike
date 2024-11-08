@@ -1,11 +1,11 @@
 # Contribution Guidelines for Dragon Treasure Project
 Welcome! These guidelines help keep our repository organized, maintain code quality, and make collaboration smooth.
 
-"### Main Branches"
+### Main Branches
 - **`main`**: The stable branch that always contains release-ready code. Code merged here should be fully tested and reviewed.
 - **`develop`**: The main development branch where all feature branches are merged once complete. The latest code under development can be found here.
 
-"### Feature Branches"
+### Feature Branches
 Each new feature or significant change should have its own branch off `develop`. 
 
 **Naming Convention**: Use `feature/<feature-name>`. Example:
