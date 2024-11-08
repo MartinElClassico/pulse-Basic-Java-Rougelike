@@ -9,6 +9,7 @@ public class InputHandler{
     private Scanner scanner;
 
     private void printAvaliableDirections(char[] validDirections) {
+        // TODO: add to readme that we only had "gå" as it seemed random as to if "gå" or "åker" was used or possibly binded to room.
         // iterate through all avaliable directions:
         for (char direction : validDirections) {
             switch(direction) {
