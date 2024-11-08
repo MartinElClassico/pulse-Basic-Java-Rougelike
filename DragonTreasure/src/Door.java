@@ -52,7 +52,7 @@ public class Door {
     // no need to change position of doors, they cannot transport. 
 
     /**
-     * Set's the door's locked status, for example to lock or unlock it based on events.
+     * Sets the door's locked status, for example to lock or unlock it based on events.
      * 
      * @param locked true if door should be locked, false if door should be unlocked.
      */
