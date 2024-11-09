@@ -4,7 +4,7 @@ pulse-Basic-Java-Rougelike
 ## Description:
 A very basic rougelike game to show understanding of fundamentals of Java
 
-## Detailed description:
+## Detailed description and delimitations:
 
 ## How to install and run:
 
