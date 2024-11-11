@@ -7,26 +7,18 @@ public class Dungeon{
      */
     private Room currentRoom;
     /**
-     * private instance to hold the welcome message to display at the start of the game. 
-     * //TODO: how do we interpret this? as the welcome message as in A (below) or as in B (below):
-     *    ... if we choose A or B, where should the other one be handled?
-     * A. This needs to be created with the player name as well. As per spec:
-     * Välkommen {name} till din skattjakt.
-     * B. This does not need to include name but asks for the name to be stored in the "player" class object. as per spec:
-     * Välkommen till Dragon Treasure
-     *   Skriv ditt namn och tryck på [Enter] för att starta ett
+     * private static instance to hold the welcome message to display at the start of the game. 
      */
-    private String welcomeMessage;
+    private static String welcomeMessage = "Välkommen till Dragon Treasure\r\n" 
+                                            + "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...";
 
     /**
-     * Construct a Dungeon with a given room (the start room) and a welcome message to display.
+     * Construct a Dungeon with a given room (the start room).
      * 
      * @param currentRoom
-     * @param welcomeMessage
      */
-    public Dungeon(Room currentRoom, String welcomeMessage){
+    public Dungeon(Room currentRoom){
         this.currentRoom = currentRoom;
-        this.welcomeMessage = welcomeMessage;
     }
 
     /**
@@ -43,8 +35,8 @@ public class Dungeon{
      * 
      * @return the welcome message as a string.
      */
-    public String getWelcomeMessage(){
-        return this.welcomeMessage;
+    public static String getWelcomeMessage(){
+        return welcomeMessage;
     }
 
     /**
@@ -56,13 +48,4 @@ public class Dungeon{
         this.currentRoom = currentRoom;
     }
 
-    /**
-     * Sets the welcome message for the game.
-     * Might be good to be able to be changed based on for example a restart of the game.
-     * 
-     * @param welcomeMessage a string to set the new welcome message.
-     */
-    public void setWelcomeMessage(String welcomeMessage){
-        this.welcomeMessage = welcomeMessage;
-    }
 }
