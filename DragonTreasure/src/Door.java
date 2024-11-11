@@ -2,8 +2,6 @@
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.
  * 
- * The Door class is relative to the Room class (thus the Doors are created from Rooms)
- * //TODO: is above description correct as per our interpretation? rewrite into more formal language.
  */
 public class Door {
     /**
