@@ -18,14 +18,22 @@ public class Room {
     private int roomId;
 
     /**
+     * private instance to hold the doors in an array that are connected to the room.
+     * 
+     */
+    private Door[] doors;
+
+    /**
      * Constructs a Room with a given room description and roomID. 
      * 
-     * @param roomDesc
-     * @param roomId
+     * @param roomDesc the description of the room, to be printed upon entering said room
+     * @param roomId an ID to keep track of where the room is. 
+     * @param doors an array that holds door instances connected to the room. needs to be at least one.
      */
-    public Room (String roomDesc, int roomId){
+    public Room (String roomDesc, int roomId, Door[] doors){
         this.roomDesc = roomDesc;
         this.roomId = roomId;
+        this.doors = doors; 
     }
     
     /**
@@ -49,9 +57,20 @@ public class Room {
      * 
      * @return the room's ID.
      */
-    public int getRoomId (){
+    public int getRoomId () {
         return this.roomId;
     }
+
+    /**
+     * Retrivies the room's doors
+     * 
+     * @return an array of Door class instances
+     */
+    public Door[] getDoors() {
+        return this.doors;
+    }
+
+    // no need to recreate doors unless they should be able to disappear. 
 
     /**
      * Sets the room's description. In case it need to be modified for an event for example.
