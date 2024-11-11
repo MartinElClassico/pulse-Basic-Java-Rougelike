@@ -2,9 +2,7 @@
  * The Room class represents a room in the dungeon. 
  * It stores basic information about the room such as the room description and it's assigned ID. 
  * 
- * //TODO: does it room know which door it is linked to or does each door know which rooms it's linked to? 
- * or does dungeon create a type of map for this? Perhaps room can have an instance to hold an array of which direction it has doors.
- * thus room creates it own door instances. Think this works as per the class diagram of the assignment spec as well.
+ * Room also stores an array of Door objects that is given as arguments to the constructor. 
  */
 public class Room {
 
