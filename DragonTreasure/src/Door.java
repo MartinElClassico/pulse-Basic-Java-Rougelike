@@ -19,15 +19,22 @@ public class Door {
     private boolean locked;
 
     /**
+     * Private instance to hold the room ID of the room the door leads to.
+     */
+    private int connectedRoomID;
+
+    /**
      * Constructs a Door with a given position and whether the door is locked or not.
      * 
      * @param position wether the door is to the w, e, n or s.
      * @param locked wether the door is locked or not (false).
+     * @param connectedRoomID holds the ID of the room the door leads to.
      */
 
-    public Door(char position, boolean locked) {
+    public Door(char position, boolean locked, int connectedRoomID) {
         this.position = position;
         this.locked = locked;
+        this.connectedRoomID = connectedRoomID;
     }
 
     /**
@@ -46,6 +53,15 @@ public class Door {
      */
     public boolean getLocked(){
         return this.locked;
+    }
+
+    /**
+     * Retrieves the roomID that the room leads to.
+     * 
+     * @return int of the roomID.
+     */
+    public int getConnectedRoomID() {
+        return this.connectedRoomID;
     }
 
     // no need to change position of doors, they cannot transport. 
