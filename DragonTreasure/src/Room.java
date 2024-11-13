@@ -46,7 +46,7 @@ public class Room {
      * 
      * @return the room's description.
      */
-    public String getRoomDesc (){
+    public String getRoomDesc () {
         return this.roomDesc;
     }
 
@@ -58,6 +58,15 @@ public class Room {
 
     public int getRoomId () {
         return this.roomId;
+    }
+
+    /**
+     * returns all the door class instances that are connected to the room.
+     * 
+     * @return an array of door class instances.
+     */
+    public Door[] getDoors () {
+        return this.doors;
     }
 
     /**
