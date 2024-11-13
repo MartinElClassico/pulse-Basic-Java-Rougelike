@@ -24,6 +24,12 @@ public class Door {
     private int connectedRoomID;
 
     /**
+     * text that is written to user when describing the door.
+     * e.g.: Du kan åka söderut [s]
+     */
+    private String doorPrompt;
+
+    /**
      * Holds the description for looking through the keyhole of a locked door.
      * Will be nothing unless set explicitly through setter.
      */
@@ -35,12 +41,14 @@ public class Door {
      * @param position wether the door is to the w, e, n or s.
      * @param locked wether the door is locked or not (false).
      * @param connectedRoomID holds the ID of the room the door leads to.
+     * @param doorPrompt hold the text that is written to user when describing the door.
      */
 
-    public Door(char position, boolean locked, int connectedRoomID) {
+    public Door(char position, boolean locked, int connectedRoomID, String doorPrompt) {
         this.position = position;
         this.locked = locked;
         this.connectedRoomID = connectedRoomID;
+        this.doorPrompt = doorPrompt;
     }
 
     /**
@@ -61,6 +69,10 @@ public class Door {
         return this.locked;
     }
 
+    public String getDoorPrompt () {
+        return this.doorPrompt;
+    }
+
     /**
      * Retrieves the roomID that the room leads to.
      * 
@@ -68,6 +80,10 @@ public class Door {
      */
     public int getConnectedRoomID() {
         return this.connectedRoomID;
+    }
+
+    public void setDoorPrompt (String doorPrompt) {
+        this.doorPrompt = doorPrompt;
     }
 
     // no need to change position of doors, they cannot transport. 
