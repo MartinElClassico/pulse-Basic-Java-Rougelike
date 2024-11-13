@@ -4,11 +4,7 @@
  */
 public class DragonTreasure{
 
-    //TODO: should these be callable from outside this class? If so change from private. 
-    //      Or perhaps migrate these to their own classes.
-    private void setupGame(){
-        // logic to setup game. 
-    }
+    //  private void setupGame() --> we migrate this to it's own java object because of it's size.
 
     private void endGame(){
         // logic to end game.

@@ -2,16 +2,14 @@
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.
  * 
- * The Door class is relative to the Room class (thus the Doors are created from Rooms)
- * //TODO: is above description correct as per our interpretation? rewrite into more formal language.
  */
 public class Door {
     /**
      * Private instance to hold the Door's position, either w, e, n or s. But as game is in Swedish there are instead: v, ö, n, s.
      */
-    private char position; //TODO: why is this here? the position is relative to the room. 
-                             // Thus a door by itself always has two chars for position, not one. Possible interpretation:
-                             // create the door again for the new room. Perhaps it's only locked from one room for example.
+
+    private char position;  // create the door again for the new room. Perhaps it's only locked from one room for example.
+
     /**
      * Private instance to hold the Door's locked status.
      * 
@@ -26,7 +24,8 @@ public class Door {
      * @param position wether the door is to the w, e, n or s.
      * @param locked wether the door is locked or not (false).
      */
-    public Door(char position, boolean locked){
+
+    public Door(char position, boolean locked) {
         this.position = position;
         this.locked = locked;
     }
@@ -36,7 +35,7 @@ public class Door {
      * 
      * @return the position of the door.
      */
-    public char getPosition(){
+    public char getPosition() {
         return this.position;
     }
 
