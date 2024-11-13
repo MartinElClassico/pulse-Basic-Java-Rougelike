@@ -55,20 +55,10 @@ public class Room {
      * 
      * @return the room's ID.
      */
+
     public int getRoomId () {
         return this.roomId;
     }
-
-    /**
-     * Retrivies the room's doors
-     * 
-     * @return an array of Door class instances
-     */
-    public Door[] getDoors() {
-        return this.doors;
-    }
-
-    // no need to recreate doors unless they should be able to disappear. 
 
     /**
      * Sets the room's description. In case it need to be modified for an event for example.

@@ -20,6 +20,5 @@ public class DragonTreasure{
         // e.g.:
         // GameLoop loop = New GameLoop(setup.getPlayer(), setup.getDungeon());
         // loop.start()
-
     }
 }

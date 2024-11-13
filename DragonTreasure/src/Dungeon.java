@@ -7,6 +7,7 @@ public class Dungeon{
      */
     private Room currentRoom;
     /**
+
      * private static instance to hold the welcome message to display at the start of the game. 
      */
     private static String welcomeMessage = "Välkommen till Dragon Treasure\r\n" 
@@ -35,6 +36,7 @@ public class Dungeon{
      * 
      * @return the welcome message as a string.
      */
+
     public static String getWelcomeMessage(){
         return welcomeMessage;
     }
@@ -47,5 +49,4 @@ public class Dungeon{
     public void setCurrentRoom(Room currentRoom){
         this.currentRoom = currentRoom;
     }
-
 }

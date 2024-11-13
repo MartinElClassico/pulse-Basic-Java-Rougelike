@@ -7,7 +7,9 @@ public class Door {
     /**
      * Private instance to hold the Door's position, either w, e, n or s. But as game is in Swedish there are instead: v, ö, n, s.
      */
+
     private char position;  // create the door again for the new room. Perhaps it's only locked from one room for example.
+
     /**
      * Private instance to hold the Door's locked status.
      * 
@@ -22,6 +24,7 @@ public class Door {
      * @param position wether the door is to the w, e, n or s.
      * @param locked wether the door is locked or not (false).
      */
+
     public Door(char position, boolean locked) {
         this.position = position;
         this.locked = locked;
