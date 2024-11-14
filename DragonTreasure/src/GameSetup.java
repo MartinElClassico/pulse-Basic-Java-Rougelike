@@ -13,6 +13,9 @@ public class GameSetup {
         this.rooms[2] = createRoom2();
         this.rooms[3] = createRoom3();
         this.rooms[4] = createRoom4();
+        this.rooms[5] = createRoom5();
+        this.rooms[6] = createRoom6();
+        this.rooms[7] = createRoom7();
     }
 
     private void populateRoomDescriptions () {
@@ -80,8 +83,10 @@ public class GameSetup {
     }
 
     private Room createRoom4() {
-        Door doorRoom4East = new Door('ö', false, 6,
+        Door doorRoom4East = new Door('ö', true, 6,
         "Du ser en låst dörr i öster [ö]");
+        //Add description for lookig through the keyhole since the door is locked
+        doorRoom4East.setKeyholeViewDescription("Du kikar genom nyckelhålet och ser en skattkista full med guld");
         Door doorRoom4North = new Door('n', false, 3,
         "Du kan gå norrut [n]");
         Door doorRoom4West = new Door('v', false, 5,
@@ -92,6 +97,36 @@ public class GameSetup {
         doors[2] = doorRoom4West;
         Room room4 = new Room(this.roomDescriptions[4], 4, doors);
         return room4;
+    }
+
+    private Room createRoom5() {
+        Door doorRoom5North = new Door('n', false,1,
+        "Du kan gå norrut [n]");
+        Door doorRoom5East = new Door('n', false,4,
+        "Du kan åka österut [ö]");
+        doors = new Door[2];
+        doors[0] = doorRoom5North;
+        doors[1] = doorRoom5East;
+        Room room5 = new Room(this.roomDescriptions[5], 5, doors);
+        return room5;
+    }
+
+    private Room createRoom6() {
+        Door doorRoom6West = new Door('v', false, 4,
+        "Du kan gå västerut [v]");
+        doors = new Door[1];
+        doors[0] = doorRoom6West;
+        Room room6 = new Room(this.roomDescriptions[6], 6, doors);
+        return room6;
+    }
+
+    private Room createRoom7() {
+        Door doorRoom7West = new Door('v', false, 3,
+        "Du ser utgången från grottan västerut [v]");
+        doors = new Door[1];
+        doors[0] = doorRoom7West;
+        Room room7 = new Room(this.roomDescriptions[7], 7, doors);
+        return room7;
     }
     
 }
