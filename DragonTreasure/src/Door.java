@@ -19,6 +19,7 @@ public class Door {
     private boolean locked;
 
     /**
+
      * Private instance to hold the room ID of the room the door leads to.
      */
     private int connectedRoomID;
@@ -69,6 +70,7 @@ public class Door {
         return this.locked;
     }
 
+
     public String getDoorPrompt () {
         return this.doorPrompt;
     }
@@ -84,6 +86,7 @@ public class Door {
 
     public void setDoorPrompt (String doorPrompt) {
         this.doorPrompt = doorPrompt;
+
     }
 
     // no need to change position of doors, they cannot transport. 
