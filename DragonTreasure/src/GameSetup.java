@@ -169,4 +169,7 @@ public class GameSetup {
         return room7;
     }
     
+    public Room[] getRooms() {
+        return this.rooms;
+    }
 }
