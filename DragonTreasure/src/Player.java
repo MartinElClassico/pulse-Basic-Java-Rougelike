@@ -29,10 +29,5 @@ public class Player {
     public String getName() {
         return name;
     }
-
-    // TODO: Should this be included? 
-    // Setter for the player's name: 
     // not included since name shouldn't be able to be changed.
-
-    // Additional player-specific code
 }

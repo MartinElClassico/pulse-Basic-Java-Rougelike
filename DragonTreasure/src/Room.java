@@ -2,9 +2,7 @@
  * The Room class represents a room in the dungeon. 
  * It stores basic information about the room such as the room description and it's assigned ID. 
  * 
- * //TODO: does it room know which door it is linked to or does each door know which rooms it's linked to? 
- * or does dungeon create a type of map for this? Perhaps room can have an instance to hold an array of which direction it has doors.
- * thus room creates it own door instances. Think this works as per the class diagram of the assignment spec as well.
+ * Room also stores an array of Door objects that is given as arguments to the constructor. 
  */
 public class Room {
 
@@ -18,14 +16,22 @@ public class Room {
     private int roomId;
 
     /**
+     * private instance to hold the doors in an array that are connected to the room.
+     * 
+     */
+    private Door[] doors;
+
+    /**
      * Constructs a Room with a given room description and roomID. 
      * 
-     * @param roomDesc
-     * @param roomId
+     * @param roomDesc the description of the room, to be printed upon entering said room
+     * @param roomId an ID to keep track of where the room is. 
+     * @param doors an array that holds door instances connected to the room. needs to be at least one.
      */
-    public Room (String roomDesc, int roomId){
+    public Room (String roomDesc, int roomId, Door[] doors){
         this.roomDesc = roomDesc;
         this.roomId = roomId;
+        this.doors = doors; 
     }
     
     /**
@@ -40,7 +46,7 @@ public class Room {
      * 
      * @return the room's description.
      */
-    public String getRoomDesc (){
+    public String getRoomDesc () {
         return this.roomDesc;
     }
 
@@ -49,8 +55,18 @@ public class Room {
      * 
      * @return the room's ID.
      */
-    public int getRoomId (){
+
+    public int getRoomId () {
         return this.roomId;
+    }
+
+    /**
+     * returns all the door class instances that are connected to the room.
+     * 
+     * @return an array of door class instances.
+     */
+    public Door[] getDoors () {
+        return this.doors;
     }
 
     /**
