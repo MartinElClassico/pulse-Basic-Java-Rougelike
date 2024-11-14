@@ -31,7 +31,11 @@ public class GameSetup {
         roomDescriptions[7] = ("Du lämnar grottan med livet i behåll. Grattis, du förlorade inte!");
     }
 
-    // create the rooms in the dungeon with related doors.
+    /**
+     * Create doors for room 0 and add those to an array
+     * Create room 0 and use the door array in the args
+     * @return Room 0
+     */
     private Room createRoom0() {
         // create doors for the room firstly.
         Door doorRoom0East = new Door('ö', false, 1, 
@@ -43,6 +47,11 @@ public class GameSetup {
         return room0;
     }
 
+    /**
+     * Create doors for room 1 and add those to an array
+     * Create room 1 and use the door array in the args
+     * @return Room 1
+     */
     private Room createRoom1() {
         Door doorRoom1North = new Door('n', false,2,
         "Du kan gå norrut [n]");
@@ -55,6 +64,11 @@ public class GameSetup {
         return room1;
     }
 
+    /**
+     * Create doors for room 2 and add those to an array
+     * Create room 2 and use the door array in the args
+     * @return Room 2
+     */
     private Room createRoom2() {
         Door doorRoom2South = new Door('s', false, 1,
         "Du kan åka söderut [s]");
@@ -67,6 +81,11 @@ public class GameSetup {
         return room2;
     }
 
+    /**
+     * Create doors for room 3 and add those to an array
+     * Create room 3 and use the door array in the args
+     * @return Room 3
+     */
     private Room createRoom3() {
         Door doorRoom3East = new Door('ö', false, 7,
         "Du ser en utgång österut [ö]");
@@ -82,10 +101,16 @@ public class GameSetup {
         return room3;
     }
 
+    /**
+     * Create doors for room 4 and add those to an array
+     * Add desc for looking through the keyholw of locked door
+     * Create room 4 and use the door array in the args
+     * @return Room 4
+     */
     private Room createRoom4() {
         Door doorRoom4East = new Door('ö', true, 6,
         "Du ser en låst dörr i öster [ö]");
-        //Add description for lookig through the keyhole since the door is locked
+        //Add description for looking through the keyhole since the door is locked
         doorRoom4East.setKeyholeViewDescription("Du kikar genom nyckelhålet och ser en skattkista full med guld");
         Door doorRoom4North = new Door('n', false, 3,
         "Du kan gå norrut [n]");
@@ -99,6 +124,11 @@ public class GameSetup {
         return room4;
     }
 
+    /**
+     * Create doors for room 5 and add those to an array
+     * Create room 5 and use the door array in the args
+     * @return Room 5
+     */
     private Room createRoom5() {
         Door doorRoom5North = new Door('n', false,1,
         "Du kan gå norrut [n]");
@@ -111,6 +141,11 @@ public class GameSetup {
         return room5;
     }
 
+    /**
+     * Create doors for room 6 and add those to an array
+     * Create room 6 and use the door array in the args
+     * @return Room 6
+     */
     private Room createRoom6() {
         Door doorRoom6West = new Door('v', false, 4,
         "Du kan gå västerut [v]");
@@ -120,6 +155,11 @@ public class GameSetup {
         return room6;
     }
 
+    /**
+     * Create doors for room 7 and add those to an array
+     * Create room 7 and use the door array in the args
+     * @return Room 7
+     */
     private Room createRoom7() {
         Door doorRoom7West = new Door('v', false, 3,
         "Du ser utgången från grottan västerut [v]");
