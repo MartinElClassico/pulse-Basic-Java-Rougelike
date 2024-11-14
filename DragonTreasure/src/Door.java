@@ -19,6 +19,12 @@ public class Door {
     private boolean locked;
 
     /**
+     * Holds the description for looking through the keyhole of a locked door.
+     * Will be nothing unless set explicitly through setter.
+     */
+    private String keyholeViewDescription = "";
+
+    /**
      * Constructs a Door with a given position and whether the door is locked or not.
      * 
      * @param position wether the door is to the w, e, n or s.
@@ -46,6 +52,14 @@ public class Door {
      */
     public boolean getLocked(){
         return this.locked;
+    }
+
+    public String getKeyholeViewDescription() {
+        return this.keyholeViewDescription;
+    }
+
+    public void setKeyholeViewDescription(String keyholeViewDescription) {
+        this.keyholeViewDescription = keyholeViewDescription;
     }
 
     // no need to change position of doors, they cannot transport. 
