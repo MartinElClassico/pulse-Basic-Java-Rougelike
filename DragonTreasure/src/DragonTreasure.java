@@ -11,18 +11,17 @@ public class DragonTreasure{
     //}
 
     public static void main(String[] args){
-        // logic to setup the game. e.g.:
-        // GameSetup setup = new GameSetup();
-        //setup.initalize();
+        // logic to setup the game.
         GameSetup setupDungeon = new GameSetup();
+        // prompt user for username and welcome player to game.
         setupDungeon.promptUserName();
+
+        // get data to create gameloop from setup.
         Room[] dungeonRooms = setupDungeon.getRooms();
         Player newPlayer = setupDungeon.getPlayer();
-
-        // logic to start the game loop (as a loop datatype?)
-        // optional: make it exit loop on quit game command and/or death condition.
-        // e.g.:
-        // GameLoop loop = New GameLoop(setup.getPlayer(), setup.getDungeon());
-        // loop.start()
+        // create loop.
+        GameLoop loop = new GameLoop(newPlayer, dungeonRooms);
+        // start a gameloop.
+        loop.start();
     }
 }
