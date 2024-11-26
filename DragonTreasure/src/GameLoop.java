@@ -19,15 +19,18 @@ public class GameLoop {
             // print room description (needs roomID)
             // print out all door desriptions in room.
             // get user input
+            //COND CHECK:
+                // if user input is not 'q' then:
+                    // update roomID based on user input
         // exit condition1:
             // user choses 'q' and quits the game.
         // exit condition2:
             // user finds the dungeon exit.
+            // e.g. roomID == 7;
         //basecase:
-            // update roomID based on user input
             // start loop again with the choosen room.
         }      
     }
 
-    
+
 }
