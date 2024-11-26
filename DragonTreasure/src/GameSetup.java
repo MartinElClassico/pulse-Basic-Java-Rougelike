@@ -9,6 +9,8 @@ public class GameSetup {
 
     private String[] roomDescriptions = new String[8];
 
+    private String playerName;
+
     private static String welcomeMessage = ("Välkommen till Dragon Treasure\r\n" + 
                 "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...");
 
@@ -201,11 +203,15 @@ public class GameSetup {
     }
 
     // TODO: motivate if this should be public or private with a help method (public).
-    public String promptUserName() {
+    public void promptUserName() {
         printWelcomeMsg();
         String playerName = fetchPlayerName();
         printWelcomePlayer(playerName);
-        return playerName;
+        this.playerName = playerName;
+    }
+
+    public Player getPlayer() {
+        return new Player(this.playerName);
     }
 
 
