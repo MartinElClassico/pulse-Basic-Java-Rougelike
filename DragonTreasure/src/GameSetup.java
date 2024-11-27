@@ -203,6 +203,7 @@ public class GameSetup {
     }
 
     // TODO: motivate if this should be public or private with a help method (public).
+    // Note: keep public in case called on externally
     public void promptUserName() {
         printWelcomeMsg();
         String playerName = fetchPlayerName();
