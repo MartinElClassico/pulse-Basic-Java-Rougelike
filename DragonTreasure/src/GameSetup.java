@@ -1,3 +1,5 @@
+import utils.DragonTreasure; //import local help function for room 4 door.
+
 
 public class GameSetup {
 
@@ -21,7 +23,7 @@ public class GameSetup {
     }
 
     private void populateRoomDescriptions () {
-        roomDescriptions[0] = ("Du står utanför en grotta. Det luktar svavel från öppningen\r\n");
+        roomDescriptions[0] = ("Du står utanför en grotta. Det luktar svavel från öppningen");
         roomDescriptions[1] = ("När du går in i grottan kollapsar ingången bakom dig.\r\n" + 
                         "Rummet är upplyst av några ljus som sitter på ett bord framför dig.");
         roomDescriptions[2] = ("Du ser en död kropp på golvet.");
@@ -113,7 +115,9 @@ public class GameSetup {
         Door doorRoom4East = new Door('o', true, 6,
         "Du ser en låst dörr i öster [o]");
         //Add description for looking through the keyhole since the door is locked
-        doorRoom4East.setKeyholeViewDescription("Du kikar genom nyckelhålet och ser en skattkista full med guld");
+        doorRoom4East.setKeyholeViewDescription(
+            "Du kikar genom nyckelhålet och ser en skattkista full med guld.\n"
+            + DragonTreasure.getTreasure());
         Door doorRoom4North = new Door('n', false, 3,
         "Du kan gå norrut [n]");
         Door doorRoom4West = new Door('v', false, 5,
