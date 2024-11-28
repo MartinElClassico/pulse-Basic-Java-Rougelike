@@ -87,24 +87,34 @@ public class GameLoop {
         return validDirectionArray;
     }
 
-    private Room fetchNewRoom(char roomDirection, Door[] roomDoors) {
-        int newRoomID = 10; // just because IDE doesn't know for loop should always resolve. (:
-        for (Door door : roomDoors) {
-            if (door.getPosition() == roomDirection) {
-                newRoomID = door.getConnectedRoomID();
+    private Door fetchChoosenDoor(char roomDirection, Door[] roomDoors) {
+        // try-catch in-case the if loop fails to return anything.
+        try {
+            for (Door door : roomDoors) {
+                if (door.getPosition() == roomDirection) {
+                    return door;
+                }
             }
+            // throw error if no door matches (it does not return from if statement)
+            throw new IllegalArgumentException("No Door found in for direction: " + roomDirection);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage()); //show error code.
+            return null; // needs a return statement.
         }
-        return dungeonRooms[newRoomID];
     }
+
 
     public void start(int startRoomID) {
         InputHandler inpHand = new InputHandler();
         getAndSetNewPlayer();
         this.currentRoom = this.dungeonRooms[startRoomID];
+        boolean doorLocked = false; // if door is locked we should'nt print room description until an unlocked door is chosen.
         while (running) {
         // base loop:
-            // print room description
-            printRoomDesc();
+            // print room description, but only if an unlocked door was chosen previously:
+            if (!doorLocked) {
+                printRoomDesc();
+            }
             // print out all door desriptions in room.
             printAllDoorsDescriptions();
             // get user input
@@ -115,12 +125,21 @@ public class GameLoop {
             if (userInp == 'q'){
                 System.out.println(quitMessage); 
                 this.running = false;
-            } else {
-                // if not q then it is a valid door direction.
-                // case: 
-                    // is in roomId 0 and
-                    // userInp = 'ö'
-                this.currentRoom = fetchNewRoom(userInp, currentRoom.getDoors());
+            }
+            // if not q then it is a valid door direction.
+            if (userInp != 'q') {
+                doorLocked = false; // always reset locked status first.
+                // add logic here for if door is locked.
+                Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
+                //if door is locked, print door peep 
+                if (chosenDoor.getLocked()) {
+                    doorLocked = true;
+                    System.out.println(chosenDoor.getKeyholeViewDescription());
+                } else {
+                    // else set the current room to the room the chosen door leads to.
+                    this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                }
+                //this.currentRoom = fetchNewRoom(userInp, currentRoom.getDoors());
             }
             // exit condition2:
             // user finds the dungeon exit.
