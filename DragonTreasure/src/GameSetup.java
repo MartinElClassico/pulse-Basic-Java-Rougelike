@@ -1,18 +1,12 @@
-import java.util.Scanner;
 
 public class GameSetup {
-    private Scanner sc;
+
 
     private Door[] doors;
 
     private Room[] rooms = new Room[8];
 
     private String[] roomDescriptions = new String[8];
-
-    private String playerName;
-
-    private static String welcomeMessage = ("Välkommen till Dragon Treasure\r\n" + 
-                "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...");
 
     // main constructor of the file.
     public GameSetup() {
@@ -180,39 +174,6 @@ public class GameSetup {
     
     public Room[] getRooms() {
         return this.rooms;
-    }
-
-    private void printWelcomeMsg() {
-        System.out.println(welcomeMessage);
-    }
-
-    private String fetchPlayerName() {
-        // create scanner to get input. 
-        this.sc = new Scanner(System.in);
-        // get user rawInput
-        // TODO: check if we need a loop here to control user input or not. 
-        // TODO: motivate why .trim is used (remove leading&trailing whitespaces, return "" string.)
-        String userInput = sc.nextLine().trim();
-        this.sc.close(); // close to not get resource leaks
-        return userInput;
-    }
-
-    // print welcomemessage to user:
-    private void printWelcomePlayer(String playerName) {
-        System.out.printf("Välkommen %s till din skattjakt.%n", playerName);
-    }
-
-    // TODO: motivate if this should be public or private with a help method (public).
-    // Note: keep public in case called on externally
-    public void promptUserName() {
-        printWelcomeMsg();
-        String playerName = fetchPlayerName();
-        printWelcomePlayer(playerName);
-        this.playerName = playerName;
-    }
-
-    public Player getPlayer() {
-        return new Player(this.playerName);
     }
 
 
