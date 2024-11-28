@@ -18,6 +18,7 @@ public class GameLoop {
     private Room currentRoom;
 
     public GameLoop(Room[] dungeonRooms) {
+        this.sc = new Scanner(System.in);
         this.dungeonRooms = dungeonRooms;
     }
 
@@ -27,12 +28,10 @@ public class GameLoop {
 
     private String fetchPlayerName() {
         // create scanner to get input. 
-        this.sc = new Scanner(System.in);
         // get user rawInput
         // TODO: check if we need a loop here to control user input or not. 
         // TODO: motivate why .trim is used (remove leading&trailing whitespaces, return "" string.)
         String userInput = sc.nextLine().trim();
-        this.sc.close(); // close to not get resource leaks
         return userInput;
     }
 
@@ -99,6 +98,7 @@ public class GameLoop {
     }
 
     public void start(int startRoomID) {
+        InputHandler inpHand = new InputHandler();
         getAndSetNewPlayer();
         this.currentRoom = this.dungeonRooms[startRoomID];
         while (running) {
@@ -108,7 +108,6 @@ public class GameLoop {
             // print out all door desriptions in room.
             printAllDoorsDescriptions();
             // get user input
-            InputHandler inpHand = new InputHandler();
             char userInp = inpHand.getUserInpMovement(validDirectionsInRoom());
             // TODO: no logic for peeking through locked door (default move).
             // exit condition1:
@@ -135,6 +134,8 @@ public class GameLoop {
             // this correspond to win message.
             printRoomDesc();
         }
+        inpHand.closeScanner();
+        sc.close();
     }
 
 

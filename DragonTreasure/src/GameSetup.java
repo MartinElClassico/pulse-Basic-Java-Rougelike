@@ -1,7 +1,6 @@
 
 public class GameSetup {
 
-
     private Door[] doors;
 
     private Room[] rooms = new Room[8];

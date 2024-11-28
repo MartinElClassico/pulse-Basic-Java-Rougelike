@@ -8,11 +8,15 @@ import java.util.Scanner;
 public class InputHandler{
     private Scanner scanner;
 
-    public InputHandler(){} //empty constructor. 
+    public InputHandler(){
+        this.scanner = new Scanner(System.in);
+    } //empty constructor. 
+
+    public void closeScanner() {
+        scanner.close();
+    }
 
     public char getUserInpMovement(char[] validDirections){
-        // create scanner to get input. 
-        this.scanner = new Scanner(System.in);
         while (true) {
             // get user rawInput
             String input = scanner.nextLine().trim().toLowerCase();
@@ -22,12 +26,10 @@ public class InputHandler{
 
             for (char direction : validDirections) {
                 if (command == direction) {
-                    this.scanner.close(); // close to not get resource leaks
                     return command;
                 }
             }
             if (command == 'q') {
-                this.scanner.close(); // close to not get resource leaks
                 return 'q';
             }
             System.out.println("ogiltigt val. Försök igen.");
