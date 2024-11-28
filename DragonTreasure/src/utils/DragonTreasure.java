@@ -65,7 +65,13 @@ public class DragonTreasure {
     public static void printTreasure() {
         System.out.println(treasureAscii);
     }
+    public static String getTreasure() {
+        return treasureAscii;
+    }
     public static void printDragon() {
         System.out.println(dragonAscii);
+    }
+    public static String getDragon() {
+        return dragonAscii;
     }
 }
