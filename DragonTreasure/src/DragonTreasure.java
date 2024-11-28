@@ -18,7 +18,7 @@ public class DragonTreasure{
         // create loop.
         GameLoop loop = new GameLoop(dungeonRooms);
         // start a gameloop.
-        loop.start();
+        loop.start(0);
         // NOTE: we need to sleep a little here otherwise game will just terminate immediately.
         // method --> keep pr
     }
