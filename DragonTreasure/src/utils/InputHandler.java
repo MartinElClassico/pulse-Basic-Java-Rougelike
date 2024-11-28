@@ -23,7 +23,6 @@ public class InputHandler{
             // convert input to character command, use char null symbol if empty (viz. wrong input).
             // we need to do this as to not create an out of range error if input is an empty string.
             char command = input.isEmpty() ? '\0' : input.charAt(0);
-
             for (char direction : validDirections) {
                 if (command == direction) {
                     return command;

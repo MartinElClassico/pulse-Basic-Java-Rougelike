@@ -40,8 +40,8 @@ public class GameSetup {
      */
     private Room createRoom0() {
         // create doors for the room firstly.
-        Door doorRoom0East = new Door('ö', false, 1, 
-        "Grottöppningen är österut. Skriv \"ö\" och tryck på [Enter] för att komma in i grottan");
+        Door doorRoom0East = new Door('o', false, 1, 
+        "Grottöppningen är österut. Skriv \"o\" och tryck på [Enter] för att komma in i grottan");
         doors = new Door[1];
         doors[0] = doorRoom0East; // store in array as that is expected arg.
         // create the room with the created doors as args.
@@ -74,8 +74,8 @@ public class GameSetup {
     private Room createRoom2() {
         Door doorRoom2South = new Door('s', false, 1,
         "Du kan åka söderut [s]");
-        Door doorRoom2East = new Door('ö', false, 3,
-        "Du kan gå österut [s]");
+        Door doorRoom2East = new Door('o', false, 3,
+        "Du kan gå österut [o]");
         doors = new Door[2];
         doors[0] = doorRoom2South;
         doors[1] = doorRoom2East;
@@ -89,11 +89,11 @@ public class GameSetup {
      * @return Room 3
      */
     private Room createRoom3() {
-        Door doorRoom3East = new Door('ö', false, 7,
-        "Du ser en utgång österut [ö]");
+        Door doorRoom3East = new Door('o', false, 7,
+        "Du ser en utgång österut [o]");
         Door doorRoom3West = new Door('v', false, 2,
         "Du kan gå värsterut [v]");
-        Door doorRoom3South = new Door('s', false, 2,
+        Door doorRoom3South = new Door('s', false, 4,
         "Du kan åka söderut [s]");
         doors = new Door[3];
         doors[0] = doorRoom3East;
@@ -110,8 +110,8 @@ public class GameSetup {
      * @return Room 4
      */
     private Room createRoom4() {
-        Door doorRoom4East = new Door('ö', true, 6,
-        "Du ser en låst dörr i öster [ö]");
+        Door doorRoom4East = new Door('o', true, 6,
+        "Du ser en låst dörr i öster [o]");
         //Add description for looking through the keyhole since the door is locked
         doorRoom4East.setKeyholeViewDescription("Du kikar genom nyckelhålet och ser en skattkista full med guld");
         Door doorRoom4North = new Door('n', false, 3,
@@ -134,8 +134,8 @@ public class GameSetup {
     private Room createRoom5() {
         Door doorRoom5North = new Door('n', false,1,
         "Du kan gå norrut [n]");
-        Door doorRoom5East = new Door('n', false,4,
-        "Du kan åka österut [ö]");
+        Door doorRoom5East = new Door('o', false,4,
+        "Du kan åka österut [o]");
         doors = new Door[2];
         doors[0] = doorRoom5North;
         doors[1] = doorRoom5East;
