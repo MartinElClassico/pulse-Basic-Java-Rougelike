@@ -9,7 +9,9 @@ public class GameSetup {
 
     private String[] roomDescriptions = new String[8];
 
-    // main constructor of the file.
+    /** Main constructor of the game
+     * Calls upon other methods to create rooms and stores them in an array, creates room descriptions 
+     */
     public GameSetup() {
         populateRoomDescriptions();
         this.rooms[0] = createRoom0();
@@ -22,6 +24,9 @@ public class GameSetup {
         this.rooms[7] = createRoom7();
     }
 
+    /**
+     * Adds all room descriptions to an array
+     */
     private void populateRoomDescriptions () {
         roomDescriptions[0] = ("Du står utanför en grotta. Det luktar svavel från öppningen");
         roomDescriptions[1] = ("När du går in i grottan kollapsar ingången bakom dig.\r\n" + 
