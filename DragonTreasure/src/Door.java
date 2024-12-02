@@ -70,7 +70,7 @@ public class Door {
         return this.locked;
     }
 
-/**
+    /**
      * Retrieves the doors prompt / description
      * 
      * @param doorPrompt
