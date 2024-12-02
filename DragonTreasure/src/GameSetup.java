@@ -1,6 +1,11 @@
 import utils.DragonTreasure; //import local help function for room 4 door.
 
-
+/**
+ * The GameSetup class creates the game
+ * Creates rooms with descriptions and doors in those rooms
+ * 
+ * @author annemm-3, tulmar-2, # TODO: Add Evelina
+ */
 public class GameSetup {
 
     private Door[] doors;
