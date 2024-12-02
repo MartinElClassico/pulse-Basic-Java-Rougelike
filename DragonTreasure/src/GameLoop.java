@@ -3,9 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import utils.InputHandler;
-
+/**
+ * The gameloop class handles the players interactions and room transitions.
+ * Holds the main gameplay.
+ */
 public class GameLoop {
-    private Scanner sc;
+    private Scanner sc; // Scanner for reading user input throughout the game
     private static String welcomeMessage = ("Välkommen till Dragon Treasure\r\n" + 
     "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...");
     private static String quitMessage = "Du lämnar spelet!";
@@ -17,20 +20,24 @@ public class GameLoop {
      */
     private Room currentRoom;
 
+/**
+ * Constructor to initialise the gameloop with an Array containing all rooms in the dungeon.
+ * @param dungeonRooms Array containing all rooms in the dungeon.
+ */
     public GameLoop(Room[] dungeonRooms) {
         this.sc = new Scanner(System.in);
         this.dungeonRooms = dungeonRooms;
     }
-
+// prints welcome message to player.
     private void printWelcomeMsg() {
         System.out.println(welcomeMessage);
     }
-
+// fetches players name from user input
     private String fetchPlayerName() {
         // create scanner to get input. 
         // get user rawInput
         // TODO: check if we need a loop here to control user input or not. 
-        // TODO: motivate why .trim is used (remove leading&trailing whitespaces, return "" string.)
+        // fetches user input and trims white characters.
         String userInput = sc.nextLine().trim();
         return userInput;
     }
@@ -41,14 +48,16 @@ public class GameLoop {
     }
 
     // TODO: motivate if this should be public or private with a help method (public).
-    // Note: keep public in case called on externally
+    // Note: keep public in case called on externally.
+    // prompt player to enter username and returns it as a String.
+    
     private String promptUserName() {
         printWelcomeMsg();
         String playerName = fetchPlayerName();
         printWelcomePlayer(playerName);
         return playerName;
     }
-
+// create a new player using the returned name from promptUserName().
     private void getAndSetNewPlayer() {
         this.player = new Player(promptUserName());
     }
@@ -56,18 +65,19 @@ public class GameLoop {
     public boolean getRunning() {
         return this.running;
     }
-
+// prints the description of the current room.
     private void printRoomDesc(){
         System.out.println(this.currentRoom.getRoomDesc());
     }
-
+// get description of all doors in current room.
     private void printAllDoorsDescriptions(){
         Door[] allDoorsInRoom = this.currentRoom.getDoors();
         for (Door doorInRoom : allDoorsInRoom) {
             System.out.println(doorInRoom.getDoorPrompt());
         }
     }
-
+    
+// return an Array with valid directions (doors) in current room
     private char[] validDirectionsInRoom() {
         // create list of characters to store valid directions.
         List<Character> validDirectionsList = new ArrayList<Character>();
