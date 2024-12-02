@@ -70,7 +70,11 @@ public class Door {
         return this.locked;
     }
 
-
+/**
+     * Retrieves the doors prompt / description
+     * 
+     * @param doorPrompt
+     */
     public String getDoorPrompt () {
         return this.doorPrompt;
     }
@@ -84,6 +88,11 @@ public class Door {
         return this.connectedRoomID;
     }
 
+    /**
+     * Sets the doors prompt / description
+     * 
+     * @param doorPrompt
+     */
     public void setDoorPrompt (String doorPrompt) {
         this.doorPrompt = doorPrompt;
 
@@ -100,6 +109,12 @@ public class Door {
         this.locked = locked;
     }
 
+    /**
+     * Retrieves the description of looking through the keyhole of a locked door
+     * Should be null if the door is unlocked
+     * 
+     * @return String keyhole description
+     */
     public String getKeyholeViewDescription() {
         return this.keyholeViewDescription;
     }
