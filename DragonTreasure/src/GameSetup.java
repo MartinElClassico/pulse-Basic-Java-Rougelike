@@ -9,7 +9,8 @@ public class GameSetup {
 
     private String[] roomDescriptions = new String[8];
 
-    /** Main constructor of the game
+    /** 
+     * Main constructor of the game
      * Calls upon other methods to create rooms and stores them in an array, creates room descriptions 
      */
     public GameSetup() {
