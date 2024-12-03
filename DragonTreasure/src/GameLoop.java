@@ -122,13 +122,20 @@ public class GameLoop {
     /**
      * Gets an array with all the directions the player can move based on the current room the player is in.
      * @return an array of characters with valid player movement prompts for the current room's doors.
+     * TODO: - revise or motivate why we do this here instead. NOTE: this could be done during game setup instead and 
+     * array stored as an attribute in the room class thereafter. Possible motivation to do it here is that:
+     * we can then delete doors, but why would we want to do that? 
      */
     private char[] validDirectionsInRoom() {
         // create list of characters to store valid directions.
         List<Character> validDirectionsList = new ArrayList<Character>();
         // all door objects in the current room.
         Door[] allDoorsInRoom = this.currentRoom.getDoors();
-        // store all door positions of room in list.
+        /* Store all door positions of room in list: 
+         * > loop through all doors the current room.
+         * > Store the direction (s,n, e, w) of each door in a list.
+         * > the list then holds each valid movement direction for said room.
+        */
         for (Door doorInRoom : allDoorsInRoom) {
             validDirectionsList.add(doorInRoom.getPosition());
         }
