@@ -150,21 +150,18 @@ public class GameLoop {
      * @param roomDirection Users chosen direction to move (has been through input handler to ensure valid direction)
      * @param roomDoors all the doors avaliable in the current room the player moves from.
      * @return a Door object instance that contains the chosen door.
+     * @throws IllegalArgumentException if no door matches the given direction.
      */
     private Door fetchChoosenDoor(char roomDirection, Door[] roomDoors) {
-        // try-catch in-case the if loop fails to return anything.
-        try {
-            for (Door door : roomDoors) {
-                if (door.getPosition() == roomDirection) {
-                    return door;
-                }
+        // throws an exception later if no door is found.
+        for (Door door : roomDoors) {
+            if (door.getPosition() == roomDirection) {
+                return door;
             }
-            // throw error if no door matches (it does not return from if statement)
-            throw new IllegalArgumentException("No Door found in for direction: " + roomDirection);
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage()); //show error code.
-            return null; // needs a return statement.
         }
+        // throw error if no door matches (it does not return from if statement)
+        throw new IllegalArgumentException("No Door found in for direction: " + roomDirection);
+
     }
 
     /**
