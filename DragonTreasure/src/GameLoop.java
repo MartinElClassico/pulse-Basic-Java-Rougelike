@@ -124,19 +124,33 @@ public class GameLoop {
      * @return an array of characters with valid player movement prompts for the current room's doors.
      */
     private char[] validDirectionsInRoom() {
-        // create list of characters to store valid directions.
+        /** 
+         * Create list to store valid directions as characters.
+         */
         List<Character> validDirectionsList = new ArrayList<Character>();
-        // all door objects in the current room.
+        /**
+         * Retrieve all door objects in the current room.
+         */
         Door[] allDoorsInRoom = this.currentRoom.getDoors();
-        // store all door positions of room in list.
+        /**
+         * Loop to get directions based on the current doors in the room.
+         * Add doors and their respective positions in list.
+         * Door positions are retrieved by getPosition and added to validDirectionList.
+         */
         for (Door doorInRoom : allDoorsInRoom) {
             validDirectionsList.add(doorInRoom.getPosition());
         }
-        // create char array to store list elements inside of array instead of list.
+        /**
+         * Create char array to store valid directions
+         */
         char[] validDirectionArray = new char[validDirectionsList.size()];
-        // store each element from list in array.
+        /**
+         * store each element from list in array.
+         */
         for (int i = 0; i<validDirectionsList.size(); i++){
-            // convert each list element of type Object to char type and store in array.
+        /**
+         * convert each list element of type Object to char type and store in array.
+         */
             validDirectionArray[i] = (char)validDirectionsList.get(i);
         }
         return validDirectionArray;
