@@ -13,12 +13,12 @@ public class GameLoop {
     /**
      * holds a static final welcome message to print to player.
      */
-    private static final String welcomeMessage = ("Välkommen till Dragon Treasure\r\n" + 
+    private static final String WELCOME_MESSAGE = ("Välkommen till Dragon Treasure\r\n" + 
     "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...");
     /**
      * holds a static final quit message to print to player upon quitting game.
      */
-    private static final String quitMessage = "Du lämnar spelet!";
+    private static final String QUIT_MESSAGE = "Du lämnar spelet!";
     /**
      * holds the player class, is not used in current (part 1) implementation of the game.
      */
@@ -49,7 +49,7 @@ public class GameLoop {
      * prints welcome message to player.
      */
     private void printWelcomeMsg() {
-        System.out.println(welcomeMessage);
+        System.out.println(WELCOME_MESSAGE);
     }
 
     /**
@@ -211,7 +211,7 @@ public class GameLoop {
             // exit condition1:
             // user choses 'q' and quits the game.
             if (userInp == 'q'){
-                System.out.println(quitMessage); 
+                System.out.println(QUIT_MESSAGE); 
                 this.running = false;
             }
             // exit condition2:
