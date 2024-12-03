@@ -7,7 +7,7 @@ import utils.InputHandler;
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.
  */
-// merge conflict test2 
+// merge conflict test2 Jag vill skriva såhär här och jag vet inte om någon skrivit något här innan.
 public class GameLoop {
 
     private Scanner sc; // Scanner for reading user input throughout the game
