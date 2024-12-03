@@ -37,7 +37,7 @@ public class Dungeon{
      * @return the welcome message as a string.
      */
 
-    public static String getWELCOME_MESSAGE(){
+    public static String getWelcomeMessage(){
         return WELCOME_MESSAGE;
     }
 
