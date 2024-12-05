@@ -17,6 +17,4 @@ The game setup is done in a seperate class. The code would be less readable if w
 
 ## Credits:
 
-## License:
-
 ## Tests:
