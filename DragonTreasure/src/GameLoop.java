@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import utils.InputHandler;
@@ -125,36 +123,6 @@ public class GameLoop {
             System.out.println(doorInRoom.getDoorPrompt());
         }
     }
-    
-    /**
-     * Gets an array with all the directions the player can move based on the current room the player is in.
-     * @return an array of characters with valid player movement prompts for the current room's doors.
-     * TODO: - revise or motivate why we do this here instead. NOTE: this could be done during game setup instead and 
-     * array stored as an attribute in the room class thereafter. Possible motivation to do it here is that:
-     * we can then delete doors, but why would we want to do that? 
-     */
-    private char[] validDirectionsInRoom() {
-        // create list of characters to store valid directions.
-        List<Character> validDirectionsList = new ArrayList<Character>();
-        // all door objects in the current room.
-        Door[] allDoorsInRoom = this.currentRoom.getDoors();
-        /* Store all door positions of room in list: 
-         * > loop through all doors the current room.
-         * > Store the direction (s,n, e, w) of each door in a list.
-         * > the list then holds each valid movement direction for said room.
-        */
-        for (Door doorInRoom : allDoorsInRoom) {
-            validDirectionsList.add(doorInRoom.getPosition());
-        }
-        // create char array to store list elements inside of array instead of list.
-        char[] validDirectionArray = new char[validDirectionsList.size()];
-        // store each element from list in array.
-        for (int i = 0; i<validDirectionsList.size(); i++){
-            // convert each list element of type Object to char type and store in array.
-            validDirectionArray[i] = (char)validDirectionsList.get(i);
-        }
-        return validDirectionArray;
-    }
 
     /**
      * Returns the door the user has chosen based on move direction chosen and the doors avaliable in the room.
@@ -200,7 +168,7 @@ public class GameLoop {
             // print out all door desriptions in room.
             printAllDoorsDescriptions();
             // get user input
-            char userInp = inpHand.getUserInpMovement(validDirectionsInRoom());
+            char userInp = inpHand.getUserInpMovement(currentRoom.getDoorDirections());
             // if not q then it is a valid door direction.
             if (userInp != 'q') {
                 // get the door the player has chosen to move through.

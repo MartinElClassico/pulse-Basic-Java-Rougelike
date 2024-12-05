@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The Room class represents a room in the dungeon. 
  * It stores basic information about the room such as the room description and it's assigned ID. 
@@ -19,6 +22,11 @@ public class Room {
     private int roomId;
 
     /**
+     * private instance to hold the directions of all the doors in the room
+     */
+    private char[] doorDirections;
+
+    /**
      * private instance to hold the doors in an array that are connected to the room.
      * 
      */
@@ -35,6 +43,46 @@ public class Room {
         this.roomDesc = roomDesc;
         this.roomId = roomId;
         this.doors = doors; 
+        this.doorDirections = validDirectionsInRoom();
+
+    }
+
+    /**
+     * Gets an array with all the directions the player can move based on the current room the player is in.
+     * @return an array of characters with valid player movement prompts for the current room's doors.
+     */
+    private char[] validDirectionsInRoom() {
+        // create list of characters to store valid directions.
+        List<Character> validDirectionsList = new ArrayList<Character>();
+        // all door objects in the current room.
+        Door[] allDoorsInRoom = this.doors;
+        /* Store all door positions of room in list: 
+         * > loop through all doors the current room.
+         * > Store the direction (s,n, e, w) of each door in a list.
+         * > the list then holds each valid movement direction for said room.
+        */
+        for (Door doorInRoom : allDoorsInRoom) {
+            validDirectionsList.add(doorInRoom.getPosition());
+        }
+        // create char array to store list elements inside of array instead of list.
+        char[] validDirectionArray = new char[validDirectionsList.size()];
+        // store each element from list in array.
+        for (int i = 0; i<validDirectionsList.size(); i++){
+            // convert each list element of type Object to char type and store in array.
+            validDirectionArray[i] = (char)validDirectionsList.get(i);
+        }
+        return validDirectionArray;
+    }
+
+    /**
+     * Gets the directions that a player can move to get to doors in the room.
+     * e.g. "o,v,s,n" (eng.: "e,w,s,n")
+     * 
+     * @return an array of directions the player can move to get to doors.
+     * e.g. "o,v,s,n" (eng.: "e,w,s,n")
+     */
+    public char[] getDoorDirections(){
+        return this.doorDirections;
     }
     
     /**
