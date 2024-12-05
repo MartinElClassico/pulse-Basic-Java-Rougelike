@@ -6,11 +6,10 @@
  */
 public class DragonTreasure{
 
-    //  private void setupGame() --> we migrate this to it's own java object because of it's size.
-
-    //private void endGame(){
-        // logic to end game.
-    //}
+    /*
+        private void setupGame() --> we migrate this to it's own java object because of it's size.
+        It is now in a class called GameSetup.java
+        */  
 
     public static void main(String[] args){
         // logic to setup the game.
