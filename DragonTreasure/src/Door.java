@@ -120,6 +120,11 @@ public class Door {
         return this.keyholeViewDescription;
     }
 
+    /**
+     * Sets the description of looking through the keyhole of a locked door
+     * 
+     * @param String keyhole description
+     */
     public void setKeyholeViewDescription(String keyholeViewDescription) {
         this.keyholeViewDescription = keyholeViewDescription;
     }
