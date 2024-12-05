@@ -7,11 +7,20 @@ import utils.DragonTreasure; //import local help function for room 4 door.
  * @author annemm-3, tulmar-2, evekho-4
  */
 public class GameSetup {
-
+    /** 
+     * Private instance array to hold door objects
+     * Defined in each room to hold the specific rooms doors
+     */
     private Door[] doors;
-
+    
+    /**
+     * Private instance array to hold the eight rooms of the game
+     */
     private Room[] rooms = new Room[8];
 
+    /**
+     * Private instance array to hold descriptions of the eight rooms
+     */
     private String[] roomDescriptions = new String[8];
 
     /** 
@@ -186,6 +195,9 @@ public class GameSetup {
         return room7;
     }
     
+    /**
+     * Gets the array that holds all of the rooms of the game
+     */
     public Room[] getRooms() {
         return this.rooms;
     }
