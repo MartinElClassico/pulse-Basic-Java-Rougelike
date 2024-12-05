@@ -6,6 +6,8 @@ import utils.InputHandler;
 /**
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class GameLoop {
 

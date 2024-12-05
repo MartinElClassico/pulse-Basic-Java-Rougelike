@@ -4,6 +4,8 @@
  * 
  * Player's position within the dungeon is handled by the Dungeon class which also 
  * keeps track of the current room and handles player movement.
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Player {
 

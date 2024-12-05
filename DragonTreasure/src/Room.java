@@ -3,6 +3,8 @@
  * It stores basic information about the room such as the room description and it's assigned ID. 
  * 
  * Room also stores an array of Door objects that is given as arguments to the constructor. 
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Room {
 

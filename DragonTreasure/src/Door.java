@@ -2,6 +2,7 @@
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.
  * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Door {
     /**

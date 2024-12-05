@@ -1,6 +1,8 @@
 /**
  * Main class of the game. The game starts from here. 
  * The game is setup from here, and the game is ended from here.
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class DragonTreasure{
 

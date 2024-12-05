@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /**
  * Class to handle user input and return user input when user input is correct.
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class InputHandler{
     private Scanner scanner;

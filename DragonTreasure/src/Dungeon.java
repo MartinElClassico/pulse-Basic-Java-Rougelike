@@ -1,5 +1,8 @@
 /**
- * The Dungeon class keeps track of where in the dungeon the player is and the correlated class instances such as current room. 
+ * The Dungeon class keeps track of where in the dungeon the player is and the correlated class instances 
+ * such as current room. 
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Dungeon{
     /**
