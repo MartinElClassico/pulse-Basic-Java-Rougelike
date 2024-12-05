@@ -12,6 +12,7 @@ public class Room {
      * private instance to hold the room description, such as: "Du står utanför en grotta. Det luktar svavel från öppningen"
      */
     private String roomDesc;
+
     /**
      * private instance to hold the room ID, a unique ID. To help with keeping track of the room for map handling. 
      */
@@ -80,5 +81,5 @@ public class Room {
         this.roomDesc = roomDesc;
     }
 
-    // room ID shouldn't need to be changed after having been initalized.
+    //setRoomID() not includese since it shouldn't need to be changed after having been initalized.
 }

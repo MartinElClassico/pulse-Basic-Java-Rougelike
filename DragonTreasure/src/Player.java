@@ -31,5 +31,6 @@ public class Player {
     public String getName() {
         return name;
     }
-    // not included since name shouldn't be able to be changed.
+    
+    // setName() not included since name shouldn't be able to be changed.
 }
