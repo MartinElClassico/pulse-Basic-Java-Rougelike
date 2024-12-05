@@ -17,22 +17,27 @@ public class GameLoop {
      */
     private static final String WELCOME_MESSAGE = ("Välkommen till Dragon Treasure\r\n" + 
     "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...");
+
     /**
      * holds a static final quit message to print to player upon quitting game.
      */
     private static final String QUIT_MESSAGE = "Du lämnar spelet!";
+
     /**
      * holds the player class, is not used in current (part 1) implementation of the game.
      */
     private Player player;
+
     /**
      * holds all the room classes that together make up the dungeon except for the player.
      */
     private Room[] dungeonRooms;
+
     /**
      * boolean value so the method can keep track of if gameloop is running or not (e.g. paused - not yet implemented)
      */
     private boolean running = true; //so that the loop can be quit from outside.
+    
      /**
      * private instance to hold the current room that the player is in.
      */
