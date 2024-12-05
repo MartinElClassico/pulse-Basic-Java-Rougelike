@@ -63,7 +63,7 @@ public class GameLoop {
      */
     private String fetchPlayerName() {
         // get user rawInput
-        // TODO: check if we need logic here to control user input or not. 
+        // user input is not controlled since only used to print player name. 
         // fetches user input and trims white characters.
         String userInput = sc.nextLine().trim();
         return userInput;
