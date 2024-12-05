@@ -79,7 +79,6 @@ public class GameLoop {
     private String promptUserName() {
         printWelcomeMsg();
         String playerName = fetchPlayerName();
-        player.printWelcomePlayer(); //prints the player name welcome message.
         return playerName;
     }
 
@@ -89,6 +88,7 @@ public class GameLoop {
      */
     private void getAndSetNewPlayer() {
         this.player = new Player(promptUserName());
+        player.printWelcomePlayer(); //prints the player name welcome message.
     }
 
     /**
