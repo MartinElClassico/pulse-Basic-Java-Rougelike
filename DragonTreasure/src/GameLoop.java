@@ -68,14 +68,6 @@ public class GameLoop {
         String userInput = sc.nextLine().trim();
         return userInput;
     }
-
-    /**
-     * prints personalized welcome message to user
-     * @param playerName a string with the name of the player.
-     */
-    private void printWelcomePlayer(String playerName) {
-        System.out.printf("Välkommen %s till din skattjakt.%n", playerName);
-    }
     
     /**
      * main logic for getting username from player:
@@ -87,7 +79,7 @@ public class GameLoop {
     private String promptUserName() {
         printWelcomeMsg();
         String playerName = fetchPlayerName();
-        printWelcomePlayer(playerName);
+        player.printWelcomePlayer(); //prints the player name welcome message.
         return playerName;
     }
 

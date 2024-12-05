@@ -31,6 +31,13 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    /**
+     * prints personalized welcome message to user
+     */
+    public void printWelcomePlayer() {
+        System.out.printf("Välkommen %s till din skattjakt.%n", name);
+    }
     
     // setName() not included since name shouldn't be able to be changed.
 }
