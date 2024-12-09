@@ -56,7 +56,11 @@ The Dungeon class keeps track of the room the player is in.
 
 
 ## How to install and run
-
+1. Make sure Java Development Kit is installed on your machine. Also make sure the PATH directory is added on windows systems.
+2. (recursively) Compile all the .java files into a new folder, in this case we are in the DragonTreasure folder of this project and creating a folder calling "bin" to hold the binaries we are about to compile. We use CMD on windows 10:
+javac -d bin src/**/*.java
+3. Run the java binary from the terminal ("CMD"):
+java -cp bin DragonTreasure
 
 ## How to play:
 Enter your player name and click enter.
