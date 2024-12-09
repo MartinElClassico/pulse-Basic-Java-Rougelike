@@ -1,31 +1,32 @@
+package utils;
 
-package ltu.fksyg.d0019n;
-
-
+/**
+ * Class to hold and handle ASCII art provided by course teacher.
+ */
 public class DragonTreasure {
-    public static void main(String[] args){
-       System.out.println(
-            "                  _.--.\n"+
-            "              _.-'_:-'||\n"+
-            "          _.-'_.-::::'||\n"+
-            "     _.-:'_.-::::::'  ||\n"+
-            "   .'`-.-:::::::'     ||\n"+
-            "  /.'`;|:::::::'      ||_\n"+
-            " ||   ||::::::'      _.;._'-._\n"+
-            " ||   ||:::::'   _.-!oo @.!-._'-.\n"+
-            " \'.  ||:::::.-!() oo @!()@.-'_.||\n"+
-            "   '.'-;|:.-'.&$@.& ()$%-'o.'\\U||\n"+
-            "     `>'-.!@%()@'@_%-'_.-o _.|'||\n"+
-            "      ||-._'-.@.-'_.-' _.-o  |'||\n"+
-            "      ||=[ '-._.-\\U/.-'    o |'||\n"+
-            "      || '-.]=|| |'|      o  |'||\n"+
-            "      ||      || |'|        _| ';\n"+
-            "      ||      || |'|    _.-'_.-'\n"+
-            "      |'-._   || |'|_.-'_.-'\n"+
-            "      '-._'-.|| |' `_.-'\n"+
-            "           '-.||_/.-'\n");
-      
-    System.out.println(
+
+    private static final String treasureAscii = (
+        "                  _.--.\n"+
+        "              _.-'_:-'||\n"+
+        "          _.-'_.-::::'||\n"+
+        "     _.-:'_.-::::::'  ||\n"+
+        "   .'`-.-:::::::'     ||\n"+
+        "  /.'`;|:::::::'      ||_\n"+
+        " ||   ||::::::'      _.;._'-._\n"+
+        " ||   ||:::::'   _.-!oo @.!-._'-.\n"+
+        " \'.  ||:::::.-!() oo @!()@.-'_.||\n"+
+        "   '.'-;|:.-'.&$@.& ()$%-'o.'\\U||\n"+
+        "     `>'-.!@%()@'@_%-'_.-o _.|'||\n"+
+        "      ||-._'-.@.-'_.-' _.-o  |'||\n"+
+        "      ||=[ '-._.-\\U/.-'    o |'||\n"+
+        "      || '-.]=|| |'|      o  |'||\n"+
+        "      ||      || |'|        _| ';\n"+
+        "      ||      || |'|    _.-'_.-'\n"+
+        "      |'-._   || |'|_.-'_.-'\n"+
+        "      '-._'-.|| |' `_.-'\n"+
+        "           '-.||_/.-'\n");
+
+    private static final String dragonAscii = (
         "                                                  .~))>>\n"+
         "                                                 .~)>>\n"+
         "                                               .~))))>>>\n"+
@@ -58,6 +59,21 @@ public class DragonTreasure {
         "                                  ((((          __.-~bb.-~\n"+
         "                                              .'  b .~~\n"+
         "                                              :bb ,' \n"+
-        "                                              ~~~~\n");    
+        "                                              ~~~~\n");
+    // private constructor: prevent instantiation, methods and attributes are all static.
+    private DragonTreasure() {}
+    
+    // these are all self explanatory enough.
+    public static void printTreasure() {
+        System.out.println(treasureAscii);
+    }
+    public static String getTreasure() {
+        return treasureAscii;
+    }
+    public static void printDragon() {
+        System.out.println(dragonAscii);
+    }
+    public static String getDragon() {
+        return dragonAscii;
     }
 }

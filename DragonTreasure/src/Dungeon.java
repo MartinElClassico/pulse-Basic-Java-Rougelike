@@ -1,5 +1,8 @@
 /**
- * The Dungeon class keeps track of where in the dungeon the player is and the correlated class instances such as current room. 
+ * The Dungeon class keeps track of where in the dungeon the player is and the correlated class instances 
+ * such as current room. 
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Dungeon{
     /**
@@ -8,10 +11,10 @@ public class Dungeon{
     private Room currentRoom;
     /**
 
-     * private static instance to hold the welcome message to display at the start of the game. 
+     * private static final instance to hold the welcome message to display at the start of the game. 
      */
-    private static String welcomeMessage = "Välkommen till Dragon Treasure\r\n" 
-                                            + "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...";
+    private static final String WELCOME_MESSAGE = "Välkommen till Dragon Treasure\r\n" 
+        + "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...";
 
     /**
      * Construct a Dungeon with a given room (the start room).
@@ -36,9 +39,8 @@ public class Dungeon{
      * 
      * @return the welcome message as a string.
      */
-
     public static String getWelcomeMessage(){
-        return welcomeMessage;
+        return WELCOME_MESSAGE;
     }
 
     /**

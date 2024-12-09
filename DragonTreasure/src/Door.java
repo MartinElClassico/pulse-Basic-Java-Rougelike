@@ -2,6 +2,9 @@
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.
  * 
+
+ * @author annemm-3, tulmar-2, evekho-4
+
  */
 public class Door {
     /**
@@ -19,6 +22,17 @@ public class Door {
     private boolean locked;
 
     /**
+     * Private instance to hold the room ID of the room the door leads to.
+     */
+    private int connectedRoomID;
+
+    /**
+     * text that is written to user when describing the door.
+     * e.g.: Du kan åka söderut [s]
+     */
+    private String doorPrompt;
+
+    /**
      * Holds the description for looking through the keyhole of a locked door.
      * Will be nothing unless set explicitly through setter.
      */
@@ -29,11 +43,15 @@ public class Door {
      * 
      * @param position wether the door is to the w, e, n or s.
      * @param locked wether the door is locked or not (false).
+     * @param connectedRoomID holds the ID of the room the door leads to.
+     * @param doorPrompt hold the text that is written to user when describing the door.
      */
 
-    public Door(char position, boolean locked) {
+    public Door(char position, boolean locked, int connectedRoomID, String doorPrompt) {
         this.position = position;
         this.locked = locked;
+        this.connectedRoomID = connectedRoomID;
+        this.doorPrompt = doorPrompt;
     }
 
     /**
@@ -54,12 +72,31 @@ public class Door {
         return this.locked;
     }
 
-    public String getKeyholeViewDescription() {
-        return this.keyholeViewDescription;
+    /**
+     * Retrieves the doors prompt / description
+     * 
+     * @param doorPrompt
+     */
+    public String getDoorPrompt () {
+        return this.doorPrompt;
     }
 
-    public void setKeyholeViewDescription(String keyholeViewDescription) {
-        this.keyholeViewDescription = keyholeViewDescription;
+    /**
+     * Retrieves the roomID that the room leads to.
+     * 
+     * @return int of the roomID.
+     */
+    public int getConnectedRoomID() {
+        return this.connectedRoomID;
+    }
+
+    /**
+     * Sets the doors prompt / description
+     * 
+     * @param doorPrompt
+     */
+    public void setDoorPrompt (String doorPrompt) {
+        this.doorPrompt = doorPrompt;
     }
 
     // no need to change position of doors, they cannot transport. 
@@ -71,5 +108,24 @@ public class Door {
      */
     public void setLocked(boolean locked){
         this.locked = locked;
+    }
+
+    /**
+     * Retrieves the description of looking through the keyhole of a locked door
+     * Should be null if the door is unlocked
+     * 
+     * @return String keyhole description
+     */
+    public String getKeyholeViewDescription() {
+        return this.keyholeViewDescription;
+    }
+
+    /**
+     * Sets the description of looking through the keyhole of a locked door
+     * 
+     * @param String keyhole description
+     */
+    public void setKeyholeViewDescription(String keyholeViewDescription) {
+        this.keyholeViewDescription = keyholeViewDescription;
     }
 }

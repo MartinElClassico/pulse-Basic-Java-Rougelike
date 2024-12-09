@@ -4,6 +4,8 @@
  * 
  * Player's position within the dungeon is handled by the Dungeon class which also 
  * keeps track of the current room and handles player movement.
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
  */
 public class Player {
 
@@ -29,5 +31,13 @@ public class Player {
     public String getName() {
         return name;
     }
-    // not included since name shouldn't be able to be changed.
+
+    /**
+     * prints personalized welcome message to user
+     */
+    public void printWelcomePlayer() {
+        System.out.printf("Välkommen %s till din skattjakt.%n", name);
+    }
+    
+    // setName() not included since name shouldn't be able to be changed.
 }
