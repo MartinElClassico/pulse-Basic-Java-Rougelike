@@ -71,7 +71,7 @@ Use command q + enter to quit the game.
 ## Future developments
 Further potential development of the game.
 Add monster, combat and inventory/player health systems.
-Include save and load funtion.
+Include save, pause and load funtion.
 
 
 ## Credits:
