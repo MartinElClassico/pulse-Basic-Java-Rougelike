@@ -44,7 +44,6 @@ public class Room {
         this.roomId = roomId;
         this.doors = doors; 
         this.doorDirections = validDirectionsInRoom();
-
     }
 
     /**

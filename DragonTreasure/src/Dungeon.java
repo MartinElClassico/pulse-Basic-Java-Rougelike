@@ -14,7 +14,7 @@ public class Dungeon{
      * private static final instance to hold the welcome message to display at the start of the game. 
      */
     private static final String WELCOME_MESSAGE = "Välkommen till Dragon Treasure\r\n" 
-                                            + "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...";
+        + "Skriv ditt namn och tryck på [Enter] för att starta ett nytt spel...";
 
     /**
      * Construct a Dungeon with a given room (the start room).
@@ -39,7 +39,6 @@ public class Dungeon{
      * 
      * @return the welcome message as a string.
      */
-
     public static String getWelcomeMessage(){
         return WELCOME_MESSAGE;
     }

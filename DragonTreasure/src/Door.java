@@ -2,7 +2,9 @@
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.
  * 
+
  * @author annemm-3, tulmar-2, evekho-4
+
  */
 public class Door {
     /**
@@ -20,7 +22,6 @@ public class Door {
     private boolean locked;
 
     /**
-
      * Private instance to hold the room ID of the room the door leads to.
      */
     private int connectedRoomID;
@@ -96,7 +97,6 @@ public class Door {
      */
     public void setDoorPrompt (String doorPrompt) {
         this.doorPrompt = doorPrompt;
-
     }
 
     // no need to change position of doors, they cannot transport. 
