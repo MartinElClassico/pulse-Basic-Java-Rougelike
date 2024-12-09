@@ -9,7 +9,7 @@ A very basic rougelike game to show fundamental Java programming concepts.
 ## Specific descriptions and delimitations:
 The game is small enough for it to need any functionality to change a players name.
 
-The game does not have a ality to save, pause or load game.
+The game does not have a function to save, pause or load game.
 
 The game is in Swedish, but is using 'o' instead of 'ö' for user input to avoid language errors.
 
@@ -71,7 +71,7 @@ Use command q + enter to quit the game.
 ## Future developments
 Further potential development of the game.
 Add monster, combat and inventory/player health systems.
-Include save and load funtion.
+Include save, pause and load funtion.
 
 
 ## Credits:
