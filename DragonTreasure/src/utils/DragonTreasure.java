@@ -1,5 +1,8 @@
 package utils;
 
+/**
+ * Class to hold and handle ASCII art provided by course teacher.
+ */
 public class DragonTreasure {
 
     private static final String treasureAscii = (
@@ -57,11 +60,10 @@ public class DragonTreasure {
         "                                              .'  b .~~\n"+
         "                                              :bb ,' \n"+
         "                                              ~~~~\n");
+    // private constructor: prevent instantiation, methods and attributes are all static.
+    private DragonTreasure() {}
     
-    private DragonTreasure() {
-        // prevent instantiation, methods and attributes are all static.
-    }
-    
+    // these are all self explanatory enough.
     public static void printTreasure() {
         System.out.println(treasureAscii);
     }
