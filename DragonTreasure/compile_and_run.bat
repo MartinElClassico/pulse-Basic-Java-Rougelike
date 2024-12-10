@@ -1,7 +1,8 @@
 REM bash script to compile the java files into .class binaries for users on windows machines.
 
-REM we do not want it to print this script to the user, thus echo off.
 @echo off
+REM we do not want it to print the rest of this script to the user, thus echo off.
+
 REM Holds source directiory to compile from and output direction to compile to.
 set SRC_DIR=src
 set OUT_DIR=bin
