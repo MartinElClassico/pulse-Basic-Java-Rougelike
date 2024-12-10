@@ -22,7 +22,7 @@ public class GameLoop {
     private static final String QUIT_MESSAGE = "Du lämnar spelet!";
 
     /**
-     * holds the player class, is not used in current (part 1) implementation of the game.
+     * holds the player class, currently only used to print player welcome message.
      */
     private Player player;
 
