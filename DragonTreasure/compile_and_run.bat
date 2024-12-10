@@ -31,3 +31,6 @@ echo Press enter if you wish to play the game, otherwise just quit this terminal
 pause >nul
 echo Running the game...
 java -cp "%OUT_DIR%" DragonTreasure
+REM need to wait so that terminal does not just disappear when ended.
+echo Game ended! You can now close this terminal.
+pause >nul
