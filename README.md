@@ -4,6 +4,7 @@ pulse-Basic-Java-Rougelike
 
 ## Description:
 A very basic rougelike game to show fundamental Java programming concepts.
+Built using openjdk 21.0.5 2024-10-15 LTS 
 
 
 ## Specific descriptions and delimitations:
