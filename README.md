@@ -8,7 +8,7 @@ Built using openjdk 21.0.5 2024-10-15 LTS
 
 
 ## Specific descriptions and delimitations:
-The game is small enough for it to need any functionality to change a players name.
+The game is small enough for it to not need any functionality to change a players name.
 
 The game does not have a function to save, pause or load game.
 
