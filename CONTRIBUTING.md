@@ -1,11 +1,11 @@
 # Contribution Guidelines for Dragon Treasure Project
 Welcome! These guidelines help keep our repository organized, maintain code quality, and make collaboration smooth.
 
-"### Main Branches"
+### Main Branches
 - **`main`**: The stable branch that always contains release-ready code. Code merged here should be fully tested and reviewed.
 - **`develop`**: The main development branch where all feature branches are merged once complete. The latest code under development can be found here.
 
-"### Feature Branches"
+### Feature Branches
 Each new feature or significant change should have its own branch off `develop`. 
 
 **Naming Convention**: Use `feature/<feature-name>`. Example:
@@ -38,7 +38,7 @@ For critical fixes in `main` or in `develop`.
         - 5. Confirm Squash and Merge.
         - 7. Github will prompt to offer to delete the feature branch. Do not delete it as to keep commit tree since we don't have 
              professional testcases in this project.
-        - 8.Rename feature branch by adding prefix "Committed" e.g. feature/Commited-navigation-system
+        - 8. Rename feature branch by adding prefix "Committed" e.g. feature/Commited-navigation-system
    - **Merge Commit**: For release and hotfix branches to retain the full history.
         - 1. Push hotfix branch to git, e.g. hotfix/navigation-fix
         - 2. Create PR: base branch is for example develop or main. compare branch is the hotfix branch. Add title and description.
