@@ -6,6 +6,7 @@ REM we do not want it to print the rest of this script to the user, thus echo of
 REM Holds source directiory to compile from and output direction to compile to.
 set SRC_DIR=src
 set OUT_DIR=bin
+set MAIN_FILE=DragonTreasure
 
 REM create output directory.
 if not exist "%OUT_DIR%" (
@@ -31,7 +32,15 @@ echo Compilation completed successfully.
 echo Press enter if you wish to play the game, otherwise just quit this terminal.
 pause >nul
 echo Running the game...
-java -cp "%OUT_DIR%" DragonTreasure
+REM empty lines to distinguish between game and bash script.
+echo _
+echo _
+echo _
+java -cp "%OUT_DIR%" "%MAIN_FILE%"
+REM empty lines to distinguish between game and bash script.
+echo _
+echo _
+echo _
 REM need to wait so that terminal does not just disappear when ended.
 echo Game ended! You can now close this terminal.
 pause >nul
