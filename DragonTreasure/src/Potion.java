@@ -15,4 +15,20 @@ public class Potion extends Item {
         super.description = description;
         this.healing = healing;
     }
+
+    /**
+     * Sets the amount of healing the potion does
+     * @param int new amount of healing
+     */
+    public void setHealing(int healing){
+        this.healing = healing;
+    }
+
+    /**
+     * Gets the amount of healing the potion does
+     * @return int amount of healing
+     */
+    public int getHealing(){
+        return this.healing;
+    }
 }

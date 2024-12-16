@@ -15,4 +15,20 @@ public class Treasure extends Item {
         super.description = description;
         this.goldValue = goldValue;
     }
+
+    /**
+     * Sets the gold value of the treasure
+     * @param int new golvd value
+     */
+    public void setGoldValue(int goldValue){
+        this.goldValue = goldValue;
+    }
+
+    /**
+     * Gets the gold value of the treasure
+     * @return int gold value
+     */
+    public int getGoldValue(){
+        return this.goldValue;
+    }
 }
