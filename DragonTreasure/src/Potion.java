@@ -31,4 +31,14 @@ public class Potion extends Item {
     public int getHealing(){
         return this.healing;
     }
+
+    /**
+     * Calculates the new HP of the player when the player drinks the potion
+     * @param int players current HP
+     * @return int players new HP
+     */
+    public int calculateNewHP(int currentHP){
+        int newHP = currentHP + healing;
+        return newHP;
+    }
 }

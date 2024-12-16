@@ -31,4 +31,14 @@ public class Weapon extends Item {
     public int getIncreaseDamage(){
         return this.increaseDamage;
     }
+
+    /**
+     * Calculates the damage the player does when this weapon is used
+     * @param int damage the player does without the weapon
+     * @return int damage with the weapon
+     */
+    public int calculateDamage(int playerDamage){
+        int damage = playerDamage +  increeaseDamage;
+        return damage;
+    }
 }
