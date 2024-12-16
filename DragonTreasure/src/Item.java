@@ -11,6 +11,8 @@ public abstract class Item {
 
     /**
      * Constructor
+     * @param String name of the item
+     * @param String description of the item
      */
     public Item(String name, String description){
         this.name = name;
