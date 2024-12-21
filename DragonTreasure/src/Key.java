@@ -5,7 +5,6 @@ public class Key extends Item {
      * @param String description of the key
      */
     public Key (String name, String description){
-        super.name = name;
-        super.description = description;
+        super(name, description);
     }
 }

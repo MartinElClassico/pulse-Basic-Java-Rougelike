@@ -10,9 +10,8 @@ public class Potion extends Item {
      * @param String decription of the potion
      * @param int number of hp the potion heals
      */
-    public Key (String name, String description, int healing){
-        super.name = name;
-        super.description = description;
+    public Potion (String name, String description, int healing){
+        super(name, description);
         this.healing = healing;
     }
 

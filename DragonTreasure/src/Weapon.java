@@ -10,9 +10,8 @@ public class Weapon extends Item {
      * @param String decription of the weapon
      * @param int amount of damage increase the weapon gives
      */
-    public Key (String name, String description, int increaseDamage){
-        super.name = name;
-        super.description = description;
+    public Weapon (String name, String description, int increaseDamage){
+        super(name, description);
         this.increaseDamage = increaseDamage;
     }
 
@@ -38,7 +37,7 @@ public class Weapon extends Item {
      * @return int damage with the weapon
      */
     public int calculateDamage(int playerDamage){
-        int damage = playerDamage +  increeaseDamage;
+        int damage = playerDamage +  this.increaseDamage;
         return damage;
     }
 }
