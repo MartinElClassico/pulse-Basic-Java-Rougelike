@@ -1,3 +1,4 @@
+package Items;
 public class Weapon extends Item {
     /**
      * Holds the amount of damage increase the weapon gives

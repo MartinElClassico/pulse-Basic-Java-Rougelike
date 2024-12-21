@@ -1,3 +1,4 @@
+package Items;
 public abstract class Item {
     /**
      * Holds the items name
