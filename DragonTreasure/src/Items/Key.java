@@ -2,12 +2,71 @@ package Items;
 
 public class Key extends Item {
     /**
-     * Constructor
+     * Information necessary to knowing which door should be able to be unlocked by the key.
+     * holds the roomID in which room the door is that is to be unlocked.
+     */
+    private int targetRoom;
+
+    /**
+     * Information necessary to knowing which door should be able to be unlocked by the key.
+     * holds the door orientation in the room that should be unlocked.
+     */
+    private char targetDoor ;
+    /**
+     * Constructor, with argument checks for last two arguments.
      * @param String name of the key
      * @param String description of the key
+     * @param int roomIdToUnlock the ID of the room containing the door the key unlocks.
+     * @param char doorDirectionToUnlock the orientation of the door the key unlocks (n, s, o, v).
+     * @throws IllegalArgumentException if the room ID is negative or the door direction is invalid
      */
-    public Key (String name, String description){
+    public Key (String name, String description, int roomIdToUnlock, char doorDirectionToUnlock){
         super(name, description);
+        // first check that argument is legal.
+        validateRoomId(roomIdToUnlock);
+        this.targetRoom = roomIdToUnlock;
+        // first check that argument is legal.
+        validateDoorDirection(doorDirectionToUnlock);
+        this.targetDoor  = doorDirectionToUnlock;
+    }
+
+    /**
+     * Validates that the room ID is non-negative.
+     * @param roomIdToUnlock the ID of the room to validate
+     * @throws IllegalArgumentException if the room ID is negative
+     */
+    private void validateRoomId(int roomIdToUnlock){
+        if (roomIdToUnlock < 0){
+            throw new IllegalArgumentException("Room ID must be non-negative.");
+        }
+    }
+
+    /**
+     * Validates that the door direction is valid (n, s, o, v).
+     * @param doorDirectionToUnlock the direction of the door to validate
+     * @throws IllegalArgumentException if the direction is invalid
+     */
+    private void validateDoorDirection(char doorDirectionToUnlock){
+        // indexOf returns the index of the character inside the string, if none is found it returns -1.
+        if ("nsvo".indexOf(doorDirectionToUnlock) == -1){
+            throw new IllegalArgumentException("Invalid door direction, must be n (north), s (south), o (east), v (west)");
+        }
+    }
+
+    /**
+     * Gets the target room ID which has door to be unlocked.
+     * @return the ID of the target room
+     */
+    public int getTargetRoom(){
+        return this.targetRoom;
+    }
+
+    /**
+     * Gets the target door direction of door to be unlocked.
+     * @return the direction of the target door
+     */
+    public char getTargetDoor(){
+        return this.targetDoor;
     }
 
 }
