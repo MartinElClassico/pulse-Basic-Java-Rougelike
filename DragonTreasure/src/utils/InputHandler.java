@@ -16,7 +16,7 @@ public class InputHandler{
     /**
      * message to be displayed to player if no right choice was taken.
      */
-    private static final String wrongInputMessage = "ogiltigt val. Försök igen.";
+    private static final String WRONG_INPUT_MESSAGE = "ogiltigt val. Försök igen.";
 
     /**
      * constructor. Creates scanner automatically upon creation.
@@ -57,7 +57,7 @@ public class InputHandler{
                 return 'q';
             }
             // if no valid command chosen, tell user to restart and repeat loop.
-            System.out.println(wrongInputMessage);
+            System.out.println(WRONG_INPUT_MESSAGE);
         }
     }
     

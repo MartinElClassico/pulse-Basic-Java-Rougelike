@@ -1,3 +1,4 @@
+package Items;
 public abstract class Item {
     /**
      * Holds the items name
@@ -8,6 +9,12 @@ public abstract class Item {
      * Holds the description of the item
      */
     private String description;
+
+    /**
+     * holds non obligatory (not part of constructor argument) 
+     * ascii art related to the object.
+     */
+    private String asciiArt;
 
     /**
      * Constructor
@@ -49,5 +56,22 @@ public abstract class Item {
      */
     public String getDescription(){
         return this.description;
+    }
+   
+    /**
+     * Sets the ascii art of the item
+     * @param String of ascii art
+     */
+    public void setAsciiArt(String asciiArt){
+        this.asciiArt = asciiArt;
+    }
+
+    /**
+     * Gets the ascii art of the item
+     * @return String of the ascii art for the object.
+     * if there are none, it will return null.
+     */
+    public String getAsciiArt(){
+        return this.asciiArt;
     }
 }
