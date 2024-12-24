@@ -1,4 +1,4 @@
-package Items;
+package main.game.items;
 public class Weapon extends Item {
     /**
      * Holds the amount of damage increase the weapon gives
@@ -38,7 +38,6 @@ public class Weapon extends Item {
      * @return int damage with the weapon
      */
     public int calculateDamage(int playerDamage){
-        int damage = playerDamage +  this.increaseDamage;
-        return damage;
+        return playerDamage +  this.increaseDamage;
     }
 }

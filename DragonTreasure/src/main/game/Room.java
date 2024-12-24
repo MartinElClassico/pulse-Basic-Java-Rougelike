@@ -1,3 +1,4 @@
+package main.game;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class Room {
      */
     private char[] validDirectionsInRoom() {
         // create list of characters to store valid directions.
-        List<Character> validDirectionsList = new ArrayList<Character>();
+        List<Character> validDirectionsList = new ArrayList<>();
         // all door objects in the current room.
         Door[] allDoorsInRoom = this.doors;
         /* Store all door positions of room in list: 
@@ -68,7 +69,7 @@ public class Room {
         // store each element from list in array.
         for (int i = 0; i<validDirectionsList.size(); i++){
             // convert each list element of type Object to char type and store in array.
-            validDirectionArray[i] = (char)validDirectionsList.get(i);
+            validDirectionArray[i] = validDirectionsList.get(i);
         }
         return validDirectionArray;
     }

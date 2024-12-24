@@ -1,4 +1,5 @@
-import utils.DragonTreasure; //import local help function for room 4 door.
+package main.game;
+import main.game.utils.DragonTreasure;
 
 /**
  * The GameSetup class creates the game
@@ -67,8 +68,7 @@ public class GameSetup {
         doors = new Door[1];
         doors[0] = doorRoom0East; // store in array as that is expected arg.
         // create the room with the created doors as args.
-        Room room0 = new Room(this.roomDescriptions[0],0,doors);
-        return room0;
+        return new Room(this.roomDescriptions[0],0,doors);
     }
 
     /**
@@ -84,8 +84,7 @@ public class GameSetup {
         doors = new Door[2];
         doors[0] = doorRoom1North;
         doors[1] = doorRoom1South;
-        Room room1 = new Room(this.roomDescriptions[1], 1, doors);
-        return room1;
+        return new Room(this.roomDescriptions[1], 1, doors);
     }
 
     /**
@@ -101,8 +100,7 @@ public class GameSetup {
         doors = new Door[2];
         doors[0] = doorRoom2South;
         doors[1] = doorRoom2East;
-        Room room2 = new Room(this.roomDescriptions[2], 2, doors);
-        return room2;
+        return new Room(this.roomDescriptions[2], 2, doors);
     }
 
     /**
@@ -121,8 +119,7 @@ public class GameSetup {
         doors[0] = doorRoom3East;
         doors[1] = doorRoom3West;
         doors[2] = doorRoom3South;
-        Room room3 = new Room(this.roomDescriptions[3], 3, doors);
-        return room3;
+        return new Room(this.roomDescriptions[3], 3, doors);
     }
 
     /**
@@ -146,8 +143,7 @@ public class GameSetup {
         doors[0] = doorRoom4East;
         doors[1] = doorRoom4North;
         doors[2] = doorRoom4West;
-        Room room4 = new Room(this.roomDescriptions[4], 4, doors);
-        return room4;
+        return new Room(this.roomDescriptions[4], 4, doors);
     }
 
     /**
@@ -163,8 +159,7 @@ public class GameSetup {
         doors = new Door[2];
         doors[0] = doorRoom5North;
         doors[1] = doorRoom5East;
-        Room room5 = new Room(this.roomDescriptions[5], 5, doors);
-        return room5;
+        return new Room(this.roomDescriptions[5], 5, doors);
     }
 
     /**
@@ -177,8 +172,7 @@ public class GameSetup {
         "Du kan gå västerut [v]");
         doors = new Door[1];
         doors[0] = doorRoom6West;
-        Room room6 = new Room(this.roomDescriptions[6], 6, doors);
-        return room6;
+        return new Room(this.roomDescriptions[6], 6, doors);
     }
 
     /**
@@ -191,8 +185,7 @@ public class GameSetup {
         "Du ser utgången från grottan västerut [v]");
         doors = new Door[1];
         doors[0] = doorRoom7West;
-        Room room7 = new Room(this.roomDescriptions[7], 7, doors);
-        return room7;
+        return new Room(this.roomDescriptions[7], 7, doors);
     }
     
     /**

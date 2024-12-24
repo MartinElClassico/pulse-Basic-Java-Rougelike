@@ -1,4 +1,4 @@
-package Items;
+package main.game.items;
 public abstract class Item {
     /**
      * Holds the items name
@@ -17,11 +17,11 @@ public abstract class Item {
     private String asciiArt;
 
     /**
-     * Constructor
+     * Constructor, protected since should only be able to be used via inheritance.
      * @param String name of the item
      * @param String description of the item
      */
-    public Item(String name, String description){
+    protected Item(String name, String description){
         this.name = name;
         this.description = description;
     }

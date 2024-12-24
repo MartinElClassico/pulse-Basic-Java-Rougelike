@@ -1,4 +1,4 @@
-package Items;
+package main.game.items;
 
 public class Key extends Item {
     /**

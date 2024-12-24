@@ -1,3 +1,10 @@
+package main;
+
+import main.game.GameLoop;
+import main.game.GameSetup;
+import main.game.Room;
+
+
 /**
  * Main class of the game. The game starts from here. 
  * The game is setup from here, and the game is ended from here.

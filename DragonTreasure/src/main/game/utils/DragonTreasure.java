@@ -1,11 +1,11 @@
-package utils;
+package main.game.utils;
 
 /**
  * Class to hold and handle ASCII art provided by course teacher.
  */
 public class DragonTreasure {
 
-    private static final String treasureAscii = (
+    private static final String TREASURE_ASCII = (
         "                  _.--.\n"+
         "              _.-'_:-'||\n"+
         "          _.-'_.-::::'||\n"+
@@ -26,7 +26,7 @@ public class DragonTreasure {
         "      '-._'-.|| |' `_.-'\n"+
         "           '-.||_/.-'\n");
 
-    private static final String dragonAscii = (
+    private static final String DRAGON_ASCII = (
         "                                                  .~))>>\n"+
         "                                                 .~)>>\n"+
         "                                               .~))))>>>\n"+
@@ -65,15 +65,15 @@ public class DragonTreasure {
     
     // these are all self explanatory enough.
     public static void printTreasure() {
-        System.out.println(treasureAscii);
+        System.out.println(TREASURE_ASCII);
     }
     public static String getTreasure() {
-        return treasureAscii;
+        return TREASURE_ASCII;
     }
     public static void printDragon() {
-        System.out.println(dragonAscii);
+        System.out.println(DRAGON_ASCII);
     }
     public static String getDragon() {
-        return dragonAscii;
+        return DRAGON_ASCII;
     }
 }

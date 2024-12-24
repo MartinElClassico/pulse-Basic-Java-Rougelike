@@ -1,3 +1,4 @@
+package main.game;
 /**
  * The Dungeon class keeps track of where in the dungeon the player is and the correlated class instances 
  * such as current room. 

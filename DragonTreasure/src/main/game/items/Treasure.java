@@ -1,4 +1,4 @@
-package Items;
+package main.game.items;
 public class Treasure extends Item {
     /**
      * Holds the gold value of the treasure

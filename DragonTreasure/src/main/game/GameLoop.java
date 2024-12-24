@@ -1,6 +1,8 @@
+package main.game;
 import java.util.Scanner;
 
-import utils.InputHandler;
+import main.game.entities.Player;
+import main.game.utils.InputHandler;
 /**
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.
@@ -59,14 +61,13 @@ public class GameLoop {
 
     /**
      * fetches players name from user input.
-     * @return a string of the unsanitized user input
+     * @return userInput a string of the unsanitized user input
      */
     private String fetchPlayerName() {
         // get user rawInput
         // user input is not controlled since only used to print player name. 
         // fetches user input and trims white characters.
-        String userInput = sc.nextLine().trim();
-        return userInput;
+        return sc.nextLine().trim();
     }
     
     /**
@@ -78,8 +79,7 @@ public class GameLoop {
      */
     private String promptUserName() {
         printWelcomeMsg();
-        String playerName = fetchPlayerName();
-        return playerName;
+        return fetchPlayerName();
     }
 
     /**
