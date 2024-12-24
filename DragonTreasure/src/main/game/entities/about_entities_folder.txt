@@ -1,0 +1,2 @@
+holds entities, viz. "living" things in the world. 
+May also hold some basic files whos logic is closely related to this.

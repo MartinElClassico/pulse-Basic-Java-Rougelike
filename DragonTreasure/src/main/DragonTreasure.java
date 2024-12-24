@@ -1,8 +1,8 @@
 package main;
 
-import main.game.GameLoop;
-import main.game.GameSetup;
-import main.game.Room;
+import main.game.services.GameLoop;
+import main.game.services.GameSetup;
+import main.game.world.Room;
 
 
 /**

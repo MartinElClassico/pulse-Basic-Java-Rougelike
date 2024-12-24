@@ -1,8 +1,10 @@
-package main.game;
+package main.game.services;
 import java.util.Scanner;
 
 import main.game.entities.Player;
-import main.game.utils.InputHandler;
+import main.game.io.InputHandler;
+import main.game.world.Door;
+import main.game.world.Room;
 /**
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.

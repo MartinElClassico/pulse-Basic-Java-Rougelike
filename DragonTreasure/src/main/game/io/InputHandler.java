@@ -1,4 +1,4 @@
-package main.game.utils;
+package main.game.io;
 
 import java.util.Scanner;
 

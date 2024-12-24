@@ -1,9 +1,0 @@
-In the utils folder, you should place utility classes that provide reusable, 
-general-purpose methods or constants. 
-This helps keep the codebase clean, modular, and easy to maintain.
-
-Utility classes are generally considered supporting infrastructure 
-and not part of the program's main logic or structure.
-
-Files in the utils folder should not typically be included in a class diagram 
-unless they are directly related to the domain or functionality being modeled.

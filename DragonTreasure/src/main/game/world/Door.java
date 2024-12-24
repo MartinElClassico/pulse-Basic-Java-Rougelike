@@ -1,4 +1,4 @@
-package main.game;
+package main.game.world;
 /**
  * The Door class represents a door in the dungeon. It is connected to certain rooms. 
  * It stores basic information about the door such as if it is locked or not.

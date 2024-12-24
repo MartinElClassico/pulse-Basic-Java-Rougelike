@@ -1,4 +1,4 @@
-package main.game.utils;
+package main.game.resources;
 
 /**
  * Class to hold and handle ASCII art provided by course teacher.

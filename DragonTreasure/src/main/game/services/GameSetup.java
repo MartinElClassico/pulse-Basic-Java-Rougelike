@@ -1,5 +1,7 @@
-package main.game;
-import main.game.utils.DragonTreasure;
+package main.game.services;
+import main.game.resources.DragonTreasure;
+import main.game.world.Door;
+import main.game.world.Room;
 
 /**
  * The GameSetup class creates the game
