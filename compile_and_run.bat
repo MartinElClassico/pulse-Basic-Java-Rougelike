@@ -4,9 +4,9 @@ REM bash script to compile the java files into .class binaries for users on wind
 REM we do not want it to print the rest of this script to the user, thus echo off.
 
 REM Holds source directiory to compile from and output direction to compile to.
-set SRC_DIR=src
+set SRC_DIR=src/main
 set OUT_DIR=bin
-set MAIN_FILE=DragonTreasure
+set MAIN_FILE=game.DragonTreasure
 
 REM create output directory.
 if not exist "%OUT_DIR%" (
