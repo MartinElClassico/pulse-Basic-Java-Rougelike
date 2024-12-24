@@ -24,6 +24,12 @@ public class GameLoop {
     private static final String QUIT_MESSAGE = "Du lämnar spelet!";
 
     /**
+     * holds a static final int of the maximum HP the player has. 
+     * used to create player. 
+     */
+    private static final int MAX_HP = 50;
+
+    /**
      * holds the player class, currently only used to print player welcome message.
      */
     private Player player;
@@ -87,7 +93,7 @@ public class GameLoop {
      * the name is accessed via a private class atttribute.
      */
     private void getAndSetNewPlayer() {
-        this.player = new Player(promptUserName());
+        this.player = new Player(promptUserName(), MAX_HP);
         player.printWelcomePlayer(); //prints the player name welcome message.
     }
 

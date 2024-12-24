@@ -1,4 +1,7 @@
 package main.game.entities;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * The Player class represents a player in the game.
  * It stores basic informormation about the player, such as it's name.
@@ -25,6 +28,14 @@ public class Player {
      * private instance to hold the player's health points. Initalized to that of the player's maximum HP.
      */
     private int hp = maxHp;
+
+    /**
+     * holds a list of listeners to tell other classes calling this one if player has died or not.
+     * use of list makes this class decoupled from having to know how many listeners there are, 
+     * it just needs to trigger them. Otherwise we could have used just a sole listener.
+     * having a list like this is also more modular as we can create a listener for each event.
+     */
+    private List<HealthListener> listeners = new ArrayList<>();
 
     /**
      * Constructs a player with the specified name.
@@ -82,7 +93,49 @@ public class Player {
         this.hp = newHp;
     }
 
+    /** 
+     * public method to add a listener from other classes that need it.
+     * mainly used when necessary to know if player has died or not.
+     */
+   public void addHealthListener(HealthListener listener){
+    listeners.add(listener);
+   }
 
+   /**
+    * trigger listener in case health is depleted.
+    */
+   private void notifyHealthDepleted() {
+    for (HealthListener listener : listeners) {
+        listener.onHealthDepleted();
+    }
+   }
+
+   /**
+    * Handles a player taking damage, decrements hp and triggers listener if dead.
+    * @param damageTaken int of how much damage is being dealt to player.
+    * @return playerHP, how much HP the player has left.
+    */
+   public int takeDamage(int damageTaken){
+    this.hp -= damageTaken;
+    if (hp <= 0){
+        notifyHealthDepleted();
+    }
+    return this.hp;
+   }
+
+   /**
+    * heals the player but makes sure player does not get more HP than maximum.
+    * @param hpGained how much HP to be added to the player.
+    * @return currentHP, returns the HP of the player after having been healed.
+    */
+   public int heal(int hpGained) {
+    this.hp += hpGained;
+    // player should not be able to have more hp than maxHp.
+    if (maxHp > this.hp) {
+        this.hp = maxHp;
+    }
+    return this.hp;
+   }
 
 
     //endregion
