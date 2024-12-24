@@ -1,5 +1,5 @@
 package main.game.services;
-import main.game.resources.DragonTreasure;
+import main.game.resources.AsciiArt;
 import main.game.world.Door;
 import main.game.world.Room;
 
@@ -136,7 +136,7 @@ public class GameSetup {
         //Add description for looking through the keyhole since the door is locked
         doorRoom4East.setKeyholeViewDescription(
             "Du kikar genom nyckelhålet och ser en skattkista full med guld.\n"
-            + DragonTreasure.getTreasure());
+            + AsciiArt.getTreasure());
         Door doorRoom4North = new Door('n', false, 3,
         "Du kan gå norrut [n]");
         Door doorRoom4West = new Door('v', false, 5,
