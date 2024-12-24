@@ -3,7 +3,7 @@ package main.game.resources;
 /**
  * Class to hold and handle ASCII art provided by course teacher.
  */
-public class DragonTreasure {
+public class AsciiArt {
 
     private static final String TREASURE_ASCII = (
         "                  _.--.\n"+
@@ -61,7 +61,7 @@ public class DragonTreasure {
         "                                              :bb ,' \n"+
         "                                              ~~~~\n");
     // private constructor: prevent instantiation, methods and attributes are all static.
-    private DragonTreasure() {}
+    private AsciiArt() {}
     
     // these are all self explanatory enough.
     public static void printTreasure() {
