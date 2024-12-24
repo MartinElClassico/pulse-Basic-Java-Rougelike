@@ -1,0 +1,61 @@
+package main.game.entities;
+
+public class Monster {
+
+    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör 1 skada";
+
+    private String name;
+    private int healthPoints;
+    private int maxHealthPoints;
+    private int damage = 1; //monster damage is a constant
+    private String monsterDesc;
+
+    
+    //constructor
+    public Monster(String name, int healthPoints, int maxHealthPoints, String monsterDesc) {
+        this.name = name;
+        this.healthPoints = maxHealthPoints;
+        this.maxHealthPoints = maxHealthPoints;
+        this.monsterDesc = monsterDesc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealthPoints() {
+       return healthPoints;  
+    }
+
+    public int getMaxHealthPoints() {
+        return maxHealthPoints;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public String getMonsterDesc() {
+        return monsterDesc;
+    }
+
+
+
+public void takeDamage(int damage) {
+    setHealthpoints(healthPoints - damage);
+    System.out.println(ATTACK_MESSAGE);
+
+     }
+
+
+    //skapa en metod som minskar healthPoints
+    // hp 0 ska trigga defeat print
+    // kontrollera om monsterattack-meddelanden i denna klass?
+    //skapa ex boolean för när healthPoints = 0 är monstret besegrat
+    
+
+
+
+
+    
+}
