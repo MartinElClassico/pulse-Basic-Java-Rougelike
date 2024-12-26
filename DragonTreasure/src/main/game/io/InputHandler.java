@@ -36,9 +36,9 @@ public class InputHandler{
     /**
      * Method that only allows user to return once a valid user input command has been chosen.
      * @param validDirections the valid user command for the player to chose from (excluding 'q')
-     * @return the valid chosen command of the player.
+     * @return the valid chosen command of the player or the quit command.
      */
-    public char getUserInpMovement(char[] validDirections){
+    public char handleCharToken(char[] validChars, char quitInput){
         while (true) {
             // get user rawInput
             String input = scanner.nextLine().trim().toLowerCase();
@@ -46,20 +46,39 @@ public class InputHandler{
             // we need to do this as to not create an out of range error if input is an empty string.
             char command = input.isEmpty() ? '\0' : input.charAt(0);
             // check all valid commands.
-            for (char direction : validDirections) {
+            for (char direction : validChars) {
                 // if chosen commmand is among valid ones then return.
                 if (command == direction) {
                     return command;
                 }
             }
             // q is also a valid command (quit)
-            if (command == 'q') {
-                return 'q';
+            if (command == quitInput) {
+                return command;
             }
             // if no valid command chosen, tell user to restart and repeat loop.
             System.out.println(WRONG_INPUT_MESSAGE);
         }
     }
+
+    public int handleIntToken(int validMinInt, int validMaxInt, int quitInput) {
+        while (true){
+            try {
+                int command = Integer.parseInt(scanner.nextLine());
+                boolean isInValidRange = (command >= validMinInt && command <= validMaxInt);
+                if ((command == quitInput) || (isInValidRange)) {
+                    return command;
+                }    
+                // has not returned, thus no correct input was chosen.
+                System.out.println(WRONG_INPUT_MESSAGE);
+            } catch (NumberFormatException e) {
+                System.out.println(WRONG_INPUT_MESSAGE);
+            }
+        }
+        
+    }
+
+
     
 
 
