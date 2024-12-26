@@ -37,6 +37,8 @@ public class Player {
      */
     private List<HealthListener> listeners = new ArrayList<>();
 
+    private Inventory inventory;
+
     /**
      * Constructs a player with the specified name.
      * 
@@ -45,6 +47,7 @@ public class Player {
     public Player(String name, int maxHp) {
         this.name = name;
         this.maxHp = maxHp;
+        this.inventory = new Inventory();
     }
 
     /**
@@ -137,6 +140,13 @@ public class Player {
     return this.hp;
    }
 
-
     //endregion
+
+    public Inventory getInventory(){
+        return this.inventory;
+    }
+
+    public void setInventory(Inventory inventory){
+        this.inventory = inventory;
+    }
 }
