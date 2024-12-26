@@ -4,12 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.game.items.Item;
+import main.game.io.InputHandler;
 
 public class Inventory {
     /**
      * holds the items the player has picked up.
      */
     private List<Item> items;
+
+    /**
+     * holds static final message to print when inventory is empty while trying to access it.
+     */
+    private static final String EMPTY_INV_MESSAGE = "Your inventory is empty. Nothing to see here.";
+
+    /**
+     * holds static final message to print on first line when viewing items in inventory.
+     */
+    private static final String FIRSTLN_INV_MSG = "Your inventory contains:";
+
+    private static final String NO_I_SELECTED_MSG = "No item selected! Returning from inventory.";
 
     /**
      * contructor, initalizes inventory.
@@ -60,11 +73,40 @@ public class Inventory {
         throw new IllegalArgumentException("Item not found in inventory!");
     }
 
+    /**
+     * 
+     */
+    private boolean printInventory() {
+        // handle if item is empty otherwise print all items:
+        if (items.isEmpty()) {
+            System.out.println(EMPTY_INV_MESSAGE);
+            return false;
+        } else {
+            System.out.println(FIRSTLN_INV_MSG);
+            for (int i = 0; i < items.size(); i++) {
+                Item item = items.get(i);
+                // print out the items with index first (+1), so that player can access them through index later.
+                System.out.printf("%d.%t %s%n", i+1, item.getName());
+            }
+            return true;
+        }
+        }
 
-    
-
-
-
-
+    public Item accessInventory() {
+        boolean hasItems = printInventory();
+        if (hasItems) {
+            InputHandler inpHand = new InputHandler(); // instance of class to make sure input is legal.
+            int choice = inpHand.handleIntToken(0+1, items.size(), 0);
+            // handle user input and get user output.
+            if (choice == 0) {
+                System.out.println(NO_I_SELECTED_MSG);
+                return null;
+            } else {
+                return items.get(choice - 1);
+            }
+        } else {
+            return null;
+        }
+    }
 
 }
