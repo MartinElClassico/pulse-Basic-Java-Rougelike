@@ -21,7 +21,7 @@ public class Key extends Item {
      * @throws IllegalArgumentException if the room ID is negative or the door direction is invalid
      */
     public Key (String name, String description, int roomIdToUnlock, char doorDirectionToUnlock){
-        super(name, description);
+        super(name, description, false);
         // first check that argument is legal.
         validateRoomId(roomIdToUnlock);
         this.targetRoom = roomIdToUnlock;

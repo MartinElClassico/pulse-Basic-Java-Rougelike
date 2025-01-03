@@ -12,7 +12,7 @@ public class Potion extends Item {
      * @param int number of hp the potion heals
      */
     public Potion (String name, String description, int healing){
-        super(name, description);
+        super(name, description, true);
         this.healing = healing;
     }
 
