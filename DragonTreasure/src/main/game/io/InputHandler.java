@@ -71,11 +71,11 @@ public class InputHandler{
                 }    
                 // has not returned, thus no correct input was chosen.
                 System.out.println(WRONG_INPUT_MESSAGE);
+                // catch exception if user provides a token that is not an int.
             } catch (NumberFormatException e) {
                 System.out.println(WRONG_INPUT_MESSAGE);
             }
-        }
-        
+        }      
     }
 
 
