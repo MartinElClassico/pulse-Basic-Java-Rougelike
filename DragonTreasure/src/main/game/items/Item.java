@@ -14,7 +14,7 @@ public abstract class Item {
      * holds non obligatory (not part of constructor argument) 
      * ascii art related to the object.
      */
-    private String asciiArt;
+    private String asciiArt = "";
 
     /**
      * Constructor, protected since should only be able to be used via inheritance.
