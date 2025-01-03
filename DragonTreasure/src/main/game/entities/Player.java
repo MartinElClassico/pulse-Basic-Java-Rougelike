@@ -2,6 +2,8 @@ package main.game.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.game.items.*;
 /**
  * The Player class represents a player in the game.
  * It stores basic informormation about the player, such as it's name.
@@ -28,6 +30,11 @@ public class Player {
      * private instance to hold the player's health points. Initalized to that of the player's maximum HP.
      */
     private int hp = maxHp;
+
+    /**
+     * private instance to hold the damage the player can do. Initalized to 1.
+     */
+    private int attackDamage = 1;
 
     /**
      * holds a list of listeners to tell other classes calling this one if player has died or not.
@@ -142,6 +149,22 @@ public class Player {
 
     //endregion
 
+    //region for handling player damage:
+
+    public int getAttackDamage() {
+        return this.attackDamage;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public void incrementAttackDamage(int addAttackDamage) {
+        this.attackDamage += addAttackDamage;
+    }
+
+    //endregion
+
     //region player inventory and equip/use functions.
 
     public Inventory getInventory(){
@@ -150,6 +173,24 @@ public class Player {
 
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
+    }
+
+    public void accessInventory(){
+        Item chosenItem = this.inventory.manageInventory();
+        useItem(chosenItem);
+        this.inventory.removeItem(chosenItem.getName());
+    }
+
+    private void useItem(Item item) {
+        if(item instanceof Potion potion) {
+            heal(
+                potion.getHealing()
+                );
+        } else if (item instanceof Weapon weapon) {
+            incrementAttackDamage(
+                weapon.getIncreaseDamage()
+            );
+        } else {assert true; } // do nothing if not of these types.
     }
 
     //endregion
