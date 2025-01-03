@@ -33,6 +33,9 @@ public class Inventory {
 
     private static final String ITEM_USE_PROMPT = "You selected %s. Press v to view it, u to use or q to go back.";
 
+    private static final char[] VIEW_ITEM_COMMANDS_NUSABLE = {'v'};
+
+    private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
 
     /**
      * contructor, initalizes inventory.
@@ -129,14 +132,11 @@ public class Inventory {
         // show menu for what can be done with object and return to main.
         // viz. view item (v) --> return null, or use item (u)--> return item:
         char chosen_action = itemUseMenu(chosen_item);
-        if (chosen_action == 'q') {return null;} 
+        if (chosen_action == 'q' || chosen_action == 'v') {return null;} 
         else {return chosen_item;}
     }
 
-    private char itemUseMenu(Item chosenItem) {
-        // prints "you selected {item}" along with keypresses avaliable.
-        System.out.printf(ITEM_USE_PROMPT, chosenItem.getName());
-        char choice = inpHand.handleCharToken(VIEW_ITEM_COMMANDS, 'q');
+    private char handleItemMenu (Item chosenItem, char choice) {
         switch (choice) {
             case 'v':
                 viewItem(chosenItem);
@@ -146,6 +146,20 @@ public class Inventory {
             default:
                 useItemPrompt(chosenItem);
                 return 'u';
+        }
+    }
+
+    private char itemUseMenu(Item chosenItem) {
+        // handle options avalible depending on if item is usable or not.
+        if (chosenItem.getUsable()) {
+            // prints "you selected {item}" along with keypresses avaliable.
+            System.out.printf(ITEM_USE_PROMPT, chosenItem.getName());
+            char choice = inpHand.handleCharToken(VIEW_ITEM_COMMANDS, 'q');
+            return handleItemMenu(chosenItem, choice);
+        } else {
+            System.out.printf(ITEM_USE_PROMPT_NUSABLE, chosenItem.getName());
+            char choice = inpHand.handleCharToken(VIEW_ITEM_COMMANDS_NUSABLE, 'q');
+            return handleItemMenu(chosenItem, choice);
         }
     }
 
