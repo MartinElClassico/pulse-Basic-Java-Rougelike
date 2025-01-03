@@ -177,8 +177,11 @@ public class Player {
 
     public void accessInventory(){
         Item chosenItem = this.inventory.manageInventory();
-        useItem(chosenItem);
-        this.inventory.removeItem(chosenItem.getName());
+        if (chosenItem != null)
+        {
+            useItem(chosenItem);
+            this.inventory.removeItem(chosenItem.getName());
+        }
     }
 
     private void useItem(Item item) {
