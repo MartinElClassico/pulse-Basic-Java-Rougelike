@@ -142,6 +142,8 @@ public class Player {
 
     //endregion
 
+    //region player inventory and equip/use functions.
+
     public Inventory getInventory(){
         return this.inventory;
     }
@@ -149,4 +151,6 @@ public class Player {
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
+
+    //endregion
 }
