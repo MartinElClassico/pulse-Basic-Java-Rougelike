@@ -2,6 +2,8 @@ package main.game.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.game.items.*;
 /**
  * The Player class represents a player in the game.
  * It stores basic informormation about the player, such as it's name.
@@ -30,12 +32,19 @@ public class Player {
     private int hp = maxHp;
 
     /**
+     * private instance to hold the damage the player can do. Initalized to 1.
+     */
+    private int attackDamage = 1;
+
+    /**
      * holds a list of listeners to tell other classes calling this one if player has died or not.
      * use of list makes this class decoupled from having to know how many listeners there are, 
      * it just needs to trigger them. Otherwise we could have used just a sole listener.
      * having a list like this is also more modular as we can create a listener for each event.
      */
     private List<HealthListener> listeners = new ArrayList<>();
+
+    private Inventory inventory;
 
     /**
      * Constructs a player with the specified name.
@@ -45,6 +54,7 @@ public class Player {
     public Player(String name, int maxHp) {
         this.name = name;
         this.maxHp = maxHp;
+        this.inventory = new Inventory();
     }
 
     /**
@@ -137,6 +147,54 @@ public class Player {
     return this.hp;
    }
 
+    //endregion
+
+    //region for handling player damage:
+
+    public int getAttackDamage() {
+        return this.attackDamage;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public void incrementAttackDamage(int addAttackDamage) {
+        this.attackDamage += addAttackDamage;
+    }
+
+    //endregion
+
+    //region player inventory and equip/use functions.
+
+    public Inventory getInventory(){
+        return this.inventory;
+    }
+
+    public void setInventory(Inventory inventory){
+        this.inventory = inventory;
+    }
+
+    public void accessInventory(){
+        Item chosenItem = this.inventory.manageInventory();
+        if (chosenItem != null)
+        {
+            useItem(chosenItem);
+            this.inventory.removeItem(chosenItem.getName());
+        }
+    }
+
+    private void useItem(Item item) {
+        if(item instanceof Potion potion) {
+            heal(
+                potion.getHealing()
+                );
+        } else if (item instanceof Weapon weapon) {
+            incrementAttackDamage(
+                weapon.getIncreaseDamage()
+            );
+        } else {assert true; } // do nothing if not of these types.
+    }
 
     //endregion
 }

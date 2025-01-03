@@ -168,7 +168,7 @@ public class GameLoop {
             // print out all door desriptions in room.
             printAllDoorsDescriptions();
             // get user input
-            char userInp = inpHand.getUserInpMovement(currentRoom.getDoorDirections());
+            char userInp = inpHand.handleCharToken(currentRoom.getDoorDirections(), 'q');
             // if not q then it is a valid door direction.
             if (userInp != 'q') {
                 // get the door the player has chosen to move through.

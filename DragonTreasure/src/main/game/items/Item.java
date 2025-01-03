@@ -11,19 +11,25 @@ public abstract class Item {
     private String description;
 
     /**
+     * Holds information of if item can be used or not.
+     * Key and Treasure for example is not usable.
+     */
+    private boolean usable;
+    /**
      * holds non obligatory (not part of constructor argument) 
      * ascii art related to the object.
      */
-    private String asciiArt;
+    private String asciiArt = "";
 
     /**
      * Constructor, protected since should only be able to be used via inheritance.
      * @param String name of the item
      * @param String description of the item
      */
-    protected Item(String name, String description){
+    protected Item(String name, String description, boolean usable){
         this.name = name;
         this.description = description;
+        this.usable = usable;
     }
 
     /**
@@ -73,5 +79,13 @@ public abstract class Item {
      */
     public String getAsciiArt(){
         return this.asciiArt;
+    }
+
+    public boolean getUsable(){
+        return this.usable;
+    }
+
+    public void setUsable(boolean usable){
+        this.usable = usable;
     }
 }

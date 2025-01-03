@@ -12,7 +12,7 @@ public class Treasure extends Item {
      * @param int gold value of the treasure
      */
     public Treasure (String name, String description, int goldValue){
-        super(name, description);
+        super(name, description, false);
         this.goldValue = goldValue;
     }
 
