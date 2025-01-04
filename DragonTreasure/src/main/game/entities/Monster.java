@@ -57,15 +57,12 @@ public void takeDamage(int damage) {
             defeated = true;
             System.out.println(DEFEAT_MESSAGE);
         }
+      }
     }
 
-     }
 
 
-    //skapa en metod som minskar healthPoints
-    // hp 0 ska trigga defeat print
-    // kontrollera om monsterattack-meddelanden i denna klass?
-    //skapa ex boolean för när healthPoints = 0 är monstret besegrat
+
     
 
 
