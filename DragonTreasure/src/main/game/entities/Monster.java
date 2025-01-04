@@ -2,8 +2,8 @@ package main.game.entities;
 
 public class Monster {
 
-    private static final String ATTACKED_MESSAGE = "Du attackerar odjuret och gör 2 skada";
-    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör 1 skada"
+    private static final String ATTACKED_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
+    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör 1 skada";
 
     private String name;
     private int healthPoints;
@@ -44,7 +44,7 @@ public class Monster {
 
 public void takeDamage(int damage) {
     setHealthpoints(healthPoints - damage);
-    System.out.println(ATTACKED_MESSAGE);
+    System.out.printf(ATTACKED_MESSAGE, damage);
 
      }
 
