@@ -58,7 +58,7 @@ public void attackPlayer(Player player) {
 public void takeDamage(int damage) {
     if (!defeated) {
         healthpoints = healthpoints - damage;
-        System.out.printf(ATTACK_MESSAGE, damage);
+        System.out.printf(ATTACKED_MESSAGE, damage);
         if (healthPoints <= 0) {
             defeated = true;
             System.out.println(DEFEAT_MESSAGE);
