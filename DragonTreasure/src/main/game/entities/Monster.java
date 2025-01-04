@@ -5,7 +5,7 @@ public class Monster {
     private static final String ATTACKED_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
     private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör %d skada";
     private static final String DEFEAT_MESSAGE = "Du besegrar odjutet";
-    private static final int DAMAGE = 1; //monster damage is a constant
+    private static final int DAMAGE = 1; //monster skada är en konstant
 
     private String name;
     private int healthPoints;
@@ -47,10 +47,16 @@ public class Monster {
         return defeated;
     ]
 
+//metod för att hantera att spelaren tar skada
+public void attackPlayer(Player player) {
+    if (!defeated)
+    player.takeDamage(DAMAGE);
+    System.out.printf(ATTACK_MESSAGE, DAMAGE);
+}
 
-
+// metod för att hantera att monster tar skada
 public void takeDamage(int damage) {
-    if (!defeated); {
+    if (!defeated) {
         healthpoints = healthpoints - damage;
         System.out.printf(ATTACK_MESSAGE, damage);
         if (healthPoints <= 0) {
