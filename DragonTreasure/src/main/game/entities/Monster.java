@@ -2,17 +2,18 @@ package main.game.entities;
 
 public class Monster {
 
-    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör 1 skada";
+    private static final String ATTACKED_MESSAGE = "Du attackerar odjuret och gör 2 skada";
+    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör 1 skada"
 
     private String name;
     private int healthPoints;
     private int maxHealthPoints;
-    private int damage = 1; //monster damage is a constant
+    private static final int DAMAGE = 1; //monster damage is a constant
     private String monsterDesc;
 
     
     //constructor
-    public Monster(String name, int healthPoints, int maxHealthPoints, String monsterDesc) {
+    public Monster(String name, int maxHealthPoints, String monsterDesc) {
         this.name = name;
         this.healthPoints = maxHealthPoints;
         this.maxHealthPoints = maxHealthPoints;
@@ -32,7 +33,7 @@ public class Monster {
     }
 
     public int getDamage() {
-        return damage;
+        return DAMAGE();
     }
 
     public String getMonsterDesc() {
@@ -43,7 +44,7 @@ public class Monster {
 
 public void takeDamage(int damage) {
     setHealthpoints(healthPoints - damage);
-    System.out.println(ATTACK_MESSAGE);
+    System.out.println(ATTACKED_MESSAGE);
 
      }
 
