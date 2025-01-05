@@ -7,7 +7,7 @@ public class Monster {
     private static final String DEFEAT_MESSAGE = "Du besegrar odjutet";
     private static final int DAMAGE = 1; //monster skada är en konstant
 
-    private String name;
+    private String name; //typ av monster
     private int healthPoints;
     private int maxHealthPoints;
     private String monsterDesc;
@@ -57,7 +57,7 @@ public void attackPlayer(Player player) {
 // metod för att hantera att monster tar skada
 public void takeDamage(int damage) {
     if (!defeated) {
-        healthpoints = healthpoints - damage;
+        healthPoints = healthPoints - damage;
         System.out.printf(ATTACKED_MESSAGE, damage);
         if (healthPoints <= 0) {
             defeated = true;
