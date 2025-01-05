@@ -102,8 +102,8 @@ public void attackPlayer(Player player) {
 }
 
 /**
- * Method to handle the monster taking damage and mark as defeated when healthpoints reach 0
- *  */
+ * Method to handle monster taking damage and mark as defeated when healthpoints reach 0
+ */
 public void takeDamage(int damage) {
     if (!defeated) {
         healthPoints = healthPoints - damage;
