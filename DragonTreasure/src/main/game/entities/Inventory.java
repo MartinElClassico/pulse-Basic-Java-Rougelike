@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.game.items.Item;
 import main.game.io.InputHandler;
-import main.game.entities.ItemNotFoundException;
 
 public class Inventory {
     /**
@@ -25,16 +24,34 @@ public class Inventory {
      */
     private static final String FIRSTLN_INV_MSG = "Your inventory contains:";
 
+    /**
+     * holds static final message to print on item selection menu.
+     */
     private static final String ITEM_SELECT_PROMPT = "Choose an item by pressing its number. Press 0 to return.";
     
+    /**
+     * holds static final message to print on no item selected.
+     */
     private static final String NO_I_SELECTED_MSG = "No item selected! Returning from inventory.";
 
+    /**
+     * holds static final char array of usable commands (except q)
+     */
     private static final char[] VIEW_ITEM_COMMANDS = {'v','u'};
 
+    /**
+     * holds static final string to format for item selected and actions avaliable.
+     */
     private static final String ITEM_USE_PROMPT = "You selected %s. Press v to view it, u to use or q to go back.";
 
+    /**
+     * holds static final char array of usable commands (except q) when item is not usable 
+     */
     private static final char[] VIEW_ITEM_COMMANDS_NUSABLE = {'v'};
 
+    /**
+     * holds static final string to format for item selected and actions avaliable when item is not usable.
+     */
     private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
 
     /**
@@ -87,7 +104,8 @@ public class Inventory {
     }
 
     /**
-     * 
+     * prints the items in the inventory with numbering.
+     * @return isNotEmpty boolean if inventory is empty return false otherwise true.
      */
     private boolean printInventory() {
         // handle if item is empty otherwise print all items:
@@ -99,12 +117,17 @@ public class Inventory {
             for (int i = 0; i < items.size(); i++) {
                 Item item = items.get(i);
                 // print out the items with index first (+1), so that player can access them through index later.
-                System.out.printf("%d. %s%n", i+1, item.getName());
+                System.out.printf("%d. %s - %s%n", i+1, item.getName(), item.getDescription());
             }
             return true;
         }
         }
     
+        /**
+         * Prints the inventory and handles user chosing an item from the inventory.
+         * @return null if no item was chosen or if inventory was empty. 
+         * the item selected otherwise.
+         */
     private Item accessInventory() {
         boolean hasItems = printInventory();
         if (hasItems) {
@@ -123,19 +146,29 @@ public class Inventory {
         }
     }
 
+    /**
+     * public method accessed from player class to manage inventory. 
+     * @return the item chosen, if no item was chosen, it returns null.
+     */
     public Item manageInventory() {
-        Item chosen_item = accessInventory();
+        Item chosenItem = accessInventory();
         // did not chose anything, so return null.
-        if (chosen_item == null) {
+        if (chosenItem == null) {
             return null;
         }
         // show menu for what can be done with object and return to main.
         // viz. view item (v) --> return null, or use item (u)--> return item:
-        char chosen_action = itemUseMenu(chosen_item);
-        if (chosen_action == 'q' || chosen_action == 'v') {return null;} 
-        else {return chosen_item;}
+        char chosenAction = itemUseMenu(chosenItem);
+        if (chosenAction == 'q' || chosenAction == 'v') {return null;} 
+        else {return chosenItem;}
     }
 
+    /**
+     * does the chosen action with the chosen item.
+     * @param chosenItem the Item selected by the player.
+     * @param choice legal option (char) for what can be done with the item.
+     * @return char, the chosen action of the player.
+     */
     private char handleItemMenu (Item chosenItem, char choice) {
         switch (choice) {
             case 'v':
@@ -149,6 +182,11 @@ public class Inventory {
         }
     }
 
+    /**
+     * Handles what a user can do with a chosen item.
+     * @param chosenItem Item chosen by the player.
+     * @return the legal command that the user wants to do with the item.
+     */
     private char itemUseMenu(Item chosenItem) {
         // handle options avalible depending on if item is usable or not.
         if (chosenItem.getUsable()) {
@@ -163,24 +201,29 @@ public class Inventory {
         }
     }
 
+    /**
+     * prompt for what to print when a player uses an item.
+     * @param item the item chosen by the player.
+     */
     private void useItemPrompt(Item item){
         System.out.printf("You use %s!", item.getName());
 
     }
 
+    /**
+     * prompt for what to print when a player views an item.
+     * @param item the item chosen by the player.
+     */
     private void viewItem(Item item) {
         System.out.printf("%s - %s%n", item.getName(), item.getDescription());
         System.out.println(item.getAsciiArt());
     }
 
+    /**
+     * method to close io scanner from outside class once done.
+     */
     public void closeInput() {
         inpHand.closeScanner(); // Close Scanner only once when done
     }
-
-    // TODO: add useItem private method, perhaps should be in Player.java?
-
-    // TODO: make public method called "manageInventory" and make it so that it can use the items therein.
-    // alternatively, add this functionality to player.
-
 
 }
