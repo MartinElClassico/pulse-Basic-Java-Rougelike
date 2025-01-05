@@ -21,7 +21,7 @@ public class Key extends Item {
      * @throws IllegalArgumentException if the room ID is negative or the door direction is invalid
      */
     public Key (String name, String description, int roomIdToUnlock, char doorDirectionToUnlock){
-        super(name, description);
+        super(name, description, false);
         // first check that argument is legal.
         validateRoomId(roomIdToUnlock);
         this.targetRoom = roomIdToUnlock;
@@ -69,4 +69,6 @@ public class Key extends Item {
         return this.targetDoor;
     }
 
+    // TODO: Logic should not be handle here, but in GameLoop(and/or Inventory)?::
+    // check when accessing a locked door if key is in invetory, if so unlock and print. 
 }
