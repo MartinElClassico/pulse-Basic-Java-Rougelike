@@ -8,8 +8,6 @@ package main.game.entities;
 public class Monster {
 
 // constants for messages
-    // private static final String ATTACKED_MONSTER_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
-    // private static final String ATTACKED_DRAGON_MESSAGE = "Du attackerar draken och gör %d skada %n";
     private static final String ATTACK_MONSTER_MESSAGE = "Ett odjur attackerar dig och gör %d skada%n";
     private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada%n";
     private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjutet";
@@ -18,9 +16,10 @@ public class Monster {
     private static final int DAMAGE = 1; // monster/dragon damage is a constant
 
     private String name; // differentiates between monster and dragon
+    private String monsterDesc; // description of the monster
+    private String asciiArt = ""; //placeholder for potential ascii art.
     private int healthPoints; // current health points
     private int maxHealthPoints; // max health points
-    private String monsterDesc; // description of the monster
     private boolean defeated; // whether the monster is defeated or not
     private boolean isDragon;
 
@@ -79,6 +78,22 @@ public class Monster {
     public String getMonsterDesc() {
         return monsterDesc;
     }
+
+/**
+ * Gets ascii art for the monster, if none it just returns an empty string.
+ * @return ascii art or if none, empty string
+ */
+public String getAsciiArt(){
+    return this.asciiArt;
+}
+
+/**
+ * Set ascii art to be used for the monster.
+ * @param ascii ascii art to be used to represent monster.
+ */
+public void setAsciiArt(String ascii){
+    this.asciiArt = ascii;
+}
 
 /**
  * Checks if the monster is defeated
