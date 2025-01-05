@@ -195,6 +195,5 @@ public class Player {
             );
         } else {assert true; } // do nothing if not of these types.
     }
-
     //endregion
 }
