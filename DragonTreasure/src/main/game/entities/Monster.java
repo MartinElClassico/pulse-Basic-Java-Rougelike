@@ -8,10 +8,10 @@ package main.game.entities;
 public class Monster {
 
 // constants for messages
-    private static final String ATTACKED_MONSTER_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
-    private static final String ATTACKED_DRAGON_MESSAGE = "Du attackerar draken och gör %d skada %n";
-    private static final String ATTACK_MONSTER_MESSAGE = "Ett odjur attackerar dig och gör %d skada";
-    private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada";
+    // private static final String ATTACKED_MONSTER_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
+    // private static final String ATTACKED_DRAGON_MESSAGE = "Du attackerar draken och gör %d skada %n";
+    private static final String ATTACK_MONSTER_MESSAGE = "Ett odjur attackerar dig och gör %d skada%n";
+    private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada%n";
     private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjutet";
     private static final String DEFEAT_DRAGON_MESSAGE = "Du besegrar draken";
 
@@ -22,6 +22,7 @@ public class Monster {
     private int maxHealthPoints; // max health points
     private String monsterDesc; // description of the monster
     private boolean defeated; // whether the monster is defeated or not
+    private boolean isDragon;
 
     /** 
      * Constructor to create a monster with its name, max health points and description
@@ -30,11 +31,12 @@ public class Monster {
      * @param maxHealthpoints
      * @param monsterDesc
     */
-    public Monster(String name, int maxHealthPoints, String monsterDesc) {
+    public Monster(String name, int maxHealthPoints, String monsterDesc, boolean isDragon) {
         this.name = name;
         this.healthPoints = maxHealthPoints;
         this.maxHealthPoints = maxHealthPoints;
         this.monsterDesc = monsterDesc;
+        this.isDragon = isDragon;
         this.defeated = false;
     }
 
@@ -66,7 +68,7 @@ public class Monster {
  * Gets the damage of the monster
  * @return The damage of the monster
  */
-    public int getDamage() {
+    public int getAttackDamage() {
         return DAMAGE;
     }
 
@@ -93,7 +95,7 @@ public class Monster {
 public void attackPlayer(Player player) {
     if (!defeated) {
     player.takeDamage(DAMAGE); // Calls Player class' takeDamage method
-    if (name.equals("Monster")) {
+    if (!isDragon) {
         System.out.printf(ATTACK_MONSTER_MESSAGE, DAMAGE);
     } else {
         System.out.printf(ATTACK_DRAGON_MESSAGE, DAMAGE);
@@ -107,11 +109,9 @@ public void attackPlayer(Player player) {
 public void takeDamage(int damage) {
     if (!defeated) {
         healthPoints = healthPoints - damage;
-
     if (healthPoints <= 0) {
             defeated = true;
-
-    if (name.equals("Monster")) {
+    if (!isDragon) {
         System.out.println(DEFEAT_MONSTER_MESSAGE);
     } else {
         System.out.println(DEFEAT_DRAGON_MESSAGE);
@@ -119,14 +119,6 @@ public void takeDamage(int damage) {
     }
   }
 }
-
-
-
-
-    
-
-
-
 
     
 }
