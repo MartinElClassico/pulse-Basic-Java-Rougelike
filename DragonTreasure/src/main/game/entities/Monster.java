@@ -9,7 +9,7 @@ public class Monster {
     private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjutet";
     private static final String DEFEAT_DRAGON_MESSAGE = "Du besegrar draken";
 
-    private static final int DAMAGE = 1; //monster skada är en konstant
+    private static final int DAMAGE = 1; //monster/drake skada är en konstant
 
     private String name; //typ av monster
     private int healthPoints;
@@ -75,10 +75,10 @@ public void takeDamage(int damage) {
         System.out.println(DEFEAT_MONSTER_MESSAGE);
     } else {
         System.out.println(DEFEAT_DRAGON_MESSAGE);
-    }
-        }
       }
     }
+  }
+}
 
 
 
