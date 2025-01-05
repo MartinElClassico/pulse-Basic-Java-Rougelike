@@ -2,9 +2,13 @@ package main.game.entities;
 
 public class Monster {
 
-    private static final String ATTACKED_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
-    private static final String ATTACK_MESSAGE = "Ett odjur attackerar dig och gör %d skada";
-    private static final String DEFEAT_MESSAGE = "Du besegrar odjutet";
+    private static final String ATTACKED_MONSTER_MESSAGE = "Du attackerar odjuret och gör %d skada %n";
+    private static final String ATTACKED_DRAGON_MESSAGE = "Du attackerar draken och gör %d skada %n";
+    private static final String ATTACK_MONSTER_MESSAGE = "Ett odjur attackerar dig och gör %d skada";
+    private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada";
+    private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjutet";
+    private static final String DEFEAT_DRAGON_MESSAGE = "Du besegrar draken";
+
     private static final int DAMAGE = 1; //monster skada är en konstant
 
     private String name; //typ av monster
@@ -49,19 +53,29 @@ public class Monster {
 
 //metod för att hantera att spelaren tar skada
 public void attackPlayer(Player player) {
-    if (!defeated)
-    player.takeDamage(DAMAGE);
-    System.out.printf(ATTACK_MESSAGE, DAMAGE);
+    if (!defeated) {
+    player.takeDamage(DAMAGE); 
+    if (name.equals("Monster")) {
+        System.out.printf(ATTACK_MONSTER_MESSAGE, DAMAGE);
+    } else {
+        System.out.printf(ATTACK_DRAGON_MESSAGE, DAMAGE);
+    }
+  }
 }
 
 // metod för att hantera att monster tar skada
 public void takeDamage(int damage) {
     if (!defeated) {
         healthPoints = healthPoints - damage;
-        System.out.printf(ATTACKED_MESSAGE, damage);
-        if (healthPoints <= 0) {
+
+    if (healthPoints <= 0) {
             defeated = true;
-            System.out.println(DEFEAT_MESSAGE);
+
+    if (name.equals("Monster")) {
+        System.out.println(DEFEAT_MONSTER_MESSAGE);
+    } else {
+        System.out.println(DEFEAT_DRAGON_MESSAGE);
+    }
         }
       }
     }
