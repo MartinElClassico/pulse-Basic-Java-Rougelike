@@ -33,6 +33,10 @@ public class Room {
      */
     private Door[] doors;
 
+    private List<Item> items;
+
+    private List<Monster> monsters;
+
     /**
      * Constructs a Room with a given room description and roomID. 
      * 
@@ -45,6 +49,27 @@ public class Room {
         this.roomId = roomId;
         this.doors = doors; 
         this.doorDirections = validDirectionsInRoom();
+        this.items = new ArrayList<>();
+        this.monsters = new ArrayList<>();
+    }
+
+    /**
+     * Alternative constructor that constructs a Room with a given room description and roomID, and 
+     * adds monsters and items to the room 
+     * 
+     * @param roomDesc the description of the room, to be printed upon entering said room
+     * @param roomId an ID to keep track of where the room is. 
+     * @param doors an array that holds door instances connected to the room. needs to be at least one.
+     * @param List<Item> an array list that holds the items that should be in the room
+     * @param List<Monster> an array list that holds the monsters that should be in the room
+     */
+    public Room (String roomDesc, int roomId, Door[] doors, List<Item> items, List<Monster> monsters){
+        this.roomDesc = roomDesc;
+        this.roomId = roomId;
+        this.doors = doors; 
+        this.doorDirections = validDirectionsInRoom();
+        this.items = items;
+        this.monsters = monsters;
     }
 
     /**
@@ -130,4 +155,22 @@ public class Room {
     }
 
     //setRoomID() not includese since it shouldn't need to be changed after having been initalized.
+
+    /**
+     * Adds an item to the room
+     * 
+     * @param i5tem to add
+     */
+    public void addItem (Item item){
+        items.add(item);
+    }
+
+    /**
+     * Adds a monster to the room
+     * 
+     * @param monster to add
+     */
+    public void addMonster (Monster monster){
+        monsters.add(monster);
+    }
 }
