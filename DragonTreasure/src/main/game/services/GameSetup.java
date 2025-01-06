@@ -2,6 +2,7 @@ package main.game.services;
 import main.game.resources.AsciiArt;
 import main.game.world.Door;
 import main.game.world.Room;
+import main.game.items.*;
 
 /**
  * The GameSetup class creates the game
@@ -40,6 +41,7 @@ public class GameSetup {
         this.rooms[5] = createRoom5();
         this.rooms[6] = createRoom6();
         this.rooms[7] = createRoom7();
+        addItems();
     }
 
     /**
@@ -189,7 +191,26 @@ public class GameSetup {
         doors[0] = doorRoom7West;
         return new Room(this.roomDescriptions[7], 7, doors);
     }
-    
+
+    /**
+     * Creates all items and adds them to the correct rooms
+     */
+    private void addItems() {
+        Weapon sword = new Weapon("Svärd", "Ett silvrigt svärd med läder lindat runt handtaget", 1);
+        rooms[2].addItem(sword);
+        Potion healingPotion = new Potion("Hälsodryck", "En glasflaska med en röd vätska i", 6);
+        rooms[4].addItem(healingPotion);
+        Key key = new Key("Nyckel", "En nyckel gjord av mässing", 4, 'o');
+        rooms[5].addItem(key);
+        Treasure treasure = new Treasure("Skatt", "En stor skattkista fylld med guld", 100);
+        rooms[6].addItem(treasure);
+    }
+
+    // TODO: Create monsters and add to the correct rooms
+    private void addMonsters() {
+
+    }
+
     /**
      * Gets the array that holds all of the rooms of the game
      */

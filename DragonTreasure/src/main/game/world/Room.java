@@ -1,6 +1,8 @@
 package main.game.world;
 import java.util.ArrayList;
 import java.util.List;
+import main.game.items.*;
+import main.game.entities.Monster;
 
 /**
  * The Room class represents a room in the dungeon. 
