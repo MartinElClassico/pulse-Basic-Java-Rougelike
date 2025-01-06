@@ -42,6 +42,7 @@ public class GameSetup {
         this.rooms[6] = createRoom6();
         this.rooms[7] = createRoom7();
         addItems();
+        addMonsters();
     }
 
     /**
