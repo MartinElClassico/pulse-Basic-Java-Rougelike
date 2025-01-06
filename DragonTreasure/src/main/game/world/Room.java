@@ -54,25 +54,6 @@ public class Room {
     }
 
     /**
-     * Alternative constructor that constructs a Room with a given room description and roomID, and 
-     * adds monsters and items to the room 
-     * 
-     * @param roomDesc the description of the room, to be printed upon entering said room
-     * @param roomId an ID to keep track of where the room is. 
-     * @param doors an array that holds door instances connected to the room. needs to be at least one.
-     * @param List<Item> an array list that holds the items that should be in the room
-     * @param List<Monster> an array list that holds the monsters that should be in the room
-     */
-    public Room (String roomDesc, int roomId, Door[] doors, List<Item> items, List<Monster> monsters){
-        this.roomDesc = roomDesc;
-        this.roomId = roomId;
-        this.doors = doors; 
-        this.doorDirections = validDirectionsInRoom();
-        this.items = items;
-        this.monsters = monsters;
-    }
-
-    /**
      * Gets an array with all the directions the player can move based on the current room the player is in.
      * @return an array of characters with valid player movement prompts for the current room's doors.
      */
