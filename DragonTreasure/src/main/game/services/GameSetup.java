@@ -3,6 +3,7 @@ import main.game.resources.AsciiArt;
 import main.game.world.Door;
 import main.game.world.Room;
 import main.game.items.*;
+import main.game.entities.Monster;
 
 /**
  * The GameSetup class creates the game
@@ -207,9 +208,14 @@ public class GameSetup {
         rooms[6].addItem(treasure);
     }
 
-    // TODO: Create monsters and add to the correct rooms
+    /**
+     * Creates all monsters and adds them to the correct rooms
+     */
     private void addMonsters() {
-
+        Monster monster = new Monster("Monster", 8, "Ett grönt, ödleliknande monster", false);
+        rooms[3].addMonster(monster);
+        Monster dragon = new Monster("Drake", 18, "En stor, eldsprutande drake", true);
+        rooms[6].addMonster(dragon);
     }
 
     /**
