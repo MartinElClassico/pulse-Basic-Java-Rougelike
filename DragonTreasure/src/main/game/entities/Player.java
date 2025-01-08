@@ -1,8 +1,5 @@
 package main.game.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import main.game.items.*;
 /**
  * The Player class represents a player in the game.
@@ -35,14 +32,6 @@ public class Player {
      * private instance to hold the damage the player can do. Initalized to 1.
      */
     private int attackDamage = 1;
-
-    /**
-     * holds a list of listeners to tell other classes calling this one if player has died or not.
-     * use of list makes this class decoupled from having to know how many listeners there are, 
-     * it just needs to trigger them. Otherwise we could have used just a sole listener.
-     * having a list like this is also more modular as we can create a listener for each event.
-     */
-    private List<HealthListener> listeners = new ArrayList<>();
 
     private Inventory inventory;
 
@@ -103,22 +92,6 @@ public class Player {
         this.hp = newHp;
     }
 
-    /** 
-     * public method to add a listener from other classes that need it.
-     * mainly used when necessary to know if player has died or not.
-     */
-   public void addHealthListener(HealthListener listener){
-    listeners.add(listener);
-   }
-
-   /**
-    * trigger listener in case health is depleted.
-    */
-   private void notifyHealthDepleted() {
-    for (HealthListener listener : listeners) {
-        listener.onHealthDepleted();
-    }
-   }
 
    /**
     * Handles a player taking damage, decrements hp and triggers listener if dead.
@@ -126,10 +99,7 @@ public class Player {
     * @return playerHP, how much HP the player has left.
     */
    public int takeDamage(int damageTaken){
-    this.hp -= damageTaken;
-    if (hp <= 0){
-        notifyHealthDepleted();
-    }
+    hp -= damageTaken;
     return this.hp;
    }
 

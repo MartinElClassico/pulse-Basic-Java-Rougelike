@@ -235,6 +235,7 @@ public class GameSetup {
         Monster monster = new Monster("Monster", 8, "Ett grönt, ödleliknande monster", false);
         rooms[3].addMonster(monster);
         Monster dragon = new Monster("Drake", 18, "En stor, eldsprutande drake", true);
+        dragon.setAsciiArt(AsciiArt.getDragon());
         rooms[6].addMonster(dragon);
     }
 

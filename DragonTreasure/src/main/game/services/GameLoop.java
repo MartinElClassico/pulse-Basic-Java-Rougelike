@@ -9,6 +9,8 @@ import main.game.io.InputHandler;
 import main.game.items.Item;
 import main.game.world.Door;
 import main.game.world.Room;
+import main.game.entities.Monster;
+
 /**
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.
@@ -29,6 +31,7 @@ public class GameLoop {
      */
     private static final String QUIT_MESSAGE = "Du lämnar spelet!";
 
+    private static final String GAME_OVER_DIED_MSG = "Du dog i kamp mot ett monster! Game Over!";
     /**
      * holds a static final int of the maximum HP the player has. 
      * used to create player. 
@@ -200,6 +203,52 @@ public class GameLoop {
         }
     }
 
+    private char playerChoice(InputHandler inpHand){
+        //print out inventory access if avaliable
+        boolean invHasItems = player.getInventory().printInventoryPrompt();
+        //print out all item prompts in room.
+        this.currentRoom.printAllItemDescriptions();
+        // print out all door desriptions in room.
+        this.currentRoom.printAllDoorsDescriptions();
+        // get user input
+        char userInp = inpHand.handleCharToken(getAvaliableCommands(invHasItems), 'q');
+        return userInp;
+    }
+
+    private boolean doBattle(Monster monster) {
+        boolean monsterAlive = true;
+        boolean playerAlive = true;
+        while (monsterAlive && playerAlive) {
+            monsterAlive = monster.attackPlayer(player);
+            playerAlive = monster.attackMonster(player.getAttackDamage());
+        }
+        return playerAlive;
+        
+    }
+
+    private boolean faceMonster() {
+        // since we remove monsters we need to use an itterator to not get read/write conflicts.
+        Iterator<Monster> iterator = currentRoom.getMonsters().iterator();
+        boolean playerAlive = true;
+        // access monsters in room until there is none left.
+        while(iterator.hasNext()){
+            if (playerAlive) {
+                // get next monster in the list.
+                Monster monster = iterator.next();
+                //print ascii art of enemy
+                System.out.println(monster.getAsciiArt());
+                //print monster descriptor
+                System.out.println(monster.getMonsterDesc() + " dyker upp framför dig!");
+                //battle with monster.
+                playerAlive = doBattle(monster); // battle outcome message is handled in doBattle unless player died.
+                // remove monster from room.
+                if (playerAlive) {iterator.remove();}
+            }
+        }
+        return playerAlive;
+        
+    }
+
     /**
      * this method starts the game loop and hold the logic related to said game loop.
      * 
@@ -212,21 +261,19 @@ public class GameLoop {
         getAndSetNewPlayer(); //creates the new player and handles output and input terminal statements for that end goal.
         this.currentRoom = this.dungeonRooms[startRoomID]; //set current room that the player starts in.
         boolean doorLocked = false; // if door is locked we should'nt print room description until an unlocked door is chosen.
+        boolean playerAlive = true;
         // start of the loop the player moves in itterations through.
-        while (running) {
+        while (running && playerAlive) {
         // base loop:
+            if (!currentRoom.getMonsters().isEmpty()) {
+                playerAlive = faceMonster();
+                if (!playerAlive) {break;}
+            }
             // print room description, but only if an unlocked door was chosen previously:
             if (!doorLocked) {
                 printRoomDesc();
             }
-            //print out inventory access if avaliable
-            boolean invHasItems = player.getInventory().printInventoryPrompt();
-            //print out all item prompts in room.
-            this.currentRoom.printAllItemDescriptions();
-            // print out all door desriptions in room.
-            this.currentRoom.printAllDoorsDescriptions();
-            // get user input
-            char userInp = inpHand.handleCharToken(getAvaliableCommands(invHasItems), 'q');
+            char userInp = playerChoice(inpHand);
             // if not q then it is a valid door direction.
             if (userInp != 'q') {
                 if (userInp == 'i') {
@@ -252,6 +299,9 @@ public class GameLoop {
                 this.running = false;
             }
             
+        }
+        if (!playerAlive) {
+            System.out.println(GAME_OVER_DIED_MSG);
         }    
         //end of the loop the player moves in itteration through.
         // check if win condition was reason we exited loop (could be because of death or quit)

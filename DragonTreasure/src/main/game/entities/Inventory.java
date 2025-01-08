@@ -212,7 +212,6 @@ public class Inventory {
      */
     private void useItemPrompt(Item item){
         System.out.printf("Du använder %s!%n%n", item.getName().toLowerCase());
-
     }
 
     /**

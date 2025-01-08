@@ -177,4 +177,9 @@ public class Room {
     public List<Item> getItems(){
         return this.items;
     }
+
+    public List<Monster> getMonsters(){
+        return this.monsters;
+    }
+
 }
