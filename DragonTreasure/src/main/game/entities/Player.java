@@ -26,7 +26,7 @@ public class Player {
     /**
      * private instance to hold the player's health points. Initalized to that of the player's maximum HP.
      */
-    private int hp = maxHp;
+    private int hp;
 
     /**
      * private instance to hold the damage the player can do. Initalized to 1.
@@ -43,6 +43,7 @@ public class Player {
     public Player(String name, int maxHp) {
         this.name = name;
         this.maxHp = maxHp;
+        this.hp = maxHp;
         this.inventory = new Inventory();
     }
 

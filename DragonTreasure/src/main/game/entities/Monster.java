@@ -115,8 +115,8 @@ public boolean attackPlayer(Player player) {
         System.out.printf("PLAYER HP: %d%n", player.getHp());
         int playerHP = player.takeDamage(damage); // Calls Player class' takeDamage method
         playerAttackedMessage(playerHP);
-        if (player.getHp() <= 0) {return true;}
-        return false;
+        if (player.getHp() <= 0) {return false;}
+        return true;
     }
     else {return true;}
 }
