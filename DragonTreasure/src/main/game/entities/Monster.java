@@ -13,7 +13,7 @@ public class Monster {
     private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjutet";
     private static final String DEFEAT_DRAGON_MESSAGE = "Du besegrar draken";
 
-    private static final int DAMAGE = 1; // monster/dragon damage is a constant
+    private int damage = 1; // monster/dragon damage, initialized to 1.
 
     private String name; // differentiates between monster and dragon
     private String monsterDesc; // description of the monster
@@ -68,7 +68,7 @@ public class Monster {
  * @return The damage of the monster
  */
     public int getAttackDamage() {
-        return DAMAGE;
+        return damage;
     }
 
 /**
@@ -109,11 +109,11 @@ public void setAsciiArt(String ascii){
  */
 public void attackPlayer(Player player) {
     if (!defeated) {
-    player.takeDamage(DAMAGE); // Calls Player class' takeDamage method
+    player.takeDamage(damage); // Calls Player class' takeDamage method
     if (!isDragon) {
-        System.out.printf(ATTACK_MONSTER_MESSAGE, DAMAGE);
+        System.out.printf(ATTACK_MONSTER_MESSAGE, damage);
     } else {
-        System.out.printf(ATTACK_DRAGON_MESSAGE, DAMAGE);
+        System.out.printf(ATTACK_DRAGON_MESSAGE, damage);
     }
   }
 }
@@ -121,9 +121,9 @@ public void attackPlayer(Player player) {
 /**
  * Method to handle monster taking damage and mark as defeated when healthpoints reach 0
  */
-public void takeDamage(int damage) {
+public void takeDamage(int damageTaken) {
     if (!defeated) {
-        healthPoints = healthPoints - damage;
+        healthPoints = healthPoints - damageTaken;
     if (healthPoints <= 0) {
             defeated = true;
     if (!isDragon) {
@@ -135,5 +135,12 @@ public void takeDamage(int damage) {
   }
 }
 
+public int getDamage(){
+    return this.damage;
+}
+
+public void setDamage(int damage){
+    this.damage = damage;
+}
     
 }
