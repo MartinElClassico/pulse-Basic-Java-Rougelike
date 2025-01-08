@@ -1,6 +1,7 @@
 package main.game.world;
 import java.util.ArrayList;
 import java.util.List;
+
 import main.game.items.*;
 import main.game.entities.Monster;
 
@@ -155,5 +156,25 @@ public class Room {
      */
     public void addMonster (Monster monster){
         monsters.add(monster);
+    }
+
+
+    public void printAllItemDescriptions(){
+        for (Item itemInRoom : this.items) {
+            System.out.println(itemInRoom.getitemPrompt());
+        }
+    }
+    /**
+     * Prints description of all doors in the room. 
+     */
+    public void printAllDoorsDescriptions(){
+        Door[] allDoorsInRoom = this.doors;
+        for (Door doorInRoom : allDoorsInRoom) {
+            System.out.println(doorInRoom.getDoorPrompt());
+        }
+    }
+
+    public List<Item> getItems(){
+        return this.items;
     }
 }

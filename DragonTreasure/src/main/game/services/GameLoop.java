@@ -1,8 +1,12 @@
 package main.game.services;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import main.game.entities.Player;
 import main.game.io.InputHandler;
+import main.game.items.Item;
 import main.game.world.Door;
 import main.game.world.Room;
 /**
@@ -115,16 +119,6 @@ public class GameLoop {
     }
 
     /**
-     * Prints description of all doors in current room. The current room is accesed via private class attribute.
-     */
-    private void printAllDoorsDescriptions(){
-        Door[] allDoorsInRoom = this.currentRoom.getDoors();
-        for (Door doorInRoom : allDoorsInRoom) {
-            System.out.println(doorInRoom.getDoorPrompt());
-        }
-    }
-
-    /**
      * Returns the door the user has chosen based on move direction chosen and the doors avaliable in the room.
      * Has try-throw-catch logic to catch if an invalid roomdirection is chosen.
      * This should never happen however as prior to this method call the users choice has been validated via the 
@@ -147,6 +141,66 @@ public class GameLoop {
     }
 
     /**
+     * Helper function to cast List<Character> to char[], viz. a list array of Characters to an array of chars.
+     * @param charList List array of Characters
+     * @return charArray Array of chars.
+     */
+    private static char[] listToCharArray(List<Character> charList) {
+        char[] charArray = new char[charList.size()]; // Create char array of the same size as list array.
+        // populate array with contents in list array.
+        for (int i = 0; i < charList.size(); i++) {
+            charArray[i] = charList.get(i);
+        }
+        return charArray;
+    }
+
+    private char[] getAvaliableCommands(boolean hasItems){
+        List<Character> charCommands = new ArrayList<>();
+        if (hasItems) {charCommands.add('i');}
+        for(Item ignored : currentRoom.getItems()){
+            charCommands.add('p');
+        }
+        for(char chardoor : currentRoom.getDoorDirections()){
+            charCommands.add(chardoor);
+        }
+        return listToCharArray(charCommands);
+    }
+
+    private boolean playerRoomChange(char userInp) {
+        // get the door the player has chosen to move through.
+        Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
+        //if door is locked, print door peep 
+        if (chosenDoor.getLocked()) {
+            System.out.println(chosenDoor.getKeyholeViewDescription());
+            // TODO: add logic to check for key in inventory and print out options (?).
+            return true;// set door locked to true as to not print room desciption.
+        } else {
+            // else set the current room to the room the chosen door leads to.
+            this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+            return false; // needs to be set so room description is displayer if not locked.
+        }
+    }
+
+    /**
+     * Adds items in current room to the player inventory and deletes them from the room.
+     */
+    private void addItemToPlayerInventory(){
+        // since we remove items we need to use an itterator to not get read/write conflicts.
+        Iterator<Item> iterator = currentRoom.getItems().iterator();
+        // access items in room until there is none left.
+        while(iterator.hasNext()){
+            // get next item in the list.
+            Item item = iterator.next();
+            // add item to player inventory.
+            player.getInventory().addItem(item);
+            // delete item from the room as it has been picked up.
+            iterator.remove();
+            // print item picked up prompt.
+            System.out.println(item.getPickedUpItemPrompt());
+        }
+    }
+
+    /**
      * this method starts the game loop and hold the logic related to said game loop.
      * 
      * @param startRoomID the room id that the loop should start from, is usually 0 at start.
@@ -165,22 +219,24 @@ public class GameLoop {
             if (!doorLocked) {
                 printRoomDesc();
             }
+            //print out inventory access if avaliable
+            boolean invHasItems = player.getInventory().printInventoryPrompt();
+            //print out all item prompts in room.
+            this.currentRoom.printAllItemDescriptions();
             // print out all door desriptions in room.
-            printAllDoorsDescriptions();
+            this.currentRoom.printAllDoorsDescriptions();
             // get user input
-            char userInp = inpHand.handleCharToken(currentRoom.getDoorDirections(), 'q');
+            char userInp = inpHand.handleCharToken(getAvaliableCommands(invHasItems), 'q');
             // if not q then it is a valid door direction.
             if (userInp != 'q') {
-                // get the door the player has chosen to move through.
-                Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
-                //if door is locked, print door peep 
-                if (chosenDoor.getLocked()) {
-                    doorLocked = true; // set door locked to true as to not print room desciption.
-                    System.out.println(chosenDoor.getKeyholeViewDescription());
+                if (userInp == 'i') {
+                    player.accessInventory();
+                }
+                else if (userInp == 'p') {
+                    addItemToPlayerInventory();
                 } else {
-                    doorLocked = false; // needs to be set so room description is displayer if not locked.
-                    // else set the current room to the room the chosen door leads to.
-                    this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                    // changes the room and tells wether the door the user wanted to access is still locked or not.
+                    doorLocked = playerRoomChange(userInp);
                 }
             }
             // exit condition1:

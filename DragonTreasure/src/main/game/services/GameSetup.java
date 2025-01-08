@@ -198,13 +198,33 @@ public class GameSetup {
      * Creates all items and adds them to the correct rooms
      */
     private void addItems() {
-        Weapon sword = new Weapon("Svärd", "Ett silvrigt svärd med läder lindat runt handtaget", 1);
+        Weapon sword = new Weapon(
+            "Svärd", 
+            "Ett silvrigt svärd med läder lindat runt handtaget", 
+            "Du ser ett svärd på golvet, du kan ta upp det [p]",
+            1
+            );
         rooms[2].addItem(sword);
-        Potion healingPotion = new Potion("Hälsodryck", "En glasflaska med en röd vätska i", 6);
+        Potion healingPotion = new Potion("Hälsodryck",
+            "En glasflaska med en röd vätska i",
+            "Du ser en hälsodryck på golvet, du kan plocka upp den [p]", 
+            6
+            );
         rooms[4].addItem(healingPotion);
-        Key key = new Key("Nyckel", "En nyckel gjord av mässing", 4, 'o');
+        Key key = new Key(
+            "Nyckel",
+            "En nyckel gjord av mässing",
+            "Du ser en nyckel som ligger på golvet, du kan ta upp den [p]",  
+            4,
+            'o'
+            );
         rooms[5].addItem(key);
-        Treasure treasure = new Treasure("Skatt", "En stor skattkista fylld med guld", 100);
+        Treasure treasure = new Treasure(
+            "Skatt",
+            "En stor skattkista fylld med guld",
+            "Du ser en skattkista som låg under drakens tass, du kan ta upp den [p]",
+            100
+            );
         rooms[6].addItem(treasure);
     }
 
