@@ -311,7 +311,10 @@ public class GameLoop {
         getAndSetNewPlayer(); //creates the new player and handles output and input terminal statements for that end goal.
         this.currentRoom = this.dungeonRooms[startRoomID]; //set current room that the player starts in.
         boolean doorLocked = false; // if door is locked we should'nt print room description until an unlocked door is chosen.
-        boolean playerAlive = true;
+        boolean playerAlive = true; // game loop ends when player dies.
+        Room roomBeforeTreasure = this.dungeonRooms[3]; // used for invisible wall if player tries to leave without treasure.
+        // text to print when trying to leave without treasure.
+        final String INVISBLE_WALL_PROMPT = "Du vill inte lämna grottan tomhänt! Finns en skatt i grottan.";
         // start of the loop the player moves in itterations through.
         while (running && playerAlive) {
         // base loop:
@@ -345,8 +348,16 @@ public class GameLoop {
             // exit condition2:
             // user finds the dungeon exit.
             if (currentRoom.getRoomId() == 7) {
-                // win message is printed later outside while loop.
-                this.running = false;
+                if (player.getInventory().checkTreasure()){
+                    // win message is printed later outside while loop.
+                    this.running = false;
+                }
+                else {
+                    System.out.println(INVISBLE_WALL_PROMPT);
+                    System.out.println(); //empty row for readability.
+                    this.currentRoom = roomBeforeTreasure; //set current room that the player is in to room before exit.
+                }
+                
             }
             
         }

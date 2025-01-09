@@ -6,6 +6,7 @@ import java.util.List;
 import main.game.items.Item;
 import main.game.io.InputHandler;
 import main.game.items.Key;
+import main.game.items.Treasure;
 
 public class Inventory {
     /**
@@ -252,6 +253,15 @@ public class Inventory {
     public boolean checkKey(){
         for (Item item : items) {
             if (item instanceof Key){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkTreasure(){
+        for (Item item : items) {
+            if (item instanceof Treasure){
                 return true;
             }
         }

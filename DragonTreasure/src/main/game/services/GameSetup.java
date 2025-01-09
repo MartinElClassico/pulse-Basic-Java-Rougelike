@@ -59,7 +59,7 @@ public class GameSetup {
         roomDescriptions[5] = ("Du kommer in i ett rymligt bergrum med en ljusstrimma sipprandes genom en spricka i\r\n" + 
                         "den östra väggen.");
         roomDescriptions[6] = ("Du ser en död drake på golvet och guldmynt i hörnet.");
-        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll. Grattis, du förlorade inte!");
+        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll och rikedomar för flera generationer framöver! Grattis!");
     }
 
     /**
