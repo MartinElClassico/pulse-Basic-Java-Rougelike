@@ -129,4 +129,9 @@ public class Door {
     public void setKeyholeViewDescription(String keyholeViewDescription) {
         this.keyholeViewDescription = keyholeViewDescription;
     }
+
+    public void unlockDoor(String newDoorPrompt){
+        this.locked = false;
+        this.doorPrompt = newDoorPrompt;
+    }
 }

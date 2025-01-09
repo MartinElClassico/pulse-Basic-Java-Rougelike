@@ -2,6 +2,8 @@ package main.game.services;
 import main.game.resources.AsciiArt;
 import main.game.world.Door;
 import main.game.world.Room;
+import main.game.items.*;
+import main.game.entities.Monster;
 
 /**
  * The GameSetup class creates the game
@@ -40,6 +42,8 @@ public class GameSetup {
         this.rooms[5] = createRoom5();
         this.rooms[6] = createRoom6();
         this.rooms[7] = createRoom7();
+        addItems();
+        addMonsters();
     }
 
     /**
@@ -54,8 +58,8 @@ public class GameSetup {
         roomDescriptions[4] = ("Du kommer in i ett fuktigt rum med vatten sipprandes längs den västra väggen.");
         roomDescriptions[5] = ("Du kommer in i ett rymligt bergrum med en ljusstrimma sipprandes genom en spricka i\r\n" + 
                         "den östra väggen.");
-        roomDescriptions[6] = ("");
-        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll. Grattis, du förlorade inte!");
+        roomDescriptions[6] = ("Du ser en död drake på golvet och guldmynt i hörnet.");
+        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll och rikedomar för flera generationer framöver! Grattis!");
     }
 
     /**
@@ -189,7 +193,54 @@ public class GameSetup {
         doors[0] = doorRoom7West;
         return new Room(this.roomDescriptions[7], 7, doors);
     }
-    
+
+    /**
+     * Creates all items and adds them to the correct rooms
+     */
+    private void addItems() {
+        Weapon sword = new Weapon(
+            "Svärd", 
+            "Ett silvrigt svärd med läder lindat runt handtaget", 
+            "Du ser ett svärd på golvet, du kan ta upp det [p]",
+            1
+            );
+        rooms[2].addItem(sword);
+        Potion healingPotion = new Potion("Hälsodryck",
+            "En glasflaska med en röd vätska i",
+            "Du ser en hälsodryck på golvet, du kan plocka upp den [p]", 
+            6
+            );
+        rooms[4].addItem(healingPotion);
+        Key key = new Key(
+            "Nyckel",
+            "En nyckel gjord av mässing",
+            "Du ser en nyckel som ligger på golvet, du kan ta upp den [p]",  
+            4,
+            'o'
+            );
+        rooms[5].addItem(key);
+        Treasure treasure = new Treasure(
+            "Skatt",
+            "En stor skattkista fylld med guld",
+            "Du ser en skattkista som låg under drakens tass, du kan ta upp den [p]",
+            100
+            );
+        treasure.setAsciiArt(AsciiArt.getTreasure());
+        rooms[6].addItem(treasure);
+    }
+
+    /**
+     * Creates all monsters and adds them to the correct rooms
+     */
+    private void addMonsters() {
+        Monster monster = new Monster("Monster", 8, "Ett grönt, ödleliknande monster", false);
+        rooms[3].addMonster(monster);
+        Monster dragon = new Monster("Drake", 18, "En stor, eldsprutande drake", true);
+        dragon.setAsciiArt(AsciiArt.getDragon());
+        dragon.setDamage(5);
+        rooms[6].addMonster(dragon);
+    }
+
     /**
      * Gets the array that holds all of the rooms of the game
      */

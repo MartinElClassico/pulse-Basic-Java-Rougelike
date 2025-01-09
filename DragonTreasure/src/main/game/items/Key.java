@@ -1,6 +1,8 @@
 package main.game.items;
 
 public class Key extends Item {
+    private static final String KEY_PICKED_UP_PROMPT = "Du tog upp nyckeln.";
+
     /**
      * Information necessary to knowing which door should be able to be unlocked by the key.
      * holds the roomID in which room the door is that is to be unlocked.
@@ -20,8 +22,8 @@ public class Key extends Item {
      * @param char doorDirectionToUnlock the orientation of the door the key unlocks (n, s, o, v).
      * @throws IllegalArgumentException if the room ID is negative or the door direction is invalid
      */
-    public Key (String name, String description, int roomIdToUnlock, char doorDirectionToUnlock){
-        super(name, description, false);
+    public Key (String name, String description, String itemPrompt, int roomIdToUnlock, char doorDirectionToUnlock){
+        super(name, description, false, itemPrompt, KEY_PICKED_UP_PROMPT);
         // first check that argument is legal.
         validateRoomId(roomIdToUnlock);
         this.targetRoom = roomIdToUnlock;
@@ -69,6 +71,5 @@ public class Key extends Item {
         return this.targetDoor;
     }
 
-    // TODO: Logic should not be handle here, but in GameLoop(and/or Inventory)?::
     // check when accessing a locked door if key is in invetory, if so unlock and print. 
 }

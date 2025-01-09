@@ -5,6 +5,8 @@ import java.util.List;
 
 import main.game.items.Item;
 import main.game.io.InputHandler;
+import main.game.items.Key;
+import main.game.items.Treasure;
 
 public class Inventory {
     /**
@@ -13,6 +15,11 @@ public class Inventory {
     private List<Item> items;
 
     private InputHandler inpHand = new InputHandler(); // Shared InputHandler instance
+
+    /**
+     * 
+     */
+    private static final String ACCESS_INV_PROMPT_MSG = "Du har saker i din väska. Du kan öppna den och titta [i].";
 
     /**
      * holds static final message to print when inventory is empty while trying to access it.
@@ -53,6 +60,8 @@ public class Inventory {
      * holds static final string to format for item selected and actions avaliable when item is not usable.
      */
     private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
+
+    private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den!";
 
     /**
      * contructor, initalizes inventory.
@@ -206,8 +215,7 @@ public class Inventory {
      * @param item the item chosen by the player.
      */
     private void useItemPrompt(Item item){
-        System.out.printf("You use %s!", item.getName());
-
+        System.out.printf("Du använder %s!%n%n", item.getName().toLowerCase());
     }
 
     /**
@@ -220,10 +228,54 @@ public class Inventory {
     }
 
     /**
+     * Prints the inventory and tells if inventory has items in it or not.
+     * @return boolean, true if has items, false if empty.
+     */
+    public boolean printInventoryPrompt(){
+        if (!items.isEmpty()){
+            System.out.println(ACCESS_INV_PROMPT_MSG);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * method to close io scanner from outside class once done.
      */
     public void closeInput() {
         inpHand.closeScanner(); // Close Scanner only once when done
     }
 
+    /**
+     * 
+     * @return true if key exists in inventory
+     */
+    public boolean checkKey(){
+        for (Item item : items) {
+            if (item instanceof Key){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkTreasure(){
+        for (Item item : items) {
+            if (item instanceof Treasure){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean keyUsePrompt(Key key) {
+        key.setUsable(true);
+        System.out.println(UNLOCKABLE_DOOR_PROMPT);
+        char command = itemUseMenu(key);
+        key.setUsable(false);
+        if (command == 'u'){return true;}
+        else {
+            return false;
+        }
+    }
 }

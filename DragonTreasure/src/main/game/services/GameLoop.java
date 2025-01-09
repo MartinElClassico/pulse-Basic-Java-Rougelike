@@ -1,10 +1,18 @@
 package main.game.services;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.lang.Thread;
 
 import main.game.entities.Player;
 import main.game.io.InputHandler;
+import main.game.items.Item;
 import main.game.world.Door;
 import main.game.world.Room;
+import main.game.entities.Monster;
+import main.game.items.Key;
+
 /**
  * The gameloop class handles the players interactions and room transitions.
  * Holds the main gameplay.
@@ -25,6 +33,7 @@ public class GameLoop {
      */
     private static final String QUIT_MESSAGE = "Du lämnar spelet!";
 
+    private static final String GAME_OVER_DIED_MSG = "Du dog i kamp mot ett monster! Game Over!";
     /**
      * holds a static final int of the maximum HP the player has. 
      * used to create player. 
@@ -115,16 +124,6 @@ public class GameLoop {
     }
 
     /**
-     * Prints description of all doors in current room. The current room is accesed via private class attribute.
-     */
-    private void printAllDoorsDescriptions(){
-        Door[] allDoorsInRoom = this.currentRoom.getDoors();
-        for (Door doorInRoom : allDoorsInRoom) {
-            System.out.println(doorInRoom.getDoorPrompt());
-        }
-    }
-
-    /**
      * Returns the door the user has chosen based on move direction chosen and the doors avaliable in the room.
      * Has try-throw-catch logic to catch if an invalid roomdirection is chosen.
      * This should never happen however as prior to this method call the users choice has been validated via the 
@@ -147,6 +146,160 @@ public class GameLoop {
     }
 
     /**
+     * Helper function to cast List<Character> to char[], viz. a list array of Characters to an array of chars.
+     * @param charList List array of Characters
+     * @return charArray Array of chars.
+     */
+    private static char[] listToCharArray(List<Character> charList) {
+        char[] charArray = new char[charList.size()]; // Create char array of the same size as list array.
+        // populate array with contents in list array.
+        for (int i = 0; i < charList.size(); i++) {
+            charArray[i] = charList.get(i);
+        }
+        return charArray;
+    }
+
+    private char[] getAvaliableCommands(boolean hasItems){
+        List<Character> charCommands = new ArrayList<>();
+        if (hasItems) {charCommands.add('i');}
+        for(@SuppressWarnings("unused") Item ignored : currentRoom.getItems()){
+            charCommands.add('p');
+        }
+        for(char chardoor : currentRoom.getDoorDirections()){
+            charCommands.add(chardoor);
+        }
+        return listToCharArray(charCommands);
+    }
+
+    private boolean playerRoomChange(char userInp) {
+        // get the door the player has chosen to move through.
+        Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
+        //if door is locked, print door peep 
+        if (chosenDoor.getLocked()) {
+            // logic to check for key in inventory and print out options.
+            boolean unlockDoor = checkLockedDoor(chosenDoor);
+            if (unlockDoor){
+                //Key is automatically used to unlock the door
+                System.out.println("Du använder nyckeln och låser upp dörren.");
+                //Move through the previously locked door
+                this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                return false; // set locked door to false to print room description
+            }
+            else{
+                System.out.println(chosenDoor.getKeyholeViewDescription());
+                return true;// set door locked to true as to not print room desciption.
+            }
+        } else {
+            // else set the current room to the room the chosen door leads to.
+            this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+            return false; // needs to be set so room description is displayer if not locked.
+        }
+    }
+
+    /**
+     * Adds items in current room to the player inventory and deletes them from the room.
+     */
+    private void addItemToPlayerInventory(){
+        // since we remove items we need to use an itterator to not get read/write conflicts.
+        Iterator<Item> iterator = currentRoom.getItems().iterator();
+        // access items in room until there is none left.
+        while(iterator.hasNext()){
+            // get next item in the list.
+            Item item = iterator.next();
+            // add item to player inventory.
+            player.getInventory().addItem(item);
+            // delete item from the room as it has been picked up.
+            iterator.remove();
+            // print item picked up prompt.
+            System.out.println(item.getPickedUpItemPrompt());
+        }
+    }
+
+    private char playerChoice(InputHandler inpHand){
+        //print out inventory access if avaliable
+        boolean invHasItems = player.getInventory().printInventoryPrompt();
+        //print out all item prompts in room.
+        this.currentRoom.printAllItemDescriptions();
+        // print out all door desriptions in room.
+        this.currentRoom.printAllDoorsDescriptions();
+        // get user input
+        char userInp = inpHand.handleCharToken(getAvaliableCommands(invHasItems), 'q');
+        return userInp;
+    }
+
+    private boolean doBattle(Monster monster) {
+        boolean monsterAlive = true;
+        boolean playerAlive = true;
+        while (monsterAlive && playerAlive) {
+            playerAlive = monster.attackPlayer(player);
+            sleep(200);
+            if (playerAlive){
+                monsterAlive = monster.attackMonster(player.getAttackDamage());
+                sleep(200);
+            }
+        }
+        return playerAlive;
+        
+    }
+
+    private boolean faceMonster() {
+        // since we remove monsters we need to use an itterator to not get read/write conflicts.
+        Iterator<Monster> iterator = currentRoom.getMonsters().iterator();
+        boolean playerAlive = true;
+        // access monsters in room until there is none left.
+        while(iterator.hasNext()){
+            if (playerAlive) {
+                // get next monster in the list.
+                Monster monster = iterator.next();
+                //print ascii art of enemy
+                System.out.println(monster.getAsciiArt());
+                //print monster descriptor
+                System.out.println(monster.getMonsterDesc() + " dyker upp framför dig!");
+                //battle with monster.
+                playerAlive = doBattle(monster); // battle outcome message is handled in doBattle unless player died.
+                // remove monster from room.
+                if (playerAlive) {iterator.remove();}
+            }
+        }
+        return playerAlive;
+        
+    }
+
+    /**
+     * Method to get delays in the program
+     * @param milliSeconds to sleep
+     */
+    private void sleep(int milliSeconds){
+        try {
+            Thread.sleep(milliSeconds);
+        //catch to clear interrupted message, if the thread is interrupted while sleeping
+        } catch (InterruptedException e) {
+            //Restore interrupt flag
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Method to call for the door to be unlocked if the player has a key in their inventory
+     * @param lockedDoor
+     * @return boolean true if the door is unlocked, false if not
+     */
+    private boolean checkLockedDoor(Door lockedDoor){
+        boolean hasKey = player.getInventory().checkKey();
+        if (hasKey){
+            Item item = player.getInventory().getItem("Nyckel");
+            if(item instanceof Key key) {
+                boolean unlockedDoor = player.getInventory().keyUsePrompt(key);
+                if (unlockedDoor){
+                    lockedDoor.unlockDoor("Du kan gå österut [o]");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * this method starts the game loop and hold the logic related to said game loop.
      * 
      * @param startRoomID the room id that the loop should start from, is usually 0 at start.
@@ -158,29 +311,32 @@ public class GameLoop {
         getAndSetNewPlayer(); //creates the new player and handles output and input terminal statements for that end goal.
         this.currentRoom = this.dungeonRooms[startRoomID]; //set current room that the player starts in.
         boolean doorLocked = false; // if door is locked we should'nt print room description until an unlocked door is chosen.
+        boolean playerAlive = true; // game loop ends when player dies.
+        Room roomBeforeTreasure = this.dungeonRooms[3]; // used for invisible wall if player tries to leave without treasure.
+        // text to print when trying to leave without treasure.
+        final String INVISBLE_WALL_PROMPT = "Du vill inte lämna grottan tomhänt! Finns en skatt i grottan.";
         // start of the loop the player moves in itterations through.
-        while (running) {
+        while (running && playerAlive) {
         // base loop:
+            if (!currentRoom.getMonsters().isEmpty()) {
+                playerAlive = faceMonster();
+                if (!playerAlive) {break;}
+            }
             // print room description, but only if an unlocked door was chosen previously:
             if (!doorLocked) {
                 printRoomDesc();
             }
-            // print out all door desriptions in room.
-            printAllDoorsDescriptions();
-            // get user input
-            char userInp = inpHand.handleCharToken(currentRoom.getDoorDirections(), 'q');
+            char userInp = playerChoice(inpHand);
             // if not q then it is a valid door direction.
             if (userInp != 'q') {
-                // get the door the player has chosen to move through.
-                Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
-                //if door is locked, print door peep 
-                if (chosenDoor.getLocked()) {
-                    doorLocked = true; // set door locked to true as to not print room desciption.
-                    System.out.println(chosenDoor.getKeyholeViewDescription());
+                if (userInp == 'i') {
+                    player.accessInventory();
+                }
+                else if (userInp == 'p') {
+                    addItemToPlayerInventory();
                 } else {
-                    doorLocked = false; // needs to be set so room description is displayer if not locked.
-                    // else set the current room to the room the chosen door leads to.
-                    this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                    // changes the room and tells wether the door the user wanted to access is still locked or not.
+                    doorLocked = playerRoomChange(userInp);
                 }
             }
             // exit condition1:
@@ -192,10 +348,21 @@ public class GameLoop {
             // exit condition2:
             // user finds the dungeon exit.
             if (currentRoom.getRoomId() == 7) {
-                // win message is printed later outside while loop.
-                this.running = false;
+                if (player.getInventory().checkTreasure()){
+                    // win message is printed later outside while loop.
+                    this.running = false;
+                }
+                else {
+                    System.out.println(INVISBLE_WALL_PROMPT);
+                    System.out.println(); //empty row for readability.
+                    this.currentRoom = roomBeforeTreasure; //set current room that the player is in to room before exit.
+                }
+                
             }
             
+        }
+        if (!playerAlive) {
+            System.out.println(GAME_OVER_DIED_MSG);
         }    
         //end of the loop the player moves in itteration through.
         // check if win condition was reason we exited loop (could be because of death or quit)

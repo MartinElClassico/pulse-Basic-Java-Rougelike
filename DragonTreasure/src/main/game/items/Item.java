@@ -22,14 +22,25 @@ public abstract class Item {
     private String asciiArt = "";
 
     /**
+     * prompt for what the player sees in the world when encountering the item.
+     */
+    private String  itemPrompt;
+
+    private String pickedUpItemPrompt;
+
+    /**
      * Constructor, protected since should only be able to be used via inheritance.
      * @param String name of the item
      * @param String description of the item
+     * @param boolean if item is usable or not.
+     * @param String prompt for what the player sees when encountering the item.
      */
-    protected Item(String name, String description, boolean usable){
+    protected Item(String name, String description, boolean usable, String itemPrompt, String pickedUpItemPrompt){
         this.name = name;
         this.description = description;
         this.usable = usable;
+        this.itemPrompt = itemPrompt;
+        this.pickedUpItemPrompt = pickedUpItemPrompt;
     }
 
     /**
@@ -87,5 +98,21 @@ public abstract class Item {
 
     public void setUsable(boolean usable){
         this.usable = usable;
+    }
+
+    public String getitemPrompt(){
+        return this.itemPrompt;
+    }
+
+    public void setitemPrompt(String itemPrompt){
+        this.itemPrompt = itemPrompt;
+    }
+
+    public String getPickedUpItemPrompt() {
+        return this.pickedUpItemPrompt;
+    }
+
+    public void setPickedUpItemPrompt(String pickedUpItemPrompt) {
+        this.pickedUpItemPrompt = pickedUpItemPrompt;
     }
 }

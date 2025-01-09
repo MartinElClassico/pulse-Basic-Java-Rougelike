@@ -2,6 +2,9 @@ package main.game.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.game.items.*;
+import main.game.entities.Monster;
+
 /**
  * The Room class represents a room in the dungeon. 
  * It stores basic information about the room such as the room description and it's assigned ID. 
@@ -33,6 +36,10 @@ public class Room {
      */
     private Door[] doors;
 
+    private List<Item> items;
+
+    private List<Monster> monsters;
+
     /**
      * Constructs a Room with a given room description and roomID. 
      * 
@@ -45,6 +52,8 @@ public class Room {
         this.roomId = roomId;
         this.doors = doors; 
         this.doorDirections = validDirectionsInRoom();
+        this.items = new ArrayList<>();
+        this.monsters = new ArrayList<>();
     }
 
     /**
@@ -130,4 +139,47 @@ public class Room {
     }
 
     //setRoomID() not includese since it shouldn't need to be changed after having been initalized.
+
+    /**
+     * Adds an item to the room
+     * 
+     * @param i5tem to add
+     */
+    public void addItem (Item item){
+        items.add(item);
+    }
+
+    /**
+     * Adds a monster to the room
+     * 
+     * @param monster to add
+     */
+    public void addMonster (Monster monster){
+        monsters.add(monster);
+    }
+
+
+    public void printAllItemDescriptions(){
+        for (Item itemInRoom : this.items) {
+            System.out.println(itemInRoom.getitemPrompt());
+        }
+    }
+    /**
+     * Prints description of all doors in the room. 
+     */
+    public void printAllDoorsDescriptions(){
+        Door[] allDoorsInRoom = this.doors;
+        for (Door doorInRoom : allDoorsInRoom) {
+            System.out.println(doorInRoom.getDoorPrompt());
+        }
+    }
+
+    public List<Item> getItems(){
+        return this.items;
+    }
+
+    public List<Monster> getMonsters(){
+        return this.monsters;
+    }
+
 }

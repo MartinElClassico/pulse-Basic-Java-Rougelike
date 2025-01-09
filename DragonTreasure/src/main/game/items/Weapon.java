@@ -1,5 +1,6 @@
 package main.game.items;
 public class Weapon extends Item {
+    private static final String WEAPON_PICKED_UP_PROMPT = "Du tog upp svärdet.";
     /**
      * Holds the amount of damage increase the weapon gives
      */
@@ -11,8 +12,8 @@ public class Weapon extends Item {
      * @param String decription of the weapon
      * @param int amount of damage increase the weapon gives
      */
-    public Weapon (String name, String description, int increaseDamage){
-        super(name, description, true);
+    public Weapon (String name, String description, String itemPrompt, int increaseDamage){
+        super(name, description, true, itemPrompt, WEAPON_PICKED_UP_PROMPT);
         this.increaseDamage = increaseDamage;
     }
 
