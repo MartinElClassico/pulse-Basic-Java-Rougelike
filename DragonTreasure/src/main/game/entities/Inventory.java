@@ -61,6 +61,8 @@ public class Inventory {
      */
     private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
 
+    private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den!";
+
     /**
      * contructor, initalizes inventory.
      */
@@ -255,5 +257,16 @@ public class Inventory {
             }
         }
         return false;
+    }
+
+    public boolean keyUsePrompt(Key key) {
+        key.setUsable(true);
+        System.out.println(UNLOCKABLE_DOOR_PROMPT);
+        char command = itemUseMenu(key);
+        key.setUsable(false);
+        if (command == 'u'){return true;}
+        else {
+            return false;
+        }
     }
 }

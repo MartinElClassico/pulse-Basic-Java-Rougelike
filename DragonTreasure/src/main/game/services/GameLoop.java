@@ -162,7 +162,7 @@ public class GameLoop {
     private char[] getAvaliableCommands(boolean hasItems){
         List<Character> charCommands = new ArrayList<>();
         if (hasItems) {charCommands.add('i');}
-        for(Item ignored : currentRoom.getItems()){
+        for(@SuppressWarnings("unused") Item ignored : currentRoom.getItems()){
             charCommands.add('p');
         }
         for(char chardoor : currentRoom.getDoorDirections()){
@@ -176,7 +176,7 @@ public class GameLoop {
         Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
         //if door is locked, print door peep 
         if (chosenDoor.getLocked()) {
-            // TODO: add logic to check for key in inventory and print out options (?).
+            // logic to check for key in inventory and print out options.
             boolean unlockDoor = checkLockedDoor(chosenDoor);
             if (unlockDoor){
                 //Key is automatically used to unlock the door
@@ -287,8 +287,14 @@ public class GameLoop {
     private boolean checkLockedDoor(Door lockedDoor){
         boolean hasKey = player.getInventory().checkKey();
         if (hasKey){
-            lockedDoor.unlockDoor("Du kan gå österut [o]");
-            return true;
+            Item item = player.getInventory().getItem("Nyckel");
+            if(item instanceof Key key) {
+                boolean unlockedDoor = player.getInventory().keyUsePrompt(key);
+                if (unlockedDoor){
+                    lockedDoor.unlockDoor("Du kan gå österut [o]");
+                    return true;
+                }
+            }
         }
         return false;
     }
