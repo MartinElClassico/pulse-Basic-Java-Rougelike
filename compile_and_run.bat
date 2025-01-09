@@ -4,27 +4,24 @@ REM bash script to compile the java files into .class binaries for users on wind
 REM we do not want it to print the rest of this script to the user, thus echo off.
 
 REM Holds source directiory to compile from and output direction to compile to.
-set SRC_DIR=src/main
-set OUT_DIR=bin
-set MAIN_FILE=game.DragonTreasure
+REM %~dp0 is a bash token that expands into the scripts location.
+set "SRC_DIR=%~dp0DragonTreasure\src"
+set "OUT_DIR=%~dp0DragonTreasure\bin"
+set MAIN_FILE=main.DragonTreasure
 
-REM create output directory.
-if not exist "%OUT_DIR%" (
-    mkdir "%OUT_DIR%"
+REM create output directory, remove old one.
+if exist "%OUT_DIR%" (
+    rmdir /s /q "%OUT_DIR%"
 )
+mkdir "%OUT_DIR%"
 
-REM find all .java files recursively and compile them one by one.
-REM %%f represent each of the found .java files.
-for /R "%SRC_DIR%" %%f in (*.java) do (
-    echo Compiling %%f
-    javac -d "%OUT_DIR%" -sourcepath "%SRC_DIR%" "%%f"
-    REM print errors if they fail. Pauses to let player see error code.
-    if errorlevel 1 (
-        echo.
-        echo Compilation failed for: %%f
-        pause
-        exit /b 1
-    )
+REM Compile all .java files recursively.
+echo Compiling Java source files...
+javac -d "%OUT_DIR%" -sourcepath "%SRC_DIR%" "%SRC_DIR%\main\DragonTreasure.java"
+if errorlevel 1 (
+    echo Compilation failed.
+    pause
+    exit /b 1
 )
 
 echo.
@@ -36,6 +33,7 @@ REM empty lines to distinguish between game and bash script.
 echo _
 echo _
 echo _
+REM run the game.
 java -cp "%OUT_DIR%" "%MAIN_FILE%"
 REM empty lines to distinguish between game and bash script.
 echo _
