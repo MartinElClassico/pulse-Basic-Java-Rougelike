@@ -204,12 +204,14 @@ public class GameSetup {
             "Du ser ett svärd på golvet, du kan ta upp det [p]",
             1
             );
+        sword.setAsciiArt(AsciiArt.getSword());
         rooms[2].addItem(sword);
         Potion healingPotion = new Potion("Hälsodryck",
             "En glasflaska med en röd vätska i",
             "Du ser en hälsodryck på golvet, du kan plocka upp den [p]", 
             6
             );
+        healingPotion.setAsciiArt(AsciiArt.getPotion());
         rooms[4].addItem(healingPotion);
         Key key = new Key(
             "Nyckel",
@@ -218,6 +220,7 @@ public class GameSetup {
             4,
             'o'
             );
+        key.setAsciiArt(AsciiArt.getKey());
         rooms[5].addItem(key);
         Treasure treasure = new Treasure(
             "Skatt",
@@ -233,7 +236,8 @@ public class GameSetup {
      * Creates all monsters and adds them to the correct rooms
      */
     private void addMonsters() {
-        Monster monster = new Monster("Monster", 8, "Ett grönt, ödleliknande monster", false);
+        Monster monster = new Monster("Monster", 8, "Ett stort argt skelett", false);
+        monster.setAsciiArt(AsciiArt.getSkeleton());
         rooms[3].addMonster(monster);
         Monster dragon = new Monster("Drake", 18, "En stor, eldsprutande drake", true);
         dragon.setAsciiArt(AsciiArt.getDragon());
