@@ -219,8 +219,8 @@ public class GameLoop {
         boolean monsterAlive = true;
         boolean playerAlive = true;
         while (monsterAlive && playerAlive) {
-            monsterAlive = monster.attackPlayer(player);
-            playerAlive = monster.attackMonster(player.getAttackDamage());
+            playerAlive = monster.attackPlayer(player);
+            monsterAlive = monster.attackMonster(player.getAttackDamage());
         }
         return playerAlive;
         

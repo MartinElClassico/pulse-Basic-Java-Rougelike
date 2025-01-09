@@ -115,7 +115,9 @@ public boolean attackPlayer(Player player) {
         System.out.printf("PLAYER HP: %d%n", player.getHp());
         int playerHP = player.takeDamage(damage); // Calls Player class' takeDamage method
         playerAttackedMessage(playerHP);
-        if (player.getHp() <= 0) {return false;}
+        if (player.getHp() <= 0) {
+            return false;
+        }
         return true;
     }
     else {return true;}
@@ -143,11 +145,12 @@ private void printDefeated(){
 public boolean attackMonster(int damageTaken) {
     healthPoints -= damageTaken;
     monsterAttackedMessage(damageTaken);
-    if (healthPoints <= 0) {
-            dead = true;
+    if (healthPoints <= 0) {   
+        dead = true;
             printDefeated();
+            return false; //to answer if the monster is alive
     }
-    return dead;
+    return true; //to answer if the monster is alive
   }
 
 private void monsterAttackedMessage(int damageTaken){
