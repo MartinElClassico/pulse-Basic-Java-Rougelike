@@ -3,6 +3,8 @@ package main.game.entities;
 /** 
 * This class represents a monster in the game that can take damage, do damage and get dead
 * It handles both monster and dragon, differentiating based on the name of the monster
+* 
+* @author annemm-3, tulmar-2, evekho-4
 */
 
 public class Monster {
@@ -23,7 +25,7 @@ public class Monster {
     private int healthPoints; // current health points
     private int maxHealthPoints; // max health points
     private boolean dead; // whether the monster is dead or not
-    private boolean isDragon;
+    private boolean isDragon; // whether the monster is a dragon or not
 
     /** 
      * Constructor to create a monster with its name, max health points and description
@@ -106,7 +108,7 @@ public void setAsciiArt(String ascii){
    }
 
 /**
- * Method for attacking the player
+ * Method for attacking the player and mark as defeated if healthpoints reach 0.
  * @param player The player being attacked
  */
 public boolean attackPlayer(Player player) {
@@ -122,6 +124,10 @@ public boolean attackPlayer(Player player) {
     else {return true;}
 }
 
+/**
+ * Method to handle player output when monster attacks
+ * @param playerHP The players health points
+ */
 private void playerAttackedMessage(int playerHP){
     if (!isDragon) {
         System.out.printf(ATTACK_MONSTER_MESSAGE, damage, playerHP);
@@ -130,6 +136,9 @@ private void playerAttackedMessage(int playerHP){
     }
 }
 
+/**
+ * Method to print out the defeated message
+ */
 private void printDefeated(){
     if (!isDragon) {
         System.out.println(DEFEAT_MONSTER_MESSAGE);
@@ -153,6 +162,10 @@ public boolean attackMonster(int damageTaken) {
     return true; //to answer if the monster is alive
   }
 
+/**
+ * Method to handle monster output when attacked
+ * @param damageTaken the damage taken by the monster
+ */
 private void monsterAttackedMessage(int damageTaken){
     if (!isDragon) {
         System.out.printf(MONSTER_ATTACKED_MESSAGE, damageTaken, healthPoints);
@@ -161,10 +174,18 @@ private void monsterAttackedMessage(int damageTaken){
     }
 }
 
+/**
+ * Method to get the damage of the monster
+ * @return the damage of the monster
+ */
 public int getDamage(){
     return this.damage;
 }
 
+/**
+ * Method to set the damage of the monster
+ * @param damage the damage to be set
+ */
 public void setDamage(int damage){
     this.damage = damage;
 }

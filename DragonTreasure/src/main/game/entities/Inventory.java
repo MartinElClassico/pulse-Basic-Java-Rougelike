@@ -24,22 +24,22 @@ public class Inventory {
     /**
      * holds static final message to print when inventory is empty while trying to access it.
      */
-    private static final String EMPTY_INV_MESSAGE = "Your inventory is empty. Nothing to see here.";
+    private static final String EMPTY_INV_MESSAGE = "Din väska är tom. Ingenting att se här.";
 
     /**
      * holds static final message to print on first line when viewing items in inventory.
      */
-    private static final String FIRSTLN_INV_MSG = "Your inventory contains:";
+    private static final String FIRSTLN_INV_MSG = "Din väska innehåller följande:";
 
     /**
      * holds static final message to print on item selection menu.
      */
-    private static final String ITEM_SELECT_PROMPT = "Choose an item by pressing its number. Press 0 to return.";
+    private static final String ITEM_SELECT_PROMPT = "Välj ett föremål genom att trycka på dess nummer. Tryck o för att återgå.";
     
     /**
      * holds static final message to print on no item selected.
      */
-    private static final String NO_I_SELECTED_MSG = "No item selected! Returning from inventory.";
+    private static final String NO_I_SELECTED_MSG = "Inget valt föremål! Returning from inventory.";
 
     /**
      * holds static final char array of usable commands (except q)
