@@ -49,7 +49,7 @@ public class Inventory {
     /**
      * holds static final string to format for item selected and actions avaliable.
      */
-    private static final String ITEM_USE_PROMPT = "Du valde %s. Tryck v för att visa eller q för att gå tillbaka.";
+    private static final String ITEM_USE_PROMPT = "Du valde %s. Tryck v för att visa, u för att använda eller q för att gå tillbaka.";
 
     /**
      * holds static final char array of usable commands (except q) when item is not usable 
