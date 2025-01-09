@@ -233,8 +233,10 @@ public class GameLoop {
         while (monsterAlive && playerAlive) {
             playerAlive = monster.attackPlayer(player);
             sleep(200);
-            monsterAlive = monster.attackMonster(player.getAttackDamage());
-            sleep(200);
+            if (playerAlive){
+                monsterAlive = monster.attackMonster(player.getAttackDamage());
+                sleep(200);
+            }
         }
         return playerAlive;
         
