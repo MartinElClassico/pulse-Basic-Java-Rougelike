@@ -112,7 +112,6 @@ public void setAsciiArt(String ascii){
 public boolean attackPlayer(Player player) {
     if (!dead) 
     {
-        System.out.printf("PLAYER HP: %d%n", player.getHp());
         int playerHP = player.takeDamage(damage); // Calls Player class' takeDamage method
         playerAttackedMessage(playerHP);
         if (player.getHp() <= 0) {
