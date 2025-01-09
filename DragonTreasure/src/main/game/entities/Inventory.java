@@ -6,7 +6,6 @@ import java.util.List;
 import main.game.items.Item;
 import main.game.io.InputHandler;
 import main.game.items.Key;
-import main.game.world.Door;
 
 public class Inventory {
     /**
