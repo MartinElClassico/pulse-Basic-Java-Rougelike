@@ -71,6 +71,5 @@ public class Key extends Item {
         return this.targetDoor;
     }
 
-    // TODO: Logic should not be handle here, but in GameLoop(and/or Inventory)?::
     // check when accessing a locked door if key is in invetory, if so unlock and print. 
 }

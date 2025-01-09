@@ -58,8 +58,8 @@ public class GameSetup {
         roomDescriptions[4] = ("Du kommer in i ett fuktigt rum med vatten sipprandes längs den västra väggen.");
         roomDescriptions[5] = ("Du kommer in i ett rymligt bergrum med en ljusstrimma sipprandes genom en spricka i\r\n" + 
                         "den östra väggen.");
-        roomDescriptions[6] = ("");
-        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll. Grattis, du förlorade inte!");
+        roomDescriptions[6] = ("Du ser en död drake på golvet och guldmynt i hörnet.");
+        roomDescriptions[7] = ("Du lämnar grottan med livet i behåll och rikedomar för flera generationer framöver! Grattis!");
     }
 
     /**
@@ -225,6 +225,7 @@ public class GameSetup {
             "Du ser en skattkista som låg under drakens tass, du kan ta upp den [p]",
             100
             );
+        treasure.setAsciiArt(AsciiArt.getTreasure());
         rooms[6].addItem(treasure);
     }
 
@@ -236,6 +237,7 @@ public class GameSetup {
         rooms[3].addMonster(monster);
         Monster dragon = new Monster("Drake", 18, "En stor, eldsprutande drake", true);
         dragon.setAsciiArt(AsciiArt.getDragon());
+        dragon.setDamage(5);
         rooms[6].addMonster(dragon);
     }
 

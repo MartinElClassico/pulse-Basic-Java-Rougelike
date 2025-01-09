@@ -11,6 +11,7 @@ import main.game.items.Item;
 import main.game.world.Door;
 import main.game.world.Room;
 import main.game.entities.Monster;
+import main.game.items.Key;
 
 /**
  * The gameloop class handles the players interactions and room transitions.
@@ -161,7 +162,7 @@ public class GameLoop {
     private char[] getAvaliableCommands(boolean hasItems){
         List<Character> charCommands = new ArrayList<>();
         if (hasItems) {charCommands.add('i');}
-        for(Item ignored : currentRoom.getItems()){
+        for(@SuppressWarnings("unused") Item ignored : currentRoom.getItems()){
             charCommands.add('p');
         }
         for(char chardoor : currentRoom.getDoorDirections()){
@@ -175,9 +176,19 @@ public class GameLoop {
         Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
         //if door is locked, print door peep 
         if (chosenDoor.getLocked()) {
-            System.out.println(chosenDoor.getKeyholeViewDescription());
-            // TODO: add logic to check for key in inventory and print out options (?).
-            return true;// set door locked to true as to not print room desciption.
+            // logic to check for key in inventory and print out options.
+            boolean unlockDoor = checkLockedDoor(chosenDoor);
+            if (unlockDoor){
+                //Key is automatically used to unlock the door
+                System.out.println("Du använder nyckeln och låser upp dörren.");
+                //Move through the previously locked door
+                this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                return false; // set locked door to false to print room description
+            }
+            else{
+                System.out.println(chosenDoor.getKeyholeViewDescription());
+                return true;// set door locked to true as to not print room desciption.
+            }
         } else {
             // else set the current room to the room the chosen door leads to.
             this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
@@ -222,8 +233,10 @@ public class GameLoop {
         while (monsterAlive && playerAlive) {
             playerAlive = monster.attackPlayer(player);
             sleep(200);
-            monsterAlive = monster.attackMonster(player.getAttackDamage());
-            sleep(200);
+            if (playerAlive){
+                monsterAlive = monster.attackMonster(player.getAttackDamage());
+                sleep(200);
+            }
         }
         return playerAlive;
         
@@ -267,6 +280,26 @@ public class GameLoop {
     }
 
     /**
+     * Method to call for the door to be unlocked if the player has a key in their inventory
+     * @param lockedDoor
+     * @return boolean true if the door is unlocked, false if not
+     */
+    private boolean checkLockedDoor(Door lockedDoor){
+        boolean hasKey = player.getInventory().checkKey();
+        if (hasKey){
+            Item item = player.getInventory().getItem("Nyckel");
+            if(item instanceof Key key) {
+                boolean unlockedDoor = player.getInventory().keyUsePrompt(key);
+                if (unlockedDoor){
+                    lockedDoor.unlockDoor("Du kan gå österut [o]");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * this method starts the game loop and hold the logic related to said game loop.
      * 
      * @param startRoomID the room id that the loop should start from, is usually 0 at start.
@@ -278,7 +311,10 @@ public class GameLoop {
         getAndSetNewPlayer(); //creates the new player and handles output and input terminal statements for that end goal.
         this.currentRoom = this.dungeonRooms[startRoomID]; //set current room that the player starts in.
         boolean doorLocked = false; // if door is locked we should'nt print room description until an unlocked door is chosen.
-        boolean playerAlive = true;
+        boolean playerAlive = true; // game loop ends when player dies.
+        Room roomBeforeTreasure = this.dungeonRooms[3]; // used for invisible wall if player tries to leave without treasure.
+        // text to print when trying to leave without treasure.
+        final String INVISBLE_WALL_PROMPT = "Du vill inte lämna grottan tomhänt! Finns en skatt i grottan.";
         // start of the loop the player moves in itterations through.
         while (running && playerAlive) {
         // base loop:
@@ -312,8 +348,16 @@ public class GameLoop {
             // exit condition2:
             // user finds the dungeon exit.
             if (currentRoom.getRoomId() == 7) {
-                // win message is printed later outside while loop.
-                this.running = false;
+                if (player.getInventory().checkTreasure()){
+                    // win message is printed later outside while loop.
+                    this.running = false;
+                }
+                else {
+                    System.out.println(INVISBLE_WALL_PROMPT);
+                    System.out.println(); //empty row for readability.
+                    this.currentRoom = roomBeforeTreasure; //set current room that the player is in to room before exit.
+                }
+                
             }
             
         }

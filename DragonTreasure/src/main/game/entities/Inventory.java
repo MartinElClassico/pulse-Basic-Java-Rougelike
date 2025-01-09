@@ -5,6 +5,8 @@ import java.util.List;
 
 import main.game.items.Item;
 import main.game.io.InputHandler;
+import main.game.items.Key;
+import main.game.items.Treasure;
 
 public class Inventory {
     /**
@@ -58,6 +60,8 @@ public class Inventory {
      * holds static final string to format for item selected and actions avaliable when item is not usable.
      */
     private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
+
+    private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den!";
 
     /**
      * contructor, initalizes inventory.
@@ -242,4 +246,36 @@ public class Inventory {
         inpHand.closeScanner(); // Close Scanner only once when done
     }
 
+    /**
+     * 
+     * @return true if key exists in inventory
+     */
+    public boolean checkKey(){
+        for (Item item : items) {
+            if (item instanceof Key){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkTreasure(){
+        for (Item item : items) {
+            if (item instanceof Treasure){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean keyUsePrompt(Key key) {
+        key.setUsable(true);
+        System.out.println(UNLOCKABLE_DOOR_PROMPT);
+        char command = itemUseMenu(key);
+        key.setUsable(false);
+        if (command == 'u'){return true;}
+        else {
+            return false;
+        }
+    }
 }
