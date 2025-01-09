@@ -5,6 +5,8 @@ import java.util.List;
 
 import main.game.items.Item;
 import main.game.io.InputHandler;
+import main.game.items.Key;
+import main.game.world.Door;
 
 public class Inventory {
     /**
@@ -242,4 +244,18 @@ public class Inventory {
         inpHand.closeScanner(); // Close Scanner only once when done
     }
 
+    /**
+     * 
+     * @return true if door is unlocked, false if not
+     */
+    public boolean unlockDoor(Door lockedDoor){
+        for (Item item : items) {
+            if (item instanceof Key){
+                //TODO make interactable
+                lockedDoor.setLocked(false);
+                return true;
+            }
+        }
+        return false;
+    }
 }

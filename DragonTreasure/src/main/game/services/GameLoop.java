@@ -11,6 +11,7 @@ import main.game.items.Item;
 import main.game.world.Door;
 import main.game.world.Room;
 import main.game.entities.Monster;
+import main.game.items.Key;
 
 /**
  * The gameloop class handles the players interactions and room transitions.
@@ -177,6 +178,14 @@ public class GameLoop {
         if (chosenDoor.getLocked()) {
             System.out.println(chosenDoor.getKeyholeViewDescription());
             // TODO: add logic to check for key in inventory and print out options (?).
+            boolean unlockDoor = checkLockedDoor(chosenDoor);
+            if (unlockDoor){
+                //Key is automatically used to unlock the door
+                System.out.println("Du använder nyckeln och låser upp dörren.");
+                //Move through the previously locked door
+                this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
+                return false; // set locked door to false to print room description
+            }
             return true;// set door locked to true as to not print room desciption.
         } else {
             // else set the current room to the room the chosen door leads to.
@@ -264,6 +273,19 @@ public class GameLoop {
             //Restore interrupt flag
             Thread.currentThread().interrupt();
         }
+    }
+
+    /**
+     * Method to call for the door to be unlocked if the player has a key in their inventory
+     * @param lockedDoor
+     * @return boolean true if the door is unlocked, false if not
+     */
+    private boolean checkLockedDoor(Door lockedDoor){
+        boolean unlocked = player.getInventory().unlockDoor(lockedDoor);
+        if (unlocked){
+            return true;
+        }
+        return false;
     }
 
     /**
