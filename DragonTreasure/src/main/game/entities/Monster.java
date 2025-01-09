@@ -147,8 +147,8 @@ public boolean attackMonster(int damageTaken) {
     monsterAttackedMessage(damageTaken);
     if (healthPoints <= 0) {   
         dead = true;
-            printDefeated();
-            return false; //to answer if the monster is alive
+        printDefeated();
+        return false; //to answer if the monster is alive
     }
     return true; //to answer if the monster is alive
   }
