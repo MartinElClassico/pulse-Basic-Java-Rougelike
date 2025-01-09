@@ -19,7 +19,7 @@ public class Inventory {
     /**
      * 
      */
-    private static final String ACCESS_INV_PROMPT_MSG = "Du har saker i din väska. Du kan öppna den och titta [i].";
+    private static final String ACCESS_INV_PROMPT_MSG = "Du har föremål i din väska. Du kan öppna den och titta [i].";
 
     /**
      * holds static final message to print when inventory is empty while trying to access it.
@@ -39,7 +39,7 @@ public class Inventory {
     /**
      * holds static final message to print on no item selected.
      */
-    private static final String NO_I_SELECTED_MSG = "Inget valt föremål! Returning from inventory.";
+    private static final String NO_I_SELECTED_MSG = "Inget valt föremål! Återvänder till rummet.";
 
     /**
      * holds static final char array of usable commands (except q)
@@ -49,7 +49,7 @@ public class Inventory {
     /**
      * holds static final string to format for item selected and actions avaliable.
      */
-    private static final String ITEM_USE_PROMPT = "You selected %s. Press v to view it, u to use or q to go back.";
+    private static final String ITEM_USE_PROMPT = "Du valde %s. Tryck v för att visa eller q för att gå tillbaka.";
 
     /**
      * holds static final char array of usable commands (except q) when item is not usable 
@@ -59,7 +59,7 @@ public class Inventory {
     /**
      * holds static final string to format for item selected and actions avaliable when item is not usable.
      */
-    private static final String ITEM_USE_PROMPT_NUSABLE = "You selected %s. Press v to view it or q to go back.";
+    private static final String ITEM_USE_PROMPT_NUSABLE = "Du valde %s. Tryck v för att visa eller q för att gå tillbaka.";
 
     private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den!";
 
@@ -93,7 +93,7 @@ public class Inventory {
             }
         }
         if (!success) {
-            throw new ItemNotFoundException("Item not found in inventory!");
+            throw new ItemNotFoundException("Föremålet hittades inte i väskan!");
         }
     }
 
@@ -109,7 +109,7 @@ public class Inventory {
                 return item;
             }
         }
-        throw new ItemNotFoundException("Item not found in inventory!");
+        throw new ItemNotFoundException("Föremålet hittades inte i väskan!");
     }
 
     /**
