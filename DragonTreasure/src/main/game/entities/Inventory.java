@@ -15,6 +15,11 @@ public class Inventory {
     private InputHandler inpHand = new InputHandler(); // Shared InputHandler instance
 
     /**
+     * 
+     */
+    private static final String ACCESS_INV_PROMPT_MSG = "Du har saker i din väska. Du kan öppna den och titta [i].";
+
+    /**
      * holds static final message to print when inventory is empty while trying to access it.
      */
     private static final String EMPTY_INV_MESSAGE = "Your inventory is empty. Nothing to see here.";
@@ -206,8 +211,7 @@ public class Inventory {
      * @param item the item chosen by the player.
      */
     private void useItemPrompt(Item item){
-        System.out.printf("You use %s!", item.getName());
-
+        System.out.printf("Du använder %s!%n%n", item.getName().toLowerCase());
     }
 
     /**
@@ -217,6 +221,18 @@ public class Inventory {
     private void viewItem(Item item) {
         System.out.printf("%s - %s%n", item.getName(), item.getDescription());
         System.out.println(item.getAsciiArt());
+    }
+
+    /**
+     * Prints the inventory and tells if inventory has items in it or not.
+     * @return boolean, true if has items, false if empty.
+     */
+    public boolean printInventoryPrompt(){
+        if (!items.isEmpty()){
+            System.out.println(ACCESS_INV_PROMPT_MSG);
+            return true;
+        }
+        return false;
     }
 
     /**

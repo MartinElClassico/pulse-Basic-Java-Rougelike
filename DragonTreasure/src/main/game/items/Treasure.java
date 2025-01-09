@@ -1,5 +1,6 @@
 package main.game.items;
 public class Treasure extends Item {
+    private static final String TREASURE_PICKED_UP_PROMPT = "Du tog upp skatten.";
     /**
      * Holds the gold value of the treasure
      */
@@ -11,8 +12,8 @@ public class Treasure extends Item {
      * @param String decription of the treasure
      * @param int gold value of the treasure
      */
-    public Treasure (String name, String description, int goldValue){
-        super(name, description, false);
+    public Treasure (String name, String description, String itemPrompt, int goldValue){
+        super(name, description, false, itemPrompt, TREASURE_PICKED_UP_PROMPT);
         this.goldValue = goldValue;
     }
 
