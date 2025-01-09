@@ -135,7 +135,8 @@ private void printDefeated(){
         System.out.println(DEFEAT_MONSTER_MESSAGE);
     } else {
         System.out.println(DEFEAT_DRAGON_MESSAGE);
-      }
+    }
+    System.out.println();
 }
 
 /**

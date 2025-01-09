@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.lang.Thread;
 
 import main.game.entities.Player;
 import main.game.io.InputHandler;
@@ -220,7 +221,9 @@ public class GameLoop {
         boolean playerAlive = true;
         while (monsterAlive && playerAlive) {
             playerAlive = monster.attackPlayer(player);
+            sleep(200);
             monsterAlive = monster.attackMonster(player.getAttackDamage());
+            sleep(200);
         }
         return playerAlive;
         
@@ -247,6 +250,20 @@ public class GameLoop {
         }
         return playerAlive;
         
+    }
+
+    /**
+     * Method to get delays in the program
+     * @param milliSeconds to sleep
+     */
+    private void sleep(int milliSeconds){
+        try {
+            Thread.sleep(milliSeconds);
+        //catch to clear interrupted message, if the thread is interrupted while sleeping
+        } catch (InterruptedException e) {
+            //Restore interrupt flag
+            Thread.currentThread().interrupt();
+        }
     }
 
     /**
