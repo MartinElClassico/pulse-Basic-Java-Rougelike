@@ -8,11 +8,11 @@ package main.game.entities;
 public class Monster {
 
 // constants for messages
-    private static final String ATTACK_MONSTER_MESSAGE = "Ett odjur attackerar dig och gör %d skada (hp kvar: %d)%n";
+    private static final String ATTACK_MONSTER_MESSAGE = "Ett skelett attackerar dig och gör %d skada (hp kvar: %d)%n";
     private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada (hp kvar: %d)%n";
-    private static final String MONSTER_ATTACKED_MESSAGE = "Du attackerar monstret och gör %d skada (hp kvar: %d)%n";
+    private static final String MONSTER_ATTACKED_MESSAGE = "Du attackerar skelettet och gör %d skada (hp kvar: %d)%n";
     private static final String DRAGON_ATTACKED_MESSAGE = "Du attackerar draken och gör %d skada (hp kvar: %d)%n";
-    private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar odjuret!";
+    private static final String DEFEAT_MONSTER_MESSAGE = "Du besegrar skelettet!";
     private static final String DEFEAT_DRAGON_MESSAGE = "Du besegrar draken!";
 
     private int damage = 1; // monster/dragon damage, initialized to 1.
