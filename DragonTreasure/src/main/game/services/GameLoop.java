@@ -176,7 +176,6 @@ public class GameLoop {
         Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
         //if door is locked, print door peep 
         if (chosenDoor.getLocked()) {
-            System.out.println(chosenDoor.getKeyholeViewDescription());
             // TODO: add logic to check for key in inventory and print out options (?).
             boolean unlockDoor = checkLockedDoor(chosenDoor);
             if (unlockDoor){
@@ -186,7 +185,10 @@ public class GameLoop {
                 this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
                 return false; // set locked door to false to print room description
             }
-            return true;// set door locked to true as to not print room desciption.
+            else{
+                System.out.println(chosenDoor.getKeyholeViewDescription());
+                return true;// set door locked to true as to not print room desciption.
+            }
         } else {
             // else set the current room to the room the chosen door leads to.
             this.currentRoom = dungeonRooms[chosenDoor.getConnectedRoomID()];
@@ -281,8 +283,9 @@ public class GameLoop {
      * @return boolean true if the door is unlocked, false if not
      */
     private boolean checkLockedDoor(Door lockedDoor){
-        boolean unlocked = player.getInventory().unlockDoor(lockedDoor);
-        if (unlocked){
+        boolean hasKey = player.getInventory().checkKey();
+        if (hasKey){
+            lockedDoor.unlockDoor("Du kan gå österut [o]");
             return true;
         }
         return false;

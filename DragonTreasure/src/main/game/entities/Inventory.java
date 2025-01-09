@@ -246,13 +246,11 @@ public class Inventory {
 
     /**
      * 
-     * @return true if door is unlocked, false if not
+     * @return true if key exists in inventory
      */
-    public boolean unlockDoor(Door lockedDoor){
+    public boolean checkKey(){
         for (Item item : items) {
             if (item instanceof Key){
-                //TODO make interactable
-                lockedDoor.setLocked(false);
                 return true;
             }
         }
