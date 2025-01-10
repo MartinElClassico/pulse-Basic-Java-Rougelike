@@ -49,7 +49,7 @@ public class Inventory {
     /**
      * holds static final string to format for item selected and actions avaliable.
      */
-    private static final String ITEM_USE_PROMPT = "Du valde %s. Tryck v för att visa, u för att använda eller q för att gå tillbaka.";
+    private static final String ITEM_USE_PROMPT = "Du valde %s. Tryck [v] för att visa, [u] för att använda eller [q] för att gå tillbaka.";
 
     /**
      * holds static final char array of usable commands (except q) when item is not usable 
@@ -59,9 +59,9 @@ public class Inventory {
     /**
      * holds static final string to format for item selected and actions avaliable when item is not usable.
      */
-    private static final String ITEM_USE_PROMPT_NUSABLE = "Du valde %s. Tryck v för att visa eller q för att gå tillbaka.";
+    private static final String ITEM_USE_PROMPT_NUSABLE = "Du valde %s. Tryck [v] för att visa eller [q] för att gå tillbaka.";
 
-    private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den!";
+    private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den [u]!";
 
     /**
      * contructor, initalizes inventory.
@@ -247,7 +247,7 @@ public class Inventory {
     }
 
     /**
-     * 
+     * Method to check if key exists in inventory
      * @return true if key exists in inventory
      */
     public boolean checkKey(){
@@ -259,6 +259,10 @@ public class Inventory {
         return false;
     }
 
+/**
+ * Method to check if treasure exists in inventory
+ * @return true if treasure exists in inventory
+ */
     public boolean checkTreasure(){
         for (Item item : items) {
             if (item instanceof Treasure){
@@ -268,6 +272,10 @@ public class Inventory {
         return false;
     }
 
+/**
+ * Method to prompt user to use key
+ * @param key the key to be used
+ */
     public boolean keyUsePrompt(Key key) {
         key.setUsable(true);
         System.out.println(UNLOCKABLE_DOOR_PROMPT);
