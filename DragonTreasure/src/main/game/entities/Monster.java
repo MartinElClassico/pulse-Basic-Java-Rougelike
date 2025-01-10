@@ -1,7 +1,7 @@
 package main.game.entities;
 
 /** 
-* This class represents a monster in the game that can take damage, do damage and get dead
+* This class represents a monster in the game that can take damage, do damage and get defeated.
 * It handles both monster and dragon, differentiating based on the name of the monster
 * 
 * @author annemm-3, tulmar-2, evekho-4
