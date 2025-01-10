@@ -1,0 +1,2 @@
+holds static java objects that basically do not have any logic but has content.
+e.g. art or pictures or in this case, ASCII-art.

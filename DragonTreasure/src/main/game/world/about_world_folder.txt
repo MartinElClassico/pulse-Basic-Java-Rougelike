@@ -1,0 +1,1 @@
+this stores classes needed for the world in which the player exists.

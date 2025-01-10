@@ -1,0 +1,3 @@
+holds io (input output) handling logic, 
+that is to say to make sure the player input is handled correctly and 
+that the player is informed when incorrect input is given (output).
