@@ -61,6 +61,9 @@ public class InputHandler{
         }
     }
 
+/**
+ * Method 
+ */
     public int handleIntToken(int validMinInt, int validMaxInt, int quitInput) {
         while (true){
             try {

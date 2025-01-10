@@ -131,24 +131,34 @@ public class Player {
     }
 
 /** 
- * 
+ * Increments the players attack damage in case of weapon pickup
+ * @param addAttackDamage the amount of attack damage to be added to the player attack
  */
     public void incrementAttackDamage(int addAttackDamage) {
         this.attackDamage += addAttackDamage;
     }
 
-    //endregion
-
-    //region player inventory and equip/use functions.
+/**
+ * Method to get the players inventory
+ * @return the players inventory
+ */
 
     public Inventory getInventory(){
         return this.inventory;
     }
 
+/**
+ * Method to set the players inventory
+ * @param inventory the inventory to be set
+ */
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
 
+/**
+ * Accesses the players inventory and allows the player to choose an item
+ * Removes the item from the inventory after choosing
+ */
     public void accessInventory(){
         Item chosenItem = this.inventory.manageInventory();
         if (chosenItem != null)
@@ -158,6 +168,10 @@ public class Player {
         }
     }
 
+/**
+ * Method to use an item from the inventory
+ * @param item the item to be used
+ */
     private void useItem(Item item) {
         if(item instanceof Potion potion) {
             heal(
@@ -169,5 +183,5 @@ public class Player {
             );
         } else {assert true; } // do nothing if not of these types.
     }
-    //endregion
+    
 }
