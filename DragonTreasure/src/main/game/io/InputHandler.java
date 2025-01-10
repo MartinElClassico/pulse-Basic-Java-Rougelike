@@ -62,7 +62,13 @@ public class InputHandler{
     }
 
 /**
- * Method 
+ * Method to handle valid user input of type int in a specific range, or a quit command
+ * If input is not an int, or not in the valid range, the user will be prompted to try again
+ * @param validMinInt the minimun valid input value
+ * @param validMaxInt the maximum valid input value
+ * @param quitInput the quit command
+ * @return command the valid chosen command or quit command
+ * @throws NumberFormatException if user input is not an int
  */
     public int handleIntToken(int validMinInt, int validMaxInt, int quitInput) {
         while (true){
