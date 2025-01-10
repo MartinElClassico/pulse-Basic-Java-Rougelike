@@ -9,7 +9,7 @@ import main.game.items.Key;
 import main.game.items.Treasure;
 
 /**
- * Inventory class to hold and manage items that the player has picked up
+ * Inventory class to hold and manage items that the player can pick up
  * 
  * @author annemm-3, tulmar-2, evekho-4
  */
@@ -69,6 +69,7 @@ public class Inventory {
 
     private static final String UNLOCKABLE_DOOR_PROMPT = "Du har nyckeln till dörren och kan låsa upp den [u]!";
 
+    private static final String ITEM_NOT_FOUND_E_MSG = "Föremålet hittades inte i väskan!";
     /**
      * contructor, initalizes inventory.
      */
@@ -99,7 +100,7 @@ public class Inventory {
             }
         }
         if (!success) {
-            throw new ItemNotFoundException("Föremålet hittades inte i väskan!");
+            throw new ItemNotFoundException(ITEM_NOT_FOUND_E_MSG);
         }
     }
 
@@ -115,7 +116,7 @@ public class Inventory {
                 return item;
             }
         }
-        throw new ItemNotFoundException("Föremålet hittades inte i väskan!");
+        throw new ItemNotFoundException(ITEM_NOT_FOUND_E_MSG);
     }
 
     /**
@@ -138,11 +139,11 @@ public class Inventory {
         }
         }
     
-        /**
-         * Prints the inventory and handles user chosing an item from the inventory.
-         * @return null if no item was chosen or if inventory was empty. 
-         * the item selected otherwise.
-         */
+    /**
+     * Prints the inventory and handles user chosing an item from the inventory.
+     * @return null if no item was chosen or if inventory was empty. 
+     * the item selected otherwise.
+     */
     private Item accessInventory() {
         boolean hasItems = printInventory();
         if (hasItems) {
@@ -279,13 +280,16 @@ public class Inventory {
     }
 
 /**
- * Method to prompt user to use key
+ * Method to prompt user to use key. Door unlock is not handled here.
  * @param key the key to be used
+ * @return boolean true if key was used, false if not used.
  */
     public boolean keyUsePrompt(Key key) {
+        // make key usable.
         key.setUsable(true);
         System.out.println(UNLOCKABLE_DOOR_PROMPT);
         char command = itemUseMenu(key);
+        // return key to original state of not usable.
         key.setUsable(false);
         if (command == 'u'){return true;}
         else {
