@@ -1,9 +1,14 @@
 package main.game.items;
+/** 
+* This class represents an item in the game. It can be picked up, 
+* viewed and in some cases used
+* 
+* @author annemm-3, tulmar-2, evekho-4
+*/
+
 public abstract class Item {
     /**
      * Holds the items name
-     * 
-     * @author annemm-3, tulmar-2, evekho-4
      */
     private String name;
 

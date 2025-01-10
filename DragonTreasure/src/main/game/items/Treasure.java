@@ -1,4 +1,10 @@
 package main.game.items;
+/** 
+* This class represents a Treasure, which is an item in the game
+* It holds the amount of gold the treasure is worth
+* 
+* @author annemm-3, tulmar-2, evekho-4
+*/
 public class Treasure extends Item {
     private static final String TREASURE_PICKED_UP_PROMPT = "Du tog upp skatten.";
     /**
