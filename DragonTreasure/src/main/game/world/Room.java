@@ -32,12 +32,17 @@ public class Room {
 
     /**
      * private instance to hold the doors in an array that are connected to the room.
-     * 
      */
     private Door[] doors;
 
+    /**
+     * list of the items that exist in the room.
+     */
     private List<Item> items;
 
+    /**
+     * list of the monsters that exist in the room.
+     */
     private List<Monster> monsters;
 
     /**
@@ -93,13 +98,6 @@ public class Room {
     public char[] getDoorDirections(){
         return this.doorDirections;
     }
-    
-    /**
-     * method to print out the room description and other data connected to the room.
-     */
-    public void doNarrative (){
-        // print the roomDesc with printf to add other contexts.
-    }
 
     /**
      * Retrivies the room's description 
@@ -115,7 +113,6 @@ public class Room {
      * 
      * @return the room's ID.
      */
-
     public int getRoomId () {
         return this.roomId;
     }
@@ -143,7 +140,7 @@ public class Room {
     /**
      * Adds an item to the room
      * 
-     * @param i5tem to add
+     * @param item to add
      */
     public void addItem (Item item){
         items.add(item);
@@ -152,18 +149,21 @@ public class Room {
     /**
      * Adds a monster to the room
      * 
-     * @param monster to add
+     * @param monster monster to add to the room.
      */
     public void addMonster (Monster monster){
         monsters.add(monster);
     }
 
-
+    /**
+     * Prints all the items prompts of all the items in the room.
+     */
     public void printAllItemDescriptions(){
         for (Item itemInRoom : this.items) {
             System.out.println(itemInRoom.getitemPrompt());
         }
     }
+    
     /**
      * Prints description of all doors in the room. 
      */

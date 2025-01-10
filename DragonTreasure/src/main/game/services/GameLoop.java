@@ -159,11 +159,11 @@ public class GameLoop {
         return charArray;
     }
 
-/**
- * Method to get all avaliable commands for the player based on the room and room contents
- * @param hasItems boolean value to check if there are items in the room
- * @return char[] array of all avaliable commands for the player
- */
+    /**
+     * Method to get all avaliable commands for the player based on the room and room contents
+     * @param hasItems boolean value to check if there are items in the room
+     * @return char[] array of all avaliable commands for the player
+     */
     private char[] getAvaliableCommands(boolean hasItems){
         List<Character> charCommands = new ArrayList<>();
         if (hasItems) {charCommands.add('i');}
@@ -176,12 +176,12 @@ public class GameLoop {
         return listToCharArray(charCommands);
     }
 
-/**
- * Method to change room based on user input
- * Checks if thee door is locked and if the player uses a key to unlock it
- * @param userInp the door(direction) the player has chosen to move through
- * @return boolean false when the door is unlocked and player can move to next room, true if door is locked
- */
+    /**
+     * Method to change room based on user input
+     * Checks if thee door is locked and if the player uses a key to unlock it
+     * @param userInp the door(direction) the player has chosen to move through
+     * @return boolean false when the door is unlocked and player can move to next room, true if door is locked
+     */
     private boolean playerRoomChange(char userInp) {
         // get the door the player has chosen to move through.
         Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
@@ -226,12 +226,12 @@ public class GameLoop {
         }
     }
 
-/**
- * Method to handle players input
- * Based on item interactions and door interaction in room
- * @param inpHand InputHandler instance to handle user input
- * @return char the user input
- */
+    /**
+     * Method to handle calls to print statements for players input options
+     * Based on item interactions and door interaction in room
+     * @param inpHand InputHandler instance to handle user input
+     * @return char the user input, viz. the legal command the user gave.
+     */
     private char playerChoice(InputHandler inpHand){
         //print out inventory access if avaliable
         boolean invHasItems = player.getInventory().printInventoryPrompt();
@@ -244,17 +244,21 @@ public class GameLoop {
         return userInp;
     }
 
-/**
- * Method to handle battle between player and monster
- * @param monster the monster the player is facing
- * @return playerAlive boolean value if the player is alive or not
- */
+    /**
+     * Method to handle battle between player and monster
+     * @param monster the monster the player is facing
+     * @return playerAlive true if the player is alive or false if not
+     */
     private boolean doBattle(Monster monster) {
         boolean monsterAlive = true;
         boolean playerAlive = true;
+        // while both are alive, do battle.
         while (monsterAlive && playerAlive) {
+            // monster attacks firsts.
             playerAlive = monster.attackPlayer(player);
+            // sleep to make it more realistic.
             sleep(200);
+            // if player did not die from attack, player attacks monster.
             if (playerAlive){
                 monsterAlive = monster.attackMonster(player.getAttackDamage());
                 sleep(200);
@@ -264,10 +268,10 @@ public class GameLoop {
         
     }
 
-/**
- * Method to handle player facing monster and remove monster from room if player wins
- * @return playerAlive boolean value if the player is alive or not
- */
+    /**
+     * Method to handle player facing monster and remove monster from room if player wins
+     * @return playerAlive true if player survived encounter, otherwise false.
+     */
     private boolean faceMonster() {
         // since we remove monsters we need to use an itterator to not get read/write conflicts.
         Iterator<Monster> iterator = currentRoom.getMonsters().iterator();
@@ -292,7 +296,7 @@ public class GameLoop {
     }
 
     /**
-     * Method to get delays in the program
+     * Method to get delays in the program for a more realistic gameplay.
      * @param milliSeconds to sleep
      */
     private void sleep(int milliSeconds){
@@ -375,7 +379,9 @@ public class GameLoop {
             // user finds the dungeon exit.
             if (currentRoom.getRoomId() == 7) {
                 if (player.getInventory().checkTreasure()){
-                    // win message is printed later outside while loop.
+                    // win message:
+                    printRoomDesc();
+                    // exit loop:
                     this.running = false;
                 }
                 else {
@@ -383,23 +389,14 @@ public class GameLoop {
                     System.out.println(); //empty row for readability.
                     this.currentRoom = roomBeforeTreasure; //set current room that the player is in to room before exit.
                 }
-                
-            }
-            
+            } 
         }
+        // game over condition:
         if (!playerAlive) {
             System.out.println(GAME_OVER_DIED_MSG);
         }    
-        //end of the loop the player moves in itteration through.
-        // check if win condition was reason we exited loop (could be because of death or quit)
-        if (currentRoom.getRoomId() == 7) {
-            // this correspond to win message.
-            printRoomDesc();
-        }
         // close all scanners to handle input to avoid resource leaks.
         inpHand.closeScanner(); //close scanner in method to handle checks on user input movement.
         sc.close(); // close scanner used to handle creation of player.
     }
-
-
 }
