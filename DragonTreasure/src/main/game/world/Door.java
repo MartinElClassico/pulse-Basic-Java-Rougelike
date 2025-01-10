@@ -130,6 +130,10 @@ public class Door {
         this.keyholeViewDescription = keyholeViewDescription;
     }
 
+/**
+ * Unlocks the door and changes the doorprompt to a new one
+ * @param newDoorPrompt
+ */
     public void unlockDoor(String newDoorPrompt){
         this.locked = false;
         this.doorPrompt = newDoorPrompt;

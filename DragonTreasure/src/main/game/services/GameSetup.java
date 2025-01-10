@@ -247,6 +247,7 @@ public class GameSetup {
 
     /**
      * Gets the array that holds all of the rooms of the game
+     * @return Room[] array of rooms
      */
     public Room[] getRooms() {
         return this.rooms;

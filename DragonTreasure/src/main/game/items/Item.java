@@ -2,6 +2,8 @@ package main.game.items;
 public abstract class Item {
     /**
      * Holds the items name
+     * 
+     * @author annemm-3, tulmar-2, evekho-4
      */
     private String name;
 

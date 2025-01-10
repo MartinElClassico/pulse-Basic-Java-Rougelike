@@ -159,6 +159,11 @@ public class GameLoop {
         return charArray;
     }
 
+/**
+ * Method to get all avaliable commands for the player based on the room and room contents
+ * @param hasItems boolean value to check if there are items in the room
+ * @return char[] array of all avaliable commands for the player
+ */
     private char[] getAvaliableCommands(boolean hasItems){
         List<Character> charCommands = new ArrayList<>();
         if (hasItems) {charCommands.add('i');}
@@ -171,6 +176,12 @@ public class GameLoop {
         return listToCharArray(charCommands);
     }
 
+/**
+ * Method to change room based on user input
+ * Checks if thee door is locked and if the player uses a key to unlock it
+ * @param userInp the door(direction) the player has chosen to move through
+ * @return boolean false when the door is unlocked and player can move to next room, true if door is locked
+ */
     private boolean playerRoomChange(char userInp) {
         // get the door the player has chosen to move through.
         Door chosenDoor = fetchChoosenDoor(userInp, currentRoom.getDoors());
@@ -215,6 +226,12 @@ public class GameLoop {
         }
     }
 
+/**
+ * Method to handle players input
+ * Based on item interactions and door interaction in room
+ * @param inpHand InputHandler instance to handle user input
+ * @return char the user input
+ */
     private char playerChoice(InputHandler inpHand){
         //print out inventory access if avaliable
         boolean invHasItems = player.getInventory().printInventoryPrompt();
@@ -227,6 +244,11 @@ public class GameLoop {
         return userInp;
     }
 
+/**
+ * Method to handle battle between player and monster
+ * @param monster the monster the player is facing
+ * @return playerAlive boolean value if the player is alive or not
+ */
     private boolean doBattle(Monster monster) {
         boolean monsterAlive = true;
         boolean playerAlive = true;
@@ -242,6 +264,10 @@ public class GameLoop {
         
     }
 
+/**
+ * Method to handle player facing monster and remove monster from room if player wins
+ * @return playerAlive boolean value if the player is alive or not
+ */
     private boolean faceMonster() {
         // since we remove monsters we need to use an itterator to not get read/write conflicts.
         Iterator<Monster> iterator = currentRoom.getMonsters().iterator();
