@@ -8,6 +8,12 @@ import main.game.io.InputHandler;
 import main.game.items.Key;
 import main.game.items.Treasure;
 
+/**
+ * Inventory class to hold and manage items that the player has picked up
+ * 
+ * @author annemm-3, tulmar-2, evekho-4
+ */
+
 public class Inventory {
     /**
      * holds the items the player has picked up.
