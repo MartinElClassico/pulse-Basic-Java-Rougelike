@@ -33,14 +33,18 @@ public abstract class Item {
      */
     private String  itemPrompt;
 
+    /**
+     * prompt for item when picked up by player.
+     */
     private String pickedUpItemPrompt;
 
     /**
      * Constructor, protected since should only be able to be used via inheritance.
-     * @param String name of the item
-     * @param String description of the item
-     * @param boolean if item is usable or not.
-     * @param String prompt for what the player sees when encountering the item.
+     * @param name name of the item
+     * @param description description of the item
+     * @param usable if item is usable or not.
+     * @param itemPrompt prompt for what the player sees when encountering the item.
+     * @param pickedUpItemPrompt prompt for what to print when player pickes up the item. 
      */
     protected Item(String name, String description, boolean usable, String itemPrompt, String pickedUpItemPrompt){
         this.name = name;

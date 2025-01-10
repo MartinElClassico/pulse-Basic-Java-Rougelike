@@ -14,9 +14,10 @@ public class Weapon extends Item {
 
     /**
      * Constructor
-     * @param String name of the weapon
-     * @param String decription of the weapon
-     * @param int amount of damage increase the weapon gives
+     * @param name name of the weapon
+     * @param description decription of the weapon
+     * @param itemPrompt prompt for when encountering the item in the world.
+     * @param increaseDamage amount of damage increase the weapon gives
      */
     public Weapon (String name, String description, String itemPrompt, int increaseDamage){
         super(name, description, true, itemPrompt, WEAPON_PICKED_UP_PROMPT);
