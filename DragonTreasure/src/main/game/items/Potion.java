@@ -1,4 +1,10 @@
 package main.game.items;
+/** 
+* This class represents a Potion, which is an item in the game
+* It holds the amount of healing the potion gives
+* 
+* @author annemm-3, tulmar-2, evekho-4
+*/
 public class Potion extends Item {
     private static final String POTION_PICKED_UP_PROMPT = "Du tog upp hälsodrycken.";
     /**

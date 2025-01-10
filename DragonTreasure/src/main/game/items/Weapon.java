@@ -1,4 +1,10 @@
 package main.game.items;
+/** 
+* This class represents a Weapon, which is an item in the game
+* It holds the amount of damage it increases
+* 
+* @author annemm-3, tulmar-2, evekho-4
+*/
 public class Weapon extends Item {
     private static final String WEAPON_PICKED_UP_PROMPT = "Du tog upp svärdet.";
     /**

@@ -1,5 +1,10 @@
 package main.game.items;
-
+/** 
+* This class represents a Key, which is an item in the game
+* It validates the room ID and door direction when created
+* 
+* @author annemm-3, tulmar-2, evekho-4
+*/
 public class Key extends Item {
     private static final String KEY_PICKED_UP_PROMPT = "Du tog upp nyckeln.";
 
