@@ -9,7 +9,7 @@ package main.game.entities;
 
 public class Monster {
 
-// constants for messages
+    // constants for messages
     private static final String ATTACK_MONSTER_MESSAGE = "Ett skelett attackerar dig och gör %d skada (hp kvar: %d)%n";
     private static final String ATTACK_DRAGON_MESSAGE = "En drake attackerar dig och gör %d skada (hp kvar: %d)%n";
     private static final String MONSTER_ATTACKED_MESSAGE = "Du attackerar skelettet och gör %d skada (hp kvar: %d)%n";
@@ -30,9 +30,10 @@ public class Monster {
     /** 
      * Constructor to create a monster with its name, max health points and description
      * 
-     * @param name
-     * @param maxHealthpoints
-     * @param monsterDesc
+     * @param name name of the monster.
+     * @param maxHealthpoints maximum health of the monster.
+     * @param monsterDesc the description of the monster.
+     * @param isDragon boolean to say if the monster is a dragon or not.
     */
     public Monster(String name, int maxHealthPoints, String monsterDesc, boolean isDragon) {
         this.name = name;
@@ -43,151 +44,155 @@ public class Monster {
         this.dead = false;
     }
 
-/**
- * Gets the name of the monster
- * @return The name of the monster
- */
+    /**
+     * Gets the name of the monster
+     * @return The name of the monster
+     */
     public String getName() {
         return name;
     }
 
-/**
- * Gets the current health points of the monster
- * @return The current health points of the monster
- */
+    /**
+     * Gets the current health points of the monster
+     * @return The current health points of the monster
+     */
     public int getHealthPoints() {
        return healthPoints;  
     }
 
-/**
- * Gets the max health points of the monster
- * @return The max health points of the monster
- */
+    /**
+     * Gets the max health points of the monster
+     * @return The max health points of the monster
+     */
     public int getMaxHealthPoints() {
         return maxHealthPoints;
     }
 
-/**
- * Gets the damage of the monster
- * @return The damage of the monster
- */
+    /**
+     * Gets the damage of the monster
+     * @return The damage of the monster
+     */
     public int getAttackDamage() {
         return damage;
     }
 
-/**
- * Gets the description of the monster
- * @return The description of the monster
- */
+    /**
+     * Gets the description of the monster
+     * @return The description of the monster
+     */
     public String getMonsterDesc() {
         return monsterDesc;
     }
 
-/**
- * Gets ascii art for the monster, if none it just returns an empty string.
- * @return ascii art or if none, empty string
- */
-public String getAsciiArt(){
-    return this.asciiArt;
-}
+    /**
+     * Gets ascii art for the monster, if none it just returns an empty string.
+     * @return ascii art or if none, empty string
+     */
+    public String getAsciiArt(){
+        return this.asciiArt;
+    }
 
-/**
- * Set ascii art to be used for the monster.
- * @param ascii ascii art to be used to represent monster.
- */
-public void setAsciiArt(String ascii){
-    this.asciiArt = ascii;
-}
+    /**
+     * Set ascii art to be used for the monster.
+     * @param ascii ascii art to be used to represent monster.
+     */
+    public void setAsciiArt(String ascii){
+        this.asciiArt = ascii;
+    }
 
-/**
- * Checks if the monster is dead
- * @return true if the monster is dead, otherwise false
- */
+    /**
+     * Checks if the monster is dead
+     * @return true if the monster is dead, otherwise false
+     */
     public boolean isDefeated() {
         return dead;
    }
 
-/**
- * Method for attacking the player and mark as defeated if healthpoints reach 0.
- * @param player The player being attacked
- */
-public boolean attackPlayer(Player player) {
-    if (!dead) 
-    {
-        int playerHP = player.takeDamage(damage); // Calls Player class' takeDamage method
-        playerAttackedMessage(playerHP);
-        if (player.getHp() <= 0) {
-            return false;
+    /**
+     * Method for attacking the player and mark as defeated if healthpoints reach 0.
+     * @param player The player being attacked
+     * @return boolean, true if player is alive, false if player is dead.
+     */
+    public boolean attackPlayer(Player player) {
+        if (!dead) 
+        {
+            int playerHP = player.takeDamage(damage); // Calls Player class' takeDamage method
+            playerAttackedMessage(playerHP);
+            if (player.getHp() <= 0) {
+                return false;
+            }
+            return true;
         }
-        return true;
+        else {return true;}
     }
-    else {return true;}
-}
 
-/**
- * Method to handle player output when monster attacks
- * @param playerHP The players health points
- */
-private void playerAttackedMessage(int playerHP){
-    if (!isDragon) {
-        System.out.printf(ATTACK_MONSTER_MESSAGE, damage, playerHP);
-    } else {
-        System.out.printf(ATTACK_DRAGON_MESSAGE, damage, playerHP);
+    /**
+     * Method to handle text output when monster attacks player.
+     * @param playerHP The players health points
+     */
+    private void playerAttackedMessage(int playerHP){
+        if (!isDragon) {
+            System.out.printf(ATTACK_MONSTER_MESSAGE, damage, playerHP);
+        } else {
+            System.out.printf(ATTACK_DRAGON_MESSAGE, damage, playerHP);
+        }
     }
-}
 
-/**
- * Method to print out the defeated message
- */
-private void printDefeated(){
-    if (!isDragon) {
-        System.out.println(DEFEAT_MONSTER_MESSAGE);
-    } else {
-        System.out.println(DEFEAT_DRAGON_MESSAGE);
+    /**
+     * Method to print out the monster defeated message
+     */
+    private void printDefeated(){
+        if (!isDragon) {
+            System.out.println(DEFEAT_MONSTER_MESSAGE);
+        } else {
+            System.out.println(DEFEAT_DRAGON_MESSAGE);
+        }
+        System.out.println();
     }
-    System.out.println();
-}
 
-/**
- * Method to handle monster taking damage and mark as dead when healthpoints reach 0
- */
-public boolean attackMonster(int damageTaken) {
-    healthPoints -= damageTaken;
-    monsterAttackedMessage(damageTaken);
-    if (healthPoints <= 0) {   
-        dead = true;
-        printDefeated();
-        return false; //to answer if the monster is alive
+    /**
+     * Method to handle monster being attacked and mark as dead when healthpoints reach 0
+     * and print defeated message if monster is killed.
+     * @param damageTaken the damage to be done to the monster.
+     * @return boolean, true if monster alive, false if dead.
+     */
+    public boolean attackMonster(int damageTaken) {
+        healthPoints -= damageTaken;
+        monsterAttackedMessage(damageTaken);
+        if (healthPoints <= 0) {   
+            dead = true;
+            printDefeated();
+            return false; //to answer if the monster is alive
+        }
+        return true; //to answer if the monster is alive
     }
-    return true; //to answer if the monster is alive
-  }
 
-/**
- * Method to handle monster output when attacked
- * @param damageTaken the damage taken by the monster
- */
-private void monsterAttackedMessage(int damageTaken){
-    if (!isDragon) {
-        System.out.printf(MONSTER_ATTACKED_MESSAGE, damageTaken, healthPoints);
-    } else {
-        System.out.printf(DRAGON_ATTACKED_MESSAGE, damageTaken, healthPoints);
+    /**
+     * Method to handle output when the monster is attacked.
+     * @param damageTaken the damage taken by the monster
+     */
+    private void monsterAttackedMessage(int damageTaken){
+        if (!isDragon) {
+            System.out.printf(MONSTER_ATTACKED_MESSAGE, damageTaken, healthPoints);
+        } else {
+            System.out.printf(DRAGON_ATTACKED_MESSAGE, damageTaken, healthPoints);
+        }
     }
-}
 
-/**
- * Method to get the damage of the monster
- * @return the damage of the monster
- */
-public int getDamage(){
-    return this.damage;
-}
+    /**
+     * Method to get the damage the monster does.
+     * @return the damage of the monster
+     */
+    public int getDamage(){
+        return this.damage;
+    }
 
-/**
- * Method to set the damage of the monster
- * @param damage the damage to be set
- */
-public void setDamage(int damage){
-    this.damage = damage;
-}
+    /**
+     * Method to set the damage the monster does.
+     * @param damage the damage to be set
+     */
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
     
 }

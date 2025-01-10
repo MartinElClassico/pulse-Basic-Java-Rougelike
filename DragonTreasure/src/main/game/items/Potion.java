@@ -14,9 +14,10 @@ public class Potion extends Item {
   
     /**
      * Constructor
-     * @param String name of the potion
-     * @param String decription of the potion
-     * @param int number of hp the potion heals
+     * @param name name of the potion
+     * @param description decription of the potion
+     * @param itemPrompt prompt when encountering item in the world.
+     * @param healing number of hp the potion heals
      */
     public Potion (String name, String description, String itemPrompt, int healing){
         super(name, description, true, itemPrompt, POTION_PICKED_UP_PROMPT);

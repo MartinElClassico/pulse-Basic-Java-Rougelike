@@ -14,9 +14,10 @@ public class Treasure extends Item {
 
     /**
      * Constructor
-     * @param String name of the treasure
-     * @param String decription of the treasure
-     * @param int gold value of the treasure
+     * @param name name of the treasure
+     * @param description decription of the treasure
+     * @param itemPrompt the prompt for when encountering the item.
+     * @param goldValue gold value of the treasure
      */
     public Treasure (String name, String description, String itemPrompt, int goldValue){
         super(name, description, false, itemPrompt, TREASURE_PICKED_UP_PROMPT);

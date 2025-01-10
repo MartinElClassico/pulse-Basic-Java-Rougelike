@@ -3,7 +3,8 @@ package main.game.entities;
 import main.game.items.*;
 /**
  * The Player class represents a player in the game.
- * It stores basic informormation about the player, such as it's name.
+ * It stores basic informormation about the player, such as it's name
+ * and usage of items in its inventory.
  * 
  * Player's position within the dungeon is handled by the Dungeon class which also 
  * keeps track of the current room and handles player movement.
@@ -33,17 +34,22 @@ public class Player {
      */
     private int attackDamage = 1;
 
+    /**
+     * Player has an inventory.
+     */
     private Inventory inventory;
 
     /**
      * Constructs a player with the specified name.
      * 
      * @param name the name of the player.
+     * @param maxHp the maximum health points of the player.
      */
     public Player(String name, int maxHp) {
         this.name = name;
         this.maxHp = maxHp;
         this.hp = maxHp;
+        // initalize inventory.
         this.inventory = new Inventory();
     }
 
@@ -95,7 +101,7 @@ public class Player {
 
 
    /**
-    * Handles a player taking damage, decrements hp and triggers listener if dead.
+    * Handles a player taking damage, decrements hp.
     * @param damageTaken int of how much damage is being dealt to player.
     * @return playerHP, how much HP the player has left.
     */
@@ -104,19 +110,19 @@ public class Player {
     return this.hp;
    }
 
-   /**
+    /**
     * heals the player but makes sure player does not get more HP than maximum.
     * @param hpGained how much HP to be added to the player.
     * @return currentHP, returns the HP of the player after having been healed.
     */
-   public int heal(int hpGained) {
-    this.hp += hpGained;
-    // player should not be able to have more hp than maxHp.
-    if (maxHp > this.hp) {
-        this.hp = maxHp;
+    public int heal(int hpGained) {
+        this.hp += hpGained;
+        // player should not be able to have more hp than maxHp.
+        if (maxHp > this.hp) {
+            this.hp = maxHp;
+        }
+        return this.hp;
     }
-    return this.hp;
-   }
 
     //endregion
 
@@ -130,48 +136,48 @@ public class Player {
         this.attackDamage = attackDamage;
     }
 
-/** 
- * Increments the players attack damage in case of weapon pickup
- * @param addAttackDamage the amount of attack damage to be added to the player attack
- */
+    /** 
+     * Increments the players attack damage in case of weapon pickup
+     * @param addAttackDamage the amount of attack damage to be added to the player attack
+     */
     public void incrementAttackDamage(int addAttackDamage) {
         this.attackDamage += addAttackDamage;
     }
 
-/**
- * Method to get the players inventory
- * @return the players inventory
- */
-
+    /**
+     * Method to get the players inventory
+     * @return the players inventory
+     */
     public Inventory getInventory(){
         return this.inventory;
     }
 
-/**
- * Method to set the players inventory
- * @param inventory the inventory to be set
- */
+    /**
+     * Method to set the players inventory
+     * @param inventory the inventory to be set
+     */
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
 
-/**
- * Accesses the players inventory and allows the player to choose an item
- * Removes the item from the inventory after choosing
- */
+    /**
+     * Accesses the players inventory and allows the player to choose an item
+     * Removes the item from the inventory after choosing
+     */
     public void accessInventory(){
         Item chosenItem = this.inventory.manageInventory();
         if (chosenItem != null)
         {
             useItem(chosenItem);
+            // remove the item after having used it.
             this.inventory.removeItem(chosenItem.getName());
         }
     }
 
-/**
- * Method to use an item from the inventory
- * @param item the item to be used
- */
+    /**
+     * Method to use an item from the inventory
+     * @param item the item to be used
+     */
     private void useItem(Item item) {
         if(item instanceof Potion potion) {
             heal(

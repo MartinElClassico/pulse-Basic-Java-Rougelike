@@ -21,10 +21,11 @@ public class Key extends Item {
     private char targetDoor ;
     /**
      * Constructor, with argument checks for last two arguments.
-     * @param String name of the key
-     * @param String description of the key
-     * @param int roomIdToUnlock the ID of the room containing the door the key unlocks.
-     * @param char doorDirectionToUnlock the orientation of the door the key unlocks (n, s, o, v).
+     * @param name name of the key
+     * @param description description of the key
+     * @param itemPrompt prompt for when encountering item.
+     * @param roomIdToUnlock roomIdToUnlock the ID of the room containing the door the key unlocks.
+     * @param doorDirectionToUnlock char doorDirectionToUnlock the orientation of the door the key unlocks (n, s, o, v).
      * @throws IllegalArgumentException if the room ID is negative or the door direction is invalid
      */
     public Key (String name, String description, String itemPrompt, int roomIdToUnlock, char doorDirectionToUnlock){
@@ -75,6 +76,4 @@ public class Key extends Item {
     public char getTargetDoor(){
         return this.targetDoor;
     }
-
-    // check when accessing a locked door if key is in invetory, if so unlock and print. 
 }
