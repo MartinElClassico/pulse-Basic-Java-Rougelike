@@ -114,15 +114,20 @@ Inventory as a separate class. Separates inventory handling from player class. K
 
 ## How to install and run
 
-Windows:
+#Windows:
 
 1. Make sure Java Development Kit is installed on your machine. Also make sure the PATH directory is added on windows systems.
-2. We included BASH scripts to help you run it on Windows, but all files need to be compiled firstly and then DragonTreasure.class needs to be executed with java in a terminal if you want to do it manual or on another OS.
-On windows: run compile_and_run.bat or alternatively if you only want to compile it, run: compile.bat
+2. We included BASH scripts to help you run it on Windows, but all files need to be compiled firstly and then DragonTreasure.class needs to be executed with java in a terminal if you want to do it manually.
+3. Run *compile_and_run_windows.bat* (if you only want to compile it exit the script once it asks if you want to play).
 
-Linux/iOS:
+#Linux/iOS:
 
-1. 
+1. Make sure Java Development Kit is installed on your machine. This should include javac.
+2. Open a terminal in the folder where the:
+    "compile_and_run_unix.sh"
+    file is located (by holding down shift and right clicking, chosing open terminal on linux).
+3. run the program in shell interpreter, by writing:
+*bash compile_and_run_unix.sh*
 
 
 ## How to play:
